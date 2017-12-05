@@ -1,5 +1,5 @@
 # 博客地址
-baseURL = "https://blog.yitinglove.cn"
+baseURL = "http://blog.yitinglove.cn/"
 
 # 语言
 languageCode = "zh_CN"
