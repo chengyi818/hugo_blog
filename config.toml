@@ -13,6 +13,9 @@ layoutDir = "layouts"
 buildDrafts = false
 canonifyURLs = true
 
+themesDir = "themes"
+theme = "casper"
+
 [taxonomies]
     category = "categories"
     tag = "tags"
