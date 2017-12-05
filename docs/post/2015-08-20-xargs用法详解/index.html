@@ -39,8 +39,9 @@
     <title>xargs用法详解 &middot; 道法自然</title>
 
     
-    <meta name="description" content="&lt;p&gt;##前言
-　最近我从svn上checkout出来了一个文件夹,然后加入了git的跟踪目录.用过svn的同学可能知道,这个文件夹里面每一层级都有个.svn隐藏文件夹,需要删除他们.本来我准备笨拙地一个一个手动删除的,一位同事在我面前敲了大概是&lt;code&gt;$find . -type d -name &amp;quot;*.s" />
+    <meta name="description" content="&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;　最近我从svn上checkout出来了一个文件夹,然后加入了git的跟踪目录.用过svn的同学可能知道,这个文件夹里面每一层级都有个.svn隐藏文件夹,需要删除他们.本来我准备笨拙地一个一个手动删除的,一位同事在我面前敲了大概是&lt;code&gt;$find . -type d" />
     
 
     <meta name="HandheldFriendly" content="True" />
@@ -203,8 +204,9 @@
     </header>
 
     <section class="post-content">
-      <p>##前言
-　最近我从svn上checkout出来了一个文件夹,然后加入了git的跟踪目录.用过svn的同学可能知道,这个文件夹里面每一层级都有个.svn隐藏文件夹,需要删除他们.本来我准备笨拙地一个一个手动删除的,一位同事在我面前敲了大概是<code>$find . -type d -name &quot;*.svn&quot; | xargs rm -rf</code>这样的命令,顿时觉得很高端大气上档次.刚好新学了Markdown,就顺便整理下xargs的用法,练练手.<a href="http://czmmiao.iteye.com/blog/1949225">参考网址</a>,当然更主要的参考来自于伟大的<code>$man xargs</code>.</p>
+      <h2 id="前言">前言</h2>
+
+<p>　最近我从svn上checkout出来了一个文件夹,然后加入了git的跟踪目录.用过svn的同学可能知道,这个文件夹里面每一层级都有个.svn隐藏文件夹,需要删除他们.本来我准备笨拙地一个一个手动删除的,一位同事在我面前敲了大概是<code>$find . -type d -name &quot;*.svn&quot; | xargs rm -rf</code>这样的命令,顿时觉得很高端大气上档次.刚好新学了Markdown,就顺便整理下xargs的用法,练练手.<a href="http://czmmiao.iteye.com/blog/1949225">参考网址</a>,当然更主要的参考来自于伟大的<code>$man xargs</code>.</p>
 
 <p></p>
 
@@ -451,12 +453,14 @@ a b
 
 <p>特别鸣谢:</p>
 
-<p><a href="http://blog.csdn.net/zhangfn2011/article/details/6776925">http://blog.csdn.net/zhangfn2011/article/details/6776925</a>
-<a href="http://blog.csdn.net/hittata/article/details/8021500">http://blog.csdn.net/hittata/article/details/8021500</a>
-<a href="http://www.cnblogs.com/wdpp/archive/2012/02/28/2386683.html">http://www.cnblogs.com/wdpp/archive/2012/02/28/2386683.html</a>
-<a href="http://blog.163.com/ly_89/blog/static/18690229920117208314257/">http://blog.163.com/ly_89/blog/static/18690229920117208314257/</a>
-<a href="http://aix.chinaunix.net/doc/2008/03/01/1108340.shtml">http://aix.chinaunix.net/doc/2008/03/01/1108340.shtml</a>
-<a href="http://blog.chinaunix.net/uid-15117916-id-4920.html">http://blog.chinaunix.net/uid-15117916-id-4920.html</a></p>
+<ol>
+<li><a href="http://blog.csdn.net/zhangfn2011/article/details/6776925">http://blog.csdn.net/zhangfn2011/article/details/6776925</a></li>
+<li><a href="http://blog.csdn.net/hittata/article/details/8021500">http://blog.csdn.net/hittata/article/details/8021500</a></li>
+<li><a href="http://www.cnblogs.com/wdpp/archive/2012/02/28/2386683.html">http://www.cnblogs.com/wdpp/archive/2012/02/28/2386683.html</a></li>
+<li><a href="http://blog.163.com/ly_89/blog/static/18690229920117208314257/">http://blog.163.com/ly_89/blog/static/18690229920117208314257/</a></li>
+<li><a href="http://aix.chinaunix.net/doc/2008/03/01/1108340.shtml">http://aix.chinaunix.net/doc/2008/03/01/1108340.shtml</a></li>
+<li><a href="http://blog.chinaunix.net/uid-15117916-id-4920.html">http://blog.chinaunix.net/uid-15117916-id-4920.html</a></li>
+</ol>
     </section>
 
 
@@ -550,13 +554,6 @@ s.setAttribute('data-timestamp', +new Date());
 
 
   <aside class="read-next">
-  
-      <a class="read-next-story" style="no-cover" href="http://blog.yitinglove.cn/post/my_con/">
-          <section class="post">
-              <h2>Test</h2>
-              
-          </section>
-      </a>
   
   
 </aside>

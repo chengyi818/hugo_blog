@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://blog.yitinglove.cn/post/my_con/</loc>
-    <lastmod>2017-12-05T11:52:39+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://blog.yitinglove.cn/categories/</loc>
     <priority>0</priority>
   </url>
@@ -19,18 +14,11 @@
   
   <url>
     <loc>http://blog.yitinglove.cn/post/</loc>
-    <lastmod>2017-12-05T11:52:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.yitinglove.cn/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.yitinglove.cn/tags/test/</loc>
-    <lastmod>2017-12-05T11:52:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -45,7 +33,6 @@
   
   <url>
     <loc>http://blog.yitinglove.cn/</loc>
-    <lastmod>2017-12-05T11:52:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
