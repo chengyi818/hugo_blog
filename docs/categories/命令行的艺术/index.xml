@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>道法自然</title>
-    <link>http://blog.yitinglove.cn/</link>
-    <description>Recent content on 道法自然</description>
+    <title>命令行的艺术 on 道法自然</title>
+    <link>http://blog.yitinglove.cn/categories/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF/</link>
+    <description>Recent content in 命令行的艺术 on 道法自然</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Tue, 05 Dec 2017 11:52:39 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.yitinglove.cn/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.yitinglove.cn/categories/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Test</title>
-      <link>http://blog.yitinglove.cn/post/my_con/</link>
-      <pubDate>Tue, 05 Dec 2017 11:52:39 +0800</pubDate>
-      
-      <guid>http://blog.yitinglove.cn/post/my_con/</guid>
-      <description>test test</description>
-    </item>
     
     <item>
       <title>xargs用法详解</title>
