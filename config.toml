@@ -25,7 +25,7 @@ canonifyURLs = true
 theme = "casper"
 
 # 评论
-DisqusShortname = "yitinglove-cn-blog"
+DisqusShortname = "blog-yitinglove-cn"
 
 [taxonomies]
     category = "categories"
