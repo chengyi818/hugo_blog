@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 夜来卧听风吹雨,铁马冰河入梦来</title>
-    <link>https://chengyi818.github.io/hugo_blog/tags/</link>
+    <link>https://blog.yitinglove.cn/tags/</link>
     <description>Recent content in Tags on 夜来卧听风吹雨,铁马冰河入梦来</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
     
-	<atom:link href="https://chengyi818.github.io/hugo_blog/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.yitinglove.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
