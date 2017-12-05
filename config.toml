@@ -15,11 +15,13 @@ paginate = 5
 publishDir = "docs"
 contentDir = "content"
 layoutDir = "layouts"
+themesDir = "themes"
+
+# 其他
 buildDrafts = false
 canonifyURLs = true
 
 # 主题 cactus
-themesDir = "themes"
 theme = "casper"
 
 # 评论
