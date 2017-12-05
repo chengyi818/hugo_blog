@@ -20,7 +20,7 @@ canonifyURLs = true
 
 # 主题
 themesDir = "themes"
-theme = "casper"
+theme = "cactus"
 
 # 评论
 DisqusShortname = "yitinglove-cn-blog"
