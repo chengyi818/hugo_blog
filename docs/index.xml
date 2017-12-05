@@ -6,10 +6,19 @@
     <description>Recent content on 道法自然</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Tue, 05 Dec 2017 11:52:39 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Dec 2017 12:02:35 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.yitinglove.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My_first_content</title>
+      <link>http://blog.yitinglove.cn/my_first_content/</link>
+      <pubDate>Tue, 05 Dec 2017 12:02:35 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/my_first_content/</guid>
+      <description>title fsfsdfsf</description>
+    </item>
     
     <item>
       <title>Test</title>

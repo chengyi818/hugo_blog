@@ -36,7 +36,7 @@ DisqusShortname = "yitinglove-cn-blog"
     authorwebsite = "blog.yitinglove.cn"
     bio = "巍擎 | 安全开发工程师"
     # 作者图片
-    # logo = "images/author.jpg"
+    logo = "images/author.jpg"
     # 封面图片
     # cover = "images/cover.jpg"
     googleAnalyticsUserID = "UA-72539373-3"
