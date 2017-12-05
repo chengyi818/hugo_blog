@@ -6,14 +6,32 @@
     <description>Recent content in Posts on 道法自然</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
+    <lastBuildDate>Mon, 31 Aug 2015 19:16:56 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.yitinglove.cn/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>openwrt简单ipk生成及Makefile解释</title>
+      <link>http://blog.yitinglove.cn/post/2015-08-31-helloworld-ipk/</link>
+      <pubDate>Mon, 31 Aug 2015 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/post/2015-08-31-helloworld-ipk/</guid>
+      <description>&lt;p&gt;##前言&lt;/p&gt;
+
+&lt;p&gt;类似的文章其实网上比较多了,我写这个的目的:
+&amp;gt;1,网上文章良莠不齐,有些自己都没实际动手操作,随便复制粘贴,实际操作不可行.
+2,基本只讲了操作,我当时最关心的Makefile文件的解释没有.&lt;/p&gt;
+
+&lt;p&gt;所以我自己总结了一篇.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>xargs用法详解</title>
       <link>http://blog.yitinglove.cn/post/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 20 Aug 2015 19:16:56 +0800</pubDate>
       
       <guid>http://blog.yitinglove.cn/post/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;

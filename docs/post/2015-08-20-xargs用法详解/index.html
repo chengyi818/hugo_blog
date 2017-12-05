@@ -29,7 +29,7 @@
     
     <meta property="og:description" content="" />
   	<meta property="og:type" content="article" />
-    <meta property="article:published_time" content="0001-01-01T00:00:00Z" />
+    <meta property="article:published_time" content="2015-08-20T19:16:56&#43;08:00" />
 
     
     <meta property="article:tag" content="linux" />
@@ -111,8 +111,8 @@
       "alternateName": en
     },
     "url": http://blog.yitinglove.cn/post/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/,
-    "datePublished": 0001-01-01T00:00Z,
-    "dateModified": 0001-01-01T00:00Z,
+    "datePublished": 2015-08-20T19:16Z,
+    "dateModified": 2015-08-20T19:16Z,
     
     "keywords": linux,
     "description": ,
@@ -193,8 +193,8 @@
 
         <section class="post-meta">
         
-          <time class="post-date" datetime="0001-01-01T00:00:00Z">
-            Jan 1, 0001
+          <time class="post-date" datetime="2015-08-20T19:16:56&#43;08:00">
+            Aug 20, 2015
           </time>
         
          
@@ -229,7 +229,7 @@
 
 <ul>
 <li>-a <em>file</em></li>
-<li>从*file*中读入数据</li>
+<li>从file中读入数据</li>
 </ul>
 
 <pre><code>$cat 1.txt
@@ -413,7 +413,7 @@ aaa bbb ccc ddd a b
 <p>　管道是把一个命令的输出传递给另一个命令作为输入，比如：<code>command1 | command2</code>但是command2仅仅把command1输出的内容作为输入参数。<code>find . -name &quot;install.log&quot; -print</code>打印出的是*install.log*这个字符串，如果仅仅使用管道，那么command2能够使用的仅仅是install.log这个字符串，不能把它当作文件来进行处理。
 　当然这个command2除了xargs。xargs就是为了能够对find搜索到的文件进行操作而编写的。它能把管道传来的字符串当作文件交给其后的命令执行。</p>
 
-<p>###4 Example</p>
+<h3 id="4-example">4 Example</h3>
 
 <pre><code>$find . -name &quot;1.txt&quot;  | cat
 ./1.txt
@@ -448,8 +448,9 @@ a b
 
 <hr />
 
-<p>##尾记
-这里只是最简略的用法,目的是快速理解上手使用.如果遇到问题,请使用<code>man xargs</code>或者拨打<code>10086</code>:)</p>
+<h2 id="尾记">尾记</h2>
+
+<p>这里只是最简略的用法,目的是快速理解上手使用.如果遇到问题,请使用<code>man xargs</code>或者拨打<code>10086</code>:)</p>
 
 <p>特别鸣谢:</p>
 
@@ -554,6 +555,13 @@ s.setAttribute('data-timestamp', +new Date());
 
 
   <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="http://blog.yitinglove.cn/post/2015-08-31-helloworld-ipk/">
+          <section class="post">
+              <h2>openwrt简单ipk生成及Makefile解释</h2>
+              
+          </section>
+      </a>
   
   
 </aside>

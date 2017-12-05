@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="openwrt简单ipk生成及Makefile解释"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="openwrt简单ipk生成及Makefile解释 &middot; 道法自然" />
+  	<meta property="og:site_name" content="道法自然" />
+  	<meta property="og:url" content="http://blog.yitinglove.cn/post/2015-08-31-helloworld-ipk/" />
+
+    
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2015-08-31T19:16:56&#43;08:00" />
+
+    
+    <meta property="article:tag" content="openwrt" />
+    
+    
+
+    <title>openwrt简单ipk生成及Makefile解释 &middot; 道法自然</title>
+
+    
+    <meta name="description" content="&lt;p&gt;##前言&lt;/p&gt;
+
+&lt;p&gt;类似的文章其实网上比较多了,我写这个的目的:
+&amp;gt;1,网上文章良莠不齐,有些自己都没实际动手操作,随便复制粘贴,实际操作不可行.
+2,基本只讲了操作,我当时最关心的Makefile文件的解释没有.&lt;/p&gt;
+
+&lt;p&gt;所以我自己总结了一篇.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://blog.yitinglove.cn/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://blog.yitinglove.cn/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="http://blog.yitinglove.cn/index.xml" rel="alternate" type="application/rss+xml" title="道法自然" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.31.1" />
+
+    <link rel="canonical" href="http://blog.yitinglove.cn/post/2015-08-31-helloworld-ipk/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://blog.yitinglove.cn/images/author.jpg
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://blog.yitinglove.cn/images/author.jpg,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": blog.yitinglove.cn,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": openwrt简单ipk生成及Makefile解释,
+    "name": openwrt简单ipk生成及Makefile解释,
+    "wordCount": 240,
+    "timeRequired": "PT2M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://blog.yitinglove.cn/post/2015-08-31-helloworld-ipk/,
+    "datePublished": 2015-08-31T19:16Z,
+    "dateModified": 2015-08-31T19:16Z,
+    
+    "keywords": openwrt,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://blog.yitinglove.cn/post/2015-08-31-helloworld-ipk/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72539373-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://blog.yitinglove.cn/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://blog.yitinglove.cn/"><img src="http://blog.yitinglove.cn/images/author.jpg" alt="Home" /></a>
+  
+  
+      <a class="menu-button icon-feed" href="http://blog.yitinglove.cn/index.xml" >&nbsp;&nbsp;Subscribe</a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">openwrt简单ipk生成及Makefile解释</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2015-08-31T19:16:56&#43;08:00">
+            Aug 31, 2015
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/openwrt/">#openwrt</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>##前言</p>
+
+<p>类似的文章其实网上比较多了,我写这个的目的:
+&gt;1,网上文章良莠不齐,有些自己都没实际动手操作,随便复制粘贴,实际操作不可行.
+2,基本只讲了操作,我当时最关心的Makefile文件的解释没有.</p>
+
+<p>所以我自己总结了一篇.</p>
+
+<p></p>
+
+<hr />
+
+<p>###说明
+开发板为MT7620a,openwrt版本为:barrier_breaker_14.07.编译主机为ubuntu 14.04 32位.
+<code>git clone git://git.openwrt.org/14.07/openwrt.git</code>
+关于怎么搭建编译环境以及编译请参考<a href="http://blog.chinaunix.net/uid-22547469-id-4364254.html">网上</a></p>
+
+<hr />
+
+<p>##正文
+下面我们开始,我们遵循传统以helloworld开始.</p>
+
+<h3 id="1-创建helloworld项目">1.创建helloworld项目</h3>
+
+<p>首先我们新建helloworld.c文件和对应的Makefile文件</p>
+
+<pre><code>$mkdir -p ~/temp/hellworld/src
+$cd ~/temp/helloworld/src
+$touch helloworld.c Makefile
+</code></pre>
+
+<p>如下为helloworld.c的内容:</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+int main()
+{
+    printf(&quot;This is my helloworld!\n&quot;);
+    return 0;
+}
+</code></pre>
+
+<p>如下为Makefile文件的内容:</p>
+
+<pre><code>helloworld : helloworld.o
+	$(CC) $(LDFLAGS) helloworld.o -o helloworld
+
+helloworld.o : helloworld.c
+	$(CC) $(CFLAGS) -c helloworld.c
+
+clean :
+	rm *.o helloworld
+</code></pre>
+
+<p>$(CC)
+&gt;   这个值由其他Makefile文件规定,表示我们使用编译器.</p>
+
+<p>$(LDFLAGS)\$(CFLAGS)
+&gt;   这个表示编译器的一些选项,这里是可选的,去掉也没有问题.</p>
+
+<p>下面可以输入<code>$make</code>看看有没有问题,注意Makefile文件的书写格式.
+最后,输入<code>$make clean</code>来清理掉生成的二进制文件.因为上一步<code>make</code>所使用的编译器并不是我们的交叉编译链,生成的二进制文件并不能在开发板中运行.上一步只是验证我们的src中的内容正确与否.</p>
+
+<hr />
+
+<h3 id="2-创建helloworld包">2.创建helloworld包</h3>
+
+<p>下一步我们要创建一个新的Makefile文件,在这个文件中我们要描述的是helloworld包的信息,比如:如何配置,如何编译,如何打包,安装位置等.</p>
+
+<pre><code>$cd ~/temp/helloworld
+$touch Makefile
+</code></pre>
+
+<p>如下为Makefile内容:</p>
+
+<pre><code>include $(TOPDIR)/rules.mk
+
+PKG_NAME:=helloworld
+PKG_RELEASE:=1
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
+
+include $(INCLUDE_DIR)/package.mk
+
+define Package/helloworld
+	SECTION:=utils
+	CATEGORY:=Utilities
+	TITLE:=Helloworld -- prints a snarky message
+endef
+
+define Package/helloworld/description
+	It's my first package demo.
+endef
+
+define Build/Prepare
+	echo &quot;Here is Package/Prepare&quot;
+	mkdir -p $(PKG_BUILD_DIR)
+    $(CP) ./src/* $(PKG_BUILD_DIR)/
+endef
+
+define Package/helloworld/install
+	echo &quot;Here is Package/install&quot;
+	$(INSTALL_DIR) $(1)/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/helloworld $(1)/bin/
+endef
+
+$(eval $(call BuildPackage,helloworld))
+</code></pre>
+
+<p>如下是最后的文件树形图:</p>
+
+<p><img src="http://i3.tietuku.com/8e9f244567388099.jpg" alt="树形图" /></p>
+
+<hr />
+
+<h3 id="3-makefile注释">3.Makefile注释</h3>
+
+<p>第1行<code>include $(TOPDIR)/rules.mk</code>
+&gt;   一般在Makefile的开头,包含了包的基本信息,</p>
+
+<blockquote>
+<p>比如Makefile中的<code>$(BUILD_DIR)</code>,<code>$(INCLUDE_DIR)</code>,<code>$(CP)</code>,<code>$(INSTALL_DIR)</code>,<code>$(INSTALL_BIN)</code>都是这里定义的.具体内容可以到源码主目录下,查看<code>rules.mk</code>文件.</p>
+</blockquote>
+
+<p>3~5行,软件包的信息均以“PKG_”开头，其意思和作用如下
+&gt;   PKG_NAME：软件包名称，将在menuconfig和ipkg可以看到。</p>
+
+<blockquote>
+<p>PKG_VERSION：软件版本号。</p>
+
+<p>PKG_RELEASE：Makefile的版本号</p>
+
+<p>PKG_SOURCE：源代码的文件名。</p>
+
+<p>PKG_SOURCE_URL：源代码的下载网站位置。</p>
+
+<p>PKG_MD5SUM：源代码文件的效验码。用于核对软件包是否下载正确。</p>
+
+<p>PKG_CAT：源代码文件的解压方法。包括zcat, bzcat, unzip等。</p>
+
+<p>PKG_BUILD_DIR：软件包编译目录。它的父目录为$(BUILD_DIR)。</p>
+</blockquote>
+
+<p>第7行<code>include $(INCLUDE_DIR)/package.mk</code>
+&gt;   一般在软件包的基本信息完成后再引入，他定义了用户态软件包的规则。</p>
+
+<blockquote>
+<p>编译包分为用户态和内核模块，用户态软件包使用Package，内核模块使用KernelPackage.</p>
+
+<p><code>$(INCLUDE_DIR)/Kernel.mk</code>文件对于软件包为内核时不可缺少，</p>
+
+<p><code>$(INCLUDE_DIR)/package.mk</code>应用在用户态。</p>
+
+<p>接下来讲述用户态软件包。用户程序的编译包以<code>Package/</code>开头，然后接着软件名，在Package定义中的软件名可以与软件包名不一样，而且可以多个定义。</p>
+</blockquote>
+
+<p>9~13行
+&gt;   定义包的名称为<code>helloworld</code></p>
+
+<blockquote>
+<p>SECTION : 包的类型为<code>utils</code></p>
+
+<p>CATEGORY : 目录为Utilitis,即文件在<code>menuconfig</code>中的位置;有时还会有<code>SUBMENU</code>项,即子目录.</p>
+
+<p>TITLE : 用于软件包的简短描述,将显示在<code>menuconfig</code>中.</p>
+
+<p>URL ： 软件包的下载位置。</p>
+
+<p>MAINTAINER ： 维护者选项。</p>
+
+<p><strong>DEPENDS</strong> ： 与其他软件的依赖。即如编译或安装需要其他软件时需要说明。如果存在多个依赖，则每个依赖需用空格分开。依赖前使用+号表示默认显示，即对象沒有选中时也会显示，使用@则默认为不显示，即当依赖对象选中后才显示。</p>
+</blockquote>
+
+<p>15~17行
+&gt;   软件包的详细描述,将显示在<code>make menuconfig</code>中</p>
+
+<p>19~23行
+&gt;   编译准备方法，对于网上下载的软件包不需要再描述。对于非网上下载或自行开发的软件包必须说明编译准备方法。</p>
+
+<blockquote>
+<p>本文所用的准备方法就是首先创建软件包目录，然后将源码拷贝到刚刚创建的目录中。按OpenWrt的习惯，一般把自己设计的程序全部放在src目录下。</p>
+</blockquote>
+
+<p>25~29行
+&gt;   软件包的安装方法，包括一系列拷贝编译好的文件到指定位置。调用时会带一个参数，就是嵌入系统的镜像文件系统目录，因此$(1)表示嵌入系统的镜像目录。</p>
+
+<blockquote>
+<p><code>INSTALL_DIR:=install -d -m0755</code> : 创建所属用戶可读写、执行，其他用戶可读可执行的目录</p>
+
+<p><code>INSTALL_BIN:=install -m0755</code> : 编译好的文件到镜像文件目录</p>
+</blockquote>
+
+<p>31行 <code>$(eval $(call BuildPackage,helloworld))</code>
+&gt;   完成前面定义后，必须使用eval函数实现各种定义。其格式为：</p>
+
+<blockquote>
+<p>对于一般软件包：<code>$(eval $(call Package,$(PKG_NAME)))</code></p>
+
+<p>或对于内核模块：<code>$(eval $(call KernelPackage,$(PKG_NAME)))</code></p>
+
+<p>如果一个软件包有多个程序，例如：一个应用程序有自己的内核模块，上面使用的<code>PKG_NAME</code>需要灵活变通。<code>eval</code>函数可能设计多个。也可以当成多个软件包处理。</p>
+</blockquote>
+
+<p>这里简单地解释了Makefile文件,更具体地请<a href="http://wiki.openwrt.org/doc/devel/packages">参考</a></p>
+
+<hr />
+
+<h3 id="4-编译软件">4.编译软件</h3>
+
+<p>至此我们的软件已经基本完成,下面进行编译
+首先将文件文件夹拷贝到<strong>openwrt目录中的package文件中</strong>,这里我的源码目录为<code>~/openwrt</code>,你需要把openwrt目录替换为你的openwrt源码目录.</p>
+
+<pre><code>$mv ~/temp/helloworld ~/openwrt/package
+</code></pre>
+
+<p>然后回到项目主目录运行make menuconfig</p>
+
+<pre><code>$cd ~/openwrt
+$make menuconfig
+</code></pre>
+
+<p>按&rdquo;/&ldquo;后,输入helloworld,搜索对应的路径</p>
+
+<p><img src="http://i3.tietuku.com/3376b2fa48621a57.png" alt="搜索" />
+<img src="http://i3.tietuku.com/9947195c15c0d77f.png" alt="搜索结果" /></p>
+
+<p>接着到Utilities目录下,找到helloworld并按空格打开;
+<img src="http://i3.tietuku.com/b389aec1d8d367ee.png" alt="打开编译开关" /></p>
+
+<p>保存后退出;</p>
+
+<pre><code>$cd ~/openwrt
+$make package/helloworld/compile V=s
+</code></pre>
+
+<p>编译完成后,ipk应该已经生成</p>
+
+<pre><code>$find bin/ -name &quot;helloworld*.ipk&quot;
+</code></pre>
+
+<p>至此我们已经生成简单的ipk,恭喜:)
+最后可以通过<a href="http://pan.baidu.com/s/1bnHfXyJ">winscp</a>,将ipk<a href="http://www.openwrt.org.cn/bbs/forum.php?mod=viewthread&amp;tid=3238">安装</a>到开发板中.</p>
+
+<p><img src="http://i3.tietuku.com/1ac2f9939aa02cb9.jpg" alt="结局" /></p>
+
+<hr />
+
+<p>##尾记
+我比较薄弱的是Makefile方面的知识,刚好加强下这个方面的学习,欢迎交流~</p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://blog.yitinglove.cn/" style="background-image: url(/images/author.jpg)"><span class="hidden">成祎's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="http://blog.yitinglove.cn/">成祎</a></h4>
+  
+  <p>Read <a href="http://blog.yitinglove.cn/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Shanghai, China</span>
+    <span class="author-link icon-link"><a href="blog.yitinglove.cn">blog.yitinglove.cn</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=openwrt%e7%ae%80%e5%8d%95ipk%e7%94%9f%e6%88%90%e5%8f%8aMakefile%e8%a7%a3%e9%87%8a&nbsp;-&nbsp;%e9%81%93%e6%b3%95%e8%87%aa%e7%84%b6&amp;url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2015-08-31-helloworld-ipk%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2015-08-31-helloworld-ipk%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2015-08-31-helloworld-ipk%2f&amp;description=openwrt%e7%ae%80%e5%8d%95ipk%e7%94%9f%e6%88%90%e5%8f%8aMakefile%e8%a7%a3%e9%87%8a"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2015-08-31-helloworld-ipk%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "http:\/\/blog.yitinglove.cn\/post\/2015-08-31-helloworld-ipk\/";  
+this.page.identifier = "http:\/\/blog.yitinglove.cn\/post\/2015-08-31-helloworld-ipk\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://blog-yitinglove-cn.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://blog.yitinglove.cn/post/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/">
+          <section class="post">
+              <h2>xargs用法详解</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">道法自然</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/index.js"></script>
+    
+</body>
+</html>
+
