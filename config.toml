@@ -19,7 +19,8 @@ themesDir = "themes"
 
 # 其他
 buildDrafts = false
-canonifyURLs = true
+canonifyurls = true
+hjsStyle = "default"
 
 # 主题 cactus
 theme = "casper"
@@ -43,13 +44,7 @@ DisqusShortname = "blog-yitinglove-cn"
 
 # 右侧菜单
 [[menu.main]] #页面菜单参数
-  name = "目录"
+  name = "Home"
   weight = -120
   identifier = "blog"
   url = "/"
-
-# [[menu.main]]
-#   name = "About me"
-#   weight = -110
-#   identifier = "about"
-#   url = "/about"
