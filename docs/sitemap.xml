@@ -3,17 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://blog.yitinglove.cn/my_first_content/</loc>
+    <loc>http://blog.yitinglove.cn/post/my_first_content/</loc>
     <lastmod>2017-12-05T12:02:35+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.yitinglove.cn/my_con/</loc>
+    <loc>http://blog.yitinglove.cn/post/my_con/</loc>
     <lastmod>2017-12-05T11:52:39+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://blog.yitinglove.cn/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.yitinglove.cn/post/</loc>
+    <lastmod>2017-12-05T12:02:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
