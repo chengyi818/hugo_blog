@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="vim从入门到放弃_篇二"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="vim从入门到放弃_篇二 &middot; 道法自然" />
+  	<meta property="og:site_name" content="道法自然" />
+  	<meta property="og:url" content="http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/" />
+
+    
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-03-26T19:16:56&#43;08:00" />
+
+    
+    <meta property="article:tag" content="tool" />
+    
+    <meta property="article:tag" content="vim" />
+    
+    <meta property="article:tag" content="emacs" />
+    
+    
+
+    <title>vim从入门到放弃_篇二 &middot; 道法自然</title>
+
+    
+    <meta name="description" content="&lt;p&gt;阅读条件:
+&amp;gt; 编辑器爱好者,了解vim基本使用&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;篇一: &lt;a href=&#34;http://yitinglove.cn/blog/2017/03/19/vim_to_emacs_1/&#34;&gt;初识vim&lt;/a&gt;
+篇二: &lt;a href=&#34;http://yitinglove.cn/bl" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://blog.yitinglove.cn/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://blog.yitinglove.cn/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="http://blog.yitinglove.cn/index.xml" rel="alternate" type="application/rss+xml" title="道法自然" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.31.1" />
+
+    <link rel="canonical" href="http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://blog.yitinglove.cn/images/author.jpg
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://blog.yitinglove.cn/images/author.jpg,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": blog.yitinglove.cn,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": vim从入门到放弃_篇二,
+    "name": vim从入门到放弃_篇二,
+    "wordCount": 68,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/,
+    "datePublished": 2017-03-26T19:16Z,
+    "dateModified": 2017-03-26T19:16Z,
+    
+    "keywords": tool, vim, emacs,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72539373-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://blog.yitinglove.cn/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://blog.yitinglove.cn/"><img src="http://blog.yitinglove.cn/images/author.jpg" alt="Home" /></a>
+  
+  
+      <a class="menu-button icon-feed" href="http://blog.yitinglove.cn/index.xml" >&nbsp;&nbsp;Subscribe</a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">vim从入门到放弃_篇二</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-03-26T19:16:56&#43;08:00">
+            Mar 26, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/tool/">#tool</a></span>
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/vim/">#vim</a></span>
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/emacs/">#emacs</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>阅读条件:
+&gt; 编辑器爱好者,了解vim基本使用</p>
+
+<hr />
+
+<p>篇一: <a href="http://yitinglove.cn/blog/2017/03/19/vim_to_emacs_1/">初识vim</a>
+篇二: <a href="http://yitinglove.cn/blog/2017/03/26/vim_to_emacs_2/">vim的配置与使用</a>
+篇三: <a href="http://yitinglove.cn/blog/2017/04/04/vim_to_emacs_3/">vim的不足和新的选择</a>
+篇四: <a href="http://yitinglove.cn/blog/2017/04/23/vim_to_emacs_4/">spacemacs入门</a></p>
+
+<p></p>
+
+<h2 id="前言">前言</h2>
+
+<p>第一篇我们主要介绍了Vim的高效和优点.简而言之,就是Vim非常牛逼,值得学习.那么本篇我就我个人学习的经验来介绍下,如何配置和使用vim.</p>
+
+<p>虽然我已经使用并学习vim两年时间了,但是vim还是会偶尔给我惊喜.能力有限,这里只是简单地介绍.</p>
+
+<h2 id="观点">观点</h2>
+
+<h3 id="能站在巨人的肩膀上-就不要站在平地">能站在巨人的肩膀上,就不要站在平地</h3>
+
+<p>经常有新人寻求别人的配置,这个时候总会有一些人站出来说:
+&gt; vim的牛逼之处就在于它的高配置性,还是自己定制的最好等等</p>
+
+<p>我的观点很明确既然已经有了那么好的配置,为什么还要自己折腾.</p>
+
+<p>首先读懂别人的配置,然后汲取其中的优点,再去修改和定制.这样的效率远远高于自己在那里慢慢折腾.不要一上来就去修改,先使用一段时间.既然别人那样配置,又被人所广泛接受一定是有一定道理的.</p>
+
+<p>额外的好处在于,如果大家都使用类似的配置,那么大家的快捷键也是类似的.这样就算别人帮你看代码也会方便一些.</p>
+
+<h2 id="spf13-https-github-com-spf13-spf13-vim"><a href="https://github.com/spf13/spf13-vim">spf13</a></h2>
+
+<p>spf13是我能想到的目前最优秀的配置.久经考验,值得拥有.</p>
+
+<h3 id="安装">安装</h3>
+
+<p>安装非常简单,主要就是一行命令</p>
+
+<pre><code>    curl https://j.mp/spf13-vim3 -L &gt; spf13-vim.sh &amp;&amp; sh spf13-vim.sh
+</code></pre>
+
+<p>如果有其他安装问题,在Github也是很容易找到答案的.毕竟已经发布了多年,基本上你能遇到的问题,别人都已经遇到过了.</p>
+
+<h3 id="文档">文档</h3>
+
+<p>在它的 <a href="http://vim.spf13.com/">官网</a>有详细的介绍和文档.不要害怕英文,慢慢读一读.一边阅读一边使用,一定是可以理解的.</p>
+
+<h3 id="结构">结构</h3>
+
+<p>本质上,vim的配置文件只有一个,就是<code>.vimrc</code>.spf13为了隔离变化,将之拆分成了三个文件,分别是:</p>
+
+<h4 id="1-vimrc-before">1. <code>.vimrc.before</code></h4>
+
+<p>用于控制载入<code>.vimrc</code>前的一些设置</p>
+
+<h4 id="2-vimrc-bundles">2. <code>.vimrc.bundles</code></h4>
+
+<p>用于控制配置的插件</p>
+
+<h4 id="3-vimrc">3. <code>.vimrc</code></h4>
+
+<p>vim的主配置文件
+以上的这三个文件是官方提供的,强烈不建议更改.</p>
+
+<h3 id="定制">定制</h3>
+
+<p>那么,如果我们需要定制自己的配置怎么办呢?spf13早就帮你考虑好了.
+如果仅仅是个人自己使用,只需要新建3个文件: <code>.vimrc.before.local</code>,<code>.vimrc.bundles.local</code>, <code>.vimrc.local</code>.
+在这三个文件中,添加对应的内容,就可以修改了.
+如果还希望再次发布给别人使用.将上面的<code>local</code>修改为<code>fork</code>即可.
+关于这里的替换关系,只要稍微阅读下<code>.vimrc</code>和<code>.vimrc.before</code>就可以明白了.</p>
+
+<h3 id="插件">插件</h3>
+
+<p>spf13本身配置了若干插件,使用了一种类似于插件包的配置手法.通过阅读<code>.vimrc.before</code>可以了解如何配置.
+也可以参考我的 <a href="https://github.com/chengyi818/dotfiles/blob/master/home/.vimrc.before.fork">配置</a></p>
+
+<h3 id="参考">参考</h3>
+
+<p>我的主要编码环境是c/c++/Python.如果有需要的也可以参考我的 <a href="https://github.com/chengyi818/dotfiles/tree/master/home">配置</a></p>
+
+<h2 id="尾记">尾记</h2>
+
+<p>使用vim的乐趣,在于不断尝试,不断探索.它总能给你一些新鲜的感受.无聊的时候,去读读官方的配置,总能发现新的快捷键.</p>
+
+<p>使用新的快捷键总能发现新的乐趣,原来还可以支持这样的操作.多练习,多使用.把vim当成第一编辑器,总能学到更多的内容.晚安:moon:</p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://blog.yitinglove.cn/" style="background-image: url(/images/author.jpg)"><span class="hidden">成祎's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="http://blog.yitinglove.cn/">成祎</a></h4>
+  
+  <p>Read <a href="http://blog.yitinglove.cn/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Shanghai, China</span>
+    <span class="author-link icon-link"><a href="blog.yitinglove.cn">blog.yitinglove.cn</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=vim%e4%bb%8e%e5%85%a5%e9%97%a8%e5%88%b0%e6%94%be%e5%bc%83_%e7%af%87%e4%ba%8c&nbsp;-&nbsp;%e9%81%93%e6%b3%95%e8%87%aa%e7%84%b6&amp;url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2017-03-26-vim_to_emacs_2%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2017-03-26-vim_to_emacs_2%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2017-03-26-vim_to_emacs_2%2f&amp;description=vim%e4%bb%8e%e5%85%a5%e9%97%a8%e5%88%b0%e6%94%be%e5%bc%83_%e7%af%87%e4%ba%8c"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2017-03-26-vim_to_emacs_2%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "http:\/\/blog.yitinglove.cn\/post\/2017-03-26-vim_to_emacs_2\/";  
+this.page.identifier = "http:\/\/blog.yitinglove.cn\/post\/2017-03-26-vim_to_emacs_2\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://blog-yitinglove-cn.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="http://blog.yitinglove.cn/post/2017-04-04-vim_to_emacs_3/">
+          <section class="post">
+              <h2>vim从入门到放弃_篇三</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://blog.yitinglove.cn/post/2017-03-19-vim_to_emacs_1/">
+          <section class="post">
+              <h2>vim从入门到放弃_篇一</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">道法自然</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/index.js"></script>
+    
+</body>
+</html>
+

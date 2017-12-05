@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on 道法自然</title>
+    <link>http://blog.yitinglove.cn/tags/python/</link>
+    <description>Recent content in Python on 道法自然</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Thu, 19 Oct 2017 19:16:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.yitinglove.cn/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python对象模型</title>
+      <link>http://blog.yitinglove.cn/post/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Thu, 19 Oct 2017 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/post/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
+      <description>&lt;p&gt;阅读条件:
+&amp;gt; C语言基础, Python爱好者&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>把Effective Python读薄之三</title>
+      <link>http://blog.yitinglove.cn/post/2017-03-14-effective-python_3/</link>
+      <pubDate>Tue, 14 Mar 2017 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/post/2017-03-14-effective-python_3/</guid>
+      <description>&lt;p&gt;本文是我总结的Effective Python的第三章&lt;/p&gt;
+
+&lt;p&gt;阅读条件:
+&amp;gt; 掌握Python类的基本使用&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>把Effective Python读薄之二</title>
+      <link>http://blog.yitinglove.cn/post/2017-02-18-effective-python_2/</link>
+      <pubDate>Sat, 18 Feb 2017 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/post/2017-02-18-effective-python_2/</guid>
+      <description>&lt;p&gt;本文是我总结的Effective Python的第二章&lt;/p&gt;
+
+&lt;p&gt;阅读条件:
+&amp;gt; 掌握Python基本语法&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>把Effective Python读薄之一</title>
+      <link>http://blog.yitinglove.cn/post/2016-12-18-effective-python_1/</link>
+      <pubDate>Sun, 18 Dec 2016 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/post/2016-12-18-effective-python_1/</guid>
+      <description>&lt;p&gt;这两天看到一篇博客,名为&amp;lt;把编程珠玑读薄&amp;gt;,是为名.&lt;/p&gt;
+
+&lt;p&gt;本文是我总结的Effective Python的第一章&lt;/p&gt;
+
+&lt;p&gt;阅读条件:
+&amp;gt; 掌握Python基本语法&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python模块和包</title>
+      <link>http://blog.yitinglove.cn/post/2016-11-26-python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/</link>
+      <pubDate>Sat, 26 Nov 2016 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/post/2016-11-26-python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

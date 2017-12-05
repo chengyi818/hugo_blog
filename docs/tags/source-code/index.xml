@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Source Code on 道法自然</title>
+    <link>http://blog.yitinglove.cn/tags/source-code/</link>
+    <description>Recent content in Source Code on 道法自然</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Thu, 19 Oct 2017 19:16:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.yitinglove.cn/tags/source-code/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python对象模型</title>
+      <link>http://blog.yitinglove.cn/post/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Thu, 19 Oct 2017 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/post/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
+      <description>&lt;p&gt;阅读条件:
+&amp;gt; C语言基础, Python爱好者&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

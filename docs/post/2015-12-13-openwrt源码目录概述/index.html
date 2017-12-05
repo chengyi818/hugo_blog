@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="openwrt目录概述"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="openwrt目录概述 &middot; 道法自然" />
+  	<meta property="og:site_name" content="道法自然" />
+  	<meta property="og:url" content="http://blog.yitinglove.cn/post/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/" />
+
+    
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2015-12-13T19:16:56&#43;08:00" />
+
+    
+    <meta property="article:tag" content="openwrt" />
+    
+    <meta property="article:tag" content="Makefile" />
+    
+    
+
+    <title>openwrt目录概述 &middot; 道法自然</title>
+
+    
+    <meta name="description" content="&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;&amp;emsp;这段时间总是在和&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenWrt&#34;&gt;openwrt&lt;/a&gt;打交道,之前也零零散散地写过一点，还是希望能有点体系。还记得我刚看到源代码的时候，觉得无从下手.我想从Makefile的整个执" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://blog.yitinglove.cn/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://blog.yitinglove.cn/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="http://blog.yitinglove.cn/index.xml" rel="alternate" type="application/rss+xml" title="道法自然" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.31.1" />
+
+    <link rel="canonical" href="http://blog.yitinglove.cn/post/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://blog.yitinglove.cn/images/author.jpg
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://blog.yitinglove.cn/images/author.jpg,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": blog.yitinglove.cn,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": openwrt目录概述,
+    "name": openwrt目录概述,
+    "wordCount": 106,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://blog.yitinglove.cn/post/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/,
+    "datePublished": 2015-12-13T19:16Z,
+    "dateModified": 2015-12-13T19:16Z,
+    
+    "keywords": openwrt, Makefile,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://blog.yitinglove.cn/post/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72539373-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://blog.yitinglove.cn/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://blog.yitinglove.cn/"><img src="http://blog.yitinglove.cn/images/author.jpg" alt="Home" /></a>
+  
+  
+      <a class="menu-button icon-feed" href="http://blog.yitinglove.cn/index.xml" >&nbsp;&nbsp;Subscribe</a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">openwrt目录概述</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2015-12-13T19:16:56&#43;08:00">
+            Dec 13, 2015
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/openwrt/">#openwrt</a></span>
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/makefile/">#Makefile</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <h2 id="前言">前言</h2>
+
+<p>&emsp;这段时间总是在和<a href="https://en.wikipedia.org/wiki/OpenWrt">openwrt</a>打交道,之前也零零散散地写过一点，还是希望能有点体系。还记得我刚看到源代码的时候，觉得无从下手.我想从Makefile的整个执行过程入手,搞清楚编译源代码的几个小时中,到底发生了哪些故事.</p>
+
+<p>&emsp;本文是这个系列的第一篇.主要讲一下我对openwrt整个目录结构的理解.我们将源代码从<a href="https://dev.openwrt.org/wiki/GetSource">官方下载</a>而来的目录称之为原始目录,将编译后生成的目录称之为生成目录,分两部分介绍各个目录.</p>
+
+<p></p>
+
+<hr />
+
+<h2 id="原始目录">原始目录</h2>
+
+<p>下载源码后,源文件如下图所示,下面我们来一一解释;
+<img src="http://img.blog.csdn.net/20151213153906453" alt="原始目录" /></p>
+
+<h4 id="1-scripts">1. scripts</h4>
+
+<p>存放了一些脚本,使用了bash,python,perl等多种脚本语言.编译过程中,用于第三方软件包管理的feeds文件也是在这个目录当中.在编译过程中,使用到的脚本也统一放在这个目录中.</p>
+
+<h4 id="2-tools">2. tools</h4>
+
+<p>编译时,主机需要使用一些工具软件,<code>tools</code> 里包含了获取和编译这些工具的命令.软件包里面有Makefile文件,有的还包含了patch.每个Makefile当中都有一句<code>$(eval $(call HostBuild))</code>,这表明编译这个工具是为了在<strong>主机</strong>上使用的.</p>
+
+<h4 id="3-config">3. config</h4>
+
+<p>存放着整个系统的配置文件</p>
+
+<h4 id="4-docs">4. docs</h4>
+
+<p>包含了整个宿主机的文件源码的介绍, 里面还有Makefile为目标系统生成docs.使用<code>make -C docs/</code>可以为目标系统生成文档.</p>
+
+<h4 id="5-toolchain">5. toolchain</h4>
+
+<p>嵌入式的童鞋应该都知道交叉编译链,这个文件中存放的就是编译交叉编译链的软件包.包括:<code>binutils,gcc,libc</code>等等.</p>
+
+<h4 id="6-target">6. target</h4>
+
+<p>openwrt的源码可以编译出各个平台适用的二进制文件,各平台在这个目录里定义了firmware和kernel的编译过程。</p>
+
+<h4 id="7-package">7. package</h4>
+
+<p>存放了openwrt系统中适用的软件包,包含针对各个软件包的Makefile。openwrt定义了一套Makefile模板.各软件参照这个模板定义了自己的信息，如软件包的版本、下载地址、编译方式、安装地址等。在二次开发过程中,这个文件夹我们会经常打交道.
+事实上,通过<code>./scripts/feed update -a和./scripts/feed install -a</code>的软件包也会存放在这个目录之中.</p>
+
+<h4 id="8-include">8. include</h4>
+
+<p>openwrt的Makefile都存放在这里。文件名为 *.mk 。这里的文件上是在Makefile里被include的,类似于库文件.这些文件定义了编译过程.</p>
+
+<h4 id="9-其他">9. 其他</h4>
+
+<p>主要目录就是前面提及的8个,剩下的是单个文件.</p>
+
+<h5 id="9-1-makefile">9.1 Makefile:</h5>
+
+<blockquote>
+<p>在顶层目录执行<code>make</code>命令的入口文件.</p>
+</blockquote>
+
+<h5 id="9-2-rules-mk">9.2 rules.mk</h5>
+
+<blockquote>
+<p>定义了Makefile中使用的一些通用变量和函数</p>
+</blockquote>
+
+<h5 id="9-3-config-in">9.3 Config.in</h5>
+
+<blockquote>
+<p>在<code>include/toplevel.mk</code>中我们可以看到,这是和<code>make menuconfig</code>相关联的文件.</p>
+</blockquote>
+
+<h5 id="9-4-feeds-conf-default">9.4 feeds.conf.default</h5>
+
+<blockquote>
+<p>是下载第三方一些软件包时所使用的地址</p>
+</blockquote>
+
+<h5 id="9-5-license-readme">9.5 LICENSE &amp; README</h5>
+
+<blockquote>
+<p>即软件许可证和软件基本说明.其中README描述了编译软件的基本过程和依赖文件.</p>
+</blockquote>
+
+<p>至此我们把原始目录大致浏览了一遍,下面我们看看生成目录.</p>
+
+<h2 id="生成目录">生成目录</h2>
+
+<p>在我们编译完成后除了下载的源码文件,多出来的部分很明显就是编译过程中新生成的.如下图:
+<img src="http://img.blog.csdn.net/20151213171412350" alt="生成目录" /></p>
+
+<h4 id="1-feeds">1. feeds</h4>
+
+<p>openwrt的附加软件包管理器的扩展包索引目录.有点绕,简单来说就是下载管理软件包的.默认的<code>feeds</code>下载有<code>packages、management、luci、routing、telephony</code>。如要下载其他的软件包，需打开源码根目录下面的feeds.conf.default文件，去掉相应软件包前面的#号，然后更新源:
+<code>./scripts/feeds update -a</code>
+安装下载好的包:
+<code>./scripts/feeds install -a</code></p>
+
+<h4 id="2-build-dir">2. build_dir</h4>
+
+<p>在前面的原始目录中,我们提到了host工具,toolchain工具还有目标文件.openwrt将在这个目录中展开各个软件包,进行编译.所以这个文件夹中包含3个子文件夹:</p>
+
+<h5 id="2-1-host">2.1 host</h5>
+
+<blockquote>
+<p>在该文件夹中编译主机使用的工具软件</p>
+</blockquote>
+
+<h5 id="2-2-toolchain-xxx">2.2 toolchain-XXX</h5>
+
+<blockquote>
+<p>在该文件夹中编译交叉工具链</p>
+</blockquote>
+
+<h5 id="2-3-target-xxx">2.3 target-XXX</h5>
+
+<blockquote>
+<p>在此编译目标平台的目标文件,包括各个软件包和内核文件.</p>
+</blockquote>
+
+<h4 id="3-bin">3. bin</h4>
+
+<p>保存编译完成后的二进制文件,包括:完整的bin文件,所有的ipk文件.</p>
+
+<h4 id="4-dl">4. dl</h4>
+
+<p>在编译过程中使用的很多软件,刚开始下载源码并没有包含,而是在编译过程中从其他服务器下载的,这里是统一的保存目录</p>
+
+<h4 id="5-staging-dir">5. staging_dir</h4>
+
+<p>用于保存在<code>build_dir</code>目录中编译完成的软件.所以这里也和<code>build_dir</code>有同样的子目录结构.
+比如,在<code>target-XXX</code>文件夹中保存了目标平台编译好的头文件,库文件.在我们开发自己的ipk文件时,编译过程中,预处理头文件,链接动态库,静态库都是到这个子文件夹中.</p>
+
+<h4 id="6-tmp">6.tmp</h4>
+
+<p>从名字来看,是临时文件夹.在编译过程中,有大量中间临时文件需要保存,都是在这里.</p>
+
+<h4 id="7-logs">7.logs</h4>
+
+<p>这个文件夹,有时可以看到,有时没有.这是因为这个文件夹保存的是,编译过程中出错的信息,只有当编译出错了才会出现.我们可以从这里获取信息,从而分析我们的软件编译为什么没有完成.</p>
+
+<p>至此我们把openwrt的目录结构大体浏览了一遍.</p>
+
+<h2 id="尾记">尾记</h2>
+
+<ol>
+<li>本文中不少内容都是从网上看到的,时间长了,我已经找不到出处了.这也是我写博客的一个原因,我从互联网学到不少知识,现在再反馈给网络.感谢所有有自由共享精神的朋友.</li>
+<li>知识学习是不断递进的过程.这部分知识是我目前知道的一个大概,还不够深刻.更深入的学习Makefile和openwrt之后,再来慢慢更新.</li>
+</ol>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://blog.yitinglove.cn/" style="background-image: url(/images/author.jpg)"><span class="hidden">成祎's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="http://blog.yitinglove.cn/">成祎</a></h4>
+  
+  <p>Read <a href="http://blog.yitinglove.cn/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Shanghai, China</span>
+    <span class="author-link icon-link"><a href="blog.yitinglove.cn">blog.yitinglove.cn</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=openwrt%e7%9b%ae%e5%bd%95%e6%a6%82%e8%bf%b0&nbsp;-&nbsp;%e9%81%93%e6%b3%95%e8%87%aa%e7%84%b6&amp;url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2015-12-13-openwrt%25E6%25BA%2590%25E7%25A0%2581%25E7%259B%25AE%25E5%25BD%2595%25E6%25A6%2582%25E8%25BF%25B0%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2015-12-13-openwrt%25E6%25BA%2590%25E7%25A0%2581%25E7%259B%25AE%25E5%25BD%2595%25E6%25A6%2582%25E8%25BF%25B0%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2015-12-13-openwrt%25E6%25BA%2590%25E7%25A0%2581%25E7%259B%25AE%25E5%25BD%2595%25E6%25A6%2582%25E8%25BF%25B0%2f&amp;description=openwrt%e7%9b%ae%e5%bd%95%e6%a6%82%e8%bf%b0"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2015-12-13-openwrt%25E6%25BA%2590%25E7%25A0%2581%25E7%259B%25AE%25E5%25BD%2595%25E6%25A6%2582%25E8%25BF%25B0%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "http:\/\/blog.yitinglove.cn\/post\/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0\/";  
+this.page.identifier = "http:\/\/blog.yitinglove.cn\/post\/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://blog-yitinglove-cn.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="http://blog.yitinglove.cn/post/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/">
+          <section class="post">
+              <h2>openwrt编译过程概述</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://blog.yitinglove.cn/post/2015-09-02-openwrt_luci%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/">
+          <section class="post">
+              <h2>Openwrt LuCI模块练习详细步骤</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">道法自然</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/index.js"></script>
+    
+</body>
+</html>
+

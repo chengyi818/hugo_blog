@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="openwrt单个ipk编译过程"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="openwrt单个ipk编译过程 &middot; 道法自然" />
+  	<meta property="og:site_name" content="道法自然" />
+  	<meta property="og:url" content="http://blog.yitinglove.cn/post/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/" />
+
+    
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2016-01-03T19:16:56&#43;08:00" />
+
+    
+    <meta property="article:tag" content="openwrt" />
+    
+    <meta property="article:tag" content="Makefile" />
+    
+    
+
+    <title>openwrt单个ipk编译过程 &middot; 道法自然</title>
+
+    
+    <meta name="description" content="&lt;p&gt;本周是成胖子每周一博的第五周.
+更好的阅读体验,请点击&lt;a href=&#34;https://www.zybuluo.com/icyriver/note/257687&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://blog.yitinglove.cn/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://blog.yitinglove.cn/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="http://blog.yitinglove.cn/index.xml" rel="alternate" type="application/rss+xml" title="道法自然" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.31.1" />
+
+    <link rel="canonical" href="http://blog.yitinglove.cn/post/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://blog.yitinglove.cn/images/author.jpg
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://blog.yitinglove.cn/images/author.jpg,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": blog.yitinglove.cn,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": openwrt单个ipk编译过程,
+    "name": openwrt单个ipk编译过程,
+    "wordCount": 115,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://blog.yitinglove.cn/post/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/,
+    "datePublished": 2016-01-03T19:16Z,
+    "dateModified": 2016-01-03T19:16Z,
+    
+    "keywords": openwrt, Makefile,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://blog.yitinglove.cn/post/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72539373-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://blog.yitinglove.cn/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://blog.yitinglove.cn/"><img src="http://blog.yitinglove.cn/images/author.jpg" alt="Home" /></a>
+  
+  
+      <a class="menu-button icon-feed" href="http://blog.yitinglove.cn/index.xml" >&nbsp;&nbsp;Subscribe</a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">openwrt单个ipk编译过程</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-01-03T19:16:56&#43;08:00">
+            Jan 3, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/openwrt/">#openwrt</a></span>
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/makefile/">#Makefile</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>本周是成胖子每周一博的第五周.
+更好的阅读体验,请点击<a href="https://www.zybuluo.com/icyriver/note/257687">这里</a></p>
+
+<p></p>
+
+<hr />
+
+<h2 id="前言">前言</h2>
+
+<p>&emsp;前一篇博客中,我们已经知道整个openwrt的编译顺序,本文我们来探讨与开发者息息相关的单个ipk的编译过程.在开发者进行二次开发的时候,我们既可以单个编译ipk也可以完整编译整个镜像文件.在完整编译的时候,我们选中的单个ipk同样会被编入镜像文件中,所以完整编译同样会进行单个ipk包的编译.</p>
+
+<p>我们前面在*stampfile*函数部分提高过,当编译目标为<strong>package/stamp-compile</strong>的时候,实际执行的目标为<strong>package/compile</strong>;同时根据*subdir*函数的定义,<strong>package/compile</strong>将会依赖于package文件夹下被<code>make menuconfig</code>选中的子文件夹的<strong>compile</strong>.简而言之,当我们执行<code>make package/compile</code>相当于对所有选中的文件夹执行<code>make package/XXX/compile</code>.</p>
+
+<hr />
+
+<h2 id="ipk-makefile分析">ipk Makefile分析</h2>
+
+<p>我们以一个具体的包的编译过程来看看,本文我们以package/network/services/dropbear这个包为例.当我们在命令行中输入<code>make package/network/services/dropbear/compile</code>的时候,<strong>make</strong>将会读入dropbear下的Makefile文件,同时目标指定为<strong>compile</strong>.</p>
+
+<p>因为空间问题,我在这里不展开具体的Makefile文件.相信能看这篇博客的同学应该都有源码,自己打开便是.
+下面我们根据<strong>GNU make</strong>语法来分析这个Makefile文件.它包含了两个.mk文件:一个是rules.mk,另一个是package.mk.</p>
+
+<p>rules.mk:
+&gt;这个文件我们前文已经提到过了,主要是大量变量的定义.包括各种路径的定义,编译器的定义等等.其中要说明的是<strong>.config</strong>文件也是这里被包含进来的.</p>
+
+<p>package.mk
+&gt;这个文件首先定义和补充了一些变量.其次是<strong>openwrt</strong>为我们封装了<strong>BuildPackage</strong>函数,对于普通开发者而言,只需要参照模板定义相应的变量,最后调用这个函数即可.</p>
+
+<p>其余的我们可以认为是变量的赋值语句,很明显使用它们的地方并不在这里.关于模板和变量值的说明及作用.,你可以参照<a href="https://wiki.openwrt.org/doc/devel/packages">官方说明</a>,也可以在网上找到一大堆资料.</p>
+
+<p>最后,最重要的语句是这一句:</p>
+
+<pre><code>$(eval $(call BuildPackage,dropbear))
+</code></pre>
+
+<p>这里将会把<strong>dropbear</strong>作为参数值传给函数<strong>BuildPackage</strong></p>
+
+<dl>
+<dt>Tips</dt>
+<dd>不知道大家还记得我们Makefile的执行顺序么?Makefile是先读入所有信息,展开,然后生成依赖关系.最后再按依赖关系先后来执行.</dd>
+</dl>
+
+<hr />
+
+<h2 id="依赖关系">依赖关系</h2>
+
+<h3 id="buildpackage分析">BuildPackage分析</h3>
+
+<p><strong>BuildPackage</strong>的定义在<strong>package.mk</strong>中,定义如下:</p>
+
+<pre><code>define BuildPackage
+  $(Build/IncludeOverlay)
+  $(eval $(Package/Default))
+  $(eval $(Package/$(1)))
+
+ifdef DESCRIPTION
+$$(error DESCRIPTION:= is obsolete, use Package/PKG_NAME/description)
+endif
+
+ifndef Package/$(1)/description
+define Package/$(1)/description
+	$(TITLE)
+endef
+endif
+
+  BUILD_PACKAGES += $(1)
+  $(STAMP_PREPARED): $$(if $(QUILT)$(DUMP),,$(call find_library_dependencies,$(DEPENDS)))
+
+  $(foreach FIELD, TITLE CATEGORY SECTION VERSION,
+    ifeq ($($(FIELD)),)
+      $$(error Package/$(1) is missing the $(FIELD) field)
+    endif
+  )
+
+  $(if $(DUMP), \
+    $(Dumpinfo/Package), \
+    $(foreach target, \
+      $(if $(Package/$(1)/targets),$(Package/$(1)/targets), \
+        $(if $(PKG_TARGETS),$(PKG_TARGETS), ipkg) \
+      ), $(BuildTarget/$(target)) \
+    ) \
+  )
+  $(if $(PKG_HOST_ONLY)$(DUMP),,$(call Build/DefaultTargets,$(1)))
+endef
+</code></pre>
+
+<p>那么这里的$(1)就是指的传入的参数<strong>dropbear</strong>.这里包含了一些检查和补充变量定义.继续深究下去的线索是第25~32行之间.这里我将它简化后就是展开<strong>BuildTarget/ipkg</strong>;同时第33行,将dropbear当作参数传给函数<strong>Build/DefaultTargets</strong>.</p>
+
+<p><strong>BuildTarget/ipkg</strong>定义在<strong>package-ipkg.mk</strong>中,我们需要重点关注其中的冒号,这个形成我们的依赖关系.
+<strong>Build/DefaultTargets</strong>定义在<strong>package.mk</strong>中,其中形成了我们stamp-*的依赖关系.根据这些依赖关系,我将关系图绘制如下:
+<img src="http://ww4.sinaimg.cn/large/006kvZhRjw1ezmd5eo1iej31bb0fcwh0.jpg" alt="package/compile" /></p>
+
+<h2 id="执行">执行</h2>
+
+<p>当我们得出依赖关系后,执行过程就是倒序进行而已,即从上图的右边向左执行.这也可以和我们预料的执行过程相印证.</p>
+
+<dl>
+<dt>$(stamp-prepared)</dt>
+<dd>主要完成代码包的准备工作,如果开发者定义了<strong>build/prepare</strong>,则执行<strong>build/prepare</strong>.如果开发者未定义,则执行<strong>build/prepare/default</strong>这其中包含了多个情形,最为常见的是将<strong>dl</strong>下的压缩包解压并打上patch.</dd>
+</dl>
+
+<p>$(stamp-built)
+&gt;这个将会进入到<strong>build_dir/target-XXX/</strong>下对应的文件夹进行编译.同时将会带入一些定义好的变量.比如CFLAGS,LDFLAGS.</p>
+
+<p>IPKG_(1)
+&gt;这个目标将会将编译好的文件安装到对应的<strong>ipkg-arch</strong>目录下,同时将这个目录打包为ipk文件.</p>
+
+<hr />
+
+<h2 id="尾记">尾记</h2>
+
+<p>本周博客基本就到这里,本来私心想着元旦没啥大事,可以写两篇的.结果混着混着就到第三天晚上了.剩下的最后一篇我们看看单个的ipk编译好了,内核的编译过程,最后的打包过程.整个镜像文件由哪些部分组成.下周再见.</p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://blog.yitinglove.cn/" style="background-image: url(/images/author.jpg)"><span class="hidden">成祎's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="http://blog.yitinglove.cn/">成祎</a></h4>
+  
+  <p>Read <a href="http://blog.yitinglove.cn/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Shanghai, China</span>
+    <span class="author-link icon-link"><a href="blog.yitinglove.cn">blog.yitinglove.cn</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=openwrt%e5%8d%95%e4%b8%aaipk%e7%bc%96%e8%af%91%e8%bf%87%e7%a8%8b&nbsp;-&nbsp;%e9%81%93%e6%b3%95%e8%87%aa%e7%84%b6&amp;url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-01-03-openwrt%25E5%258D%2595%25E4%25B8%25AAipk%25E7%25BC%2596%25E8%25AF%2591%25E8%25BF%2587%25E7%25A8%258B%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-01-03-openwrt%25E5%258D%2595%25E4%25B8%25AAipk%25E7%25BC%2596%25E8%25AF%2591%25E8%25BF%2587%25E7%25A8%258B%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-01-03-openwrt%25E5%258D%2595%25E4%25B8%25AAipk%25E7%25BC%2596%25E8%25AF%2591%25E8%25BF%2587%25E7%25A8%258B%2f&amp;description=openwrt%e5%8d%95%e4%b8%aaipk%e7%bc%96%e8%af%91%e8%bf%87%e7%a8%8b"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-01-03-openwrt%25E5%258D%2595%25E4%25B8%25AAipk%25E7%25BC%2596%25E8%25AF%2591%25E8%25BF%2587%25E7%25A8%258B%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "http:\/\/blog.yitinglove.cn\/post\/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B\/";  
+this.page.identifier = "http:\/\/blog.yitinglove.cn\/post\/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://blog-yitinglove-cn.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="http://blog.yitinglove.cn/post/2016-01-10-openwrt%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/">
+          <section class="post">
+              <h2>openwrt编译打包过程</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://blog.yitinglove.cn/post/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/">
+          <section class="post">
+              <h2>openwrt主Makefile解析</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">道法自然</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/index.js"></script>
+    
+</body>
+</html>
+

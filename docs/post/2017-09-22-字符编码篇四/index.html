@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="字符编解码篇四"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="字符编解码篇四 &middot; 道法自然" />
+  	<meta property="og:site_name" content="道法自然" />
+  	<meta property="og:url" content="http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/" />
+
+    
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-09-22T19:16:56&#43;08:00" />
+
+    
+    <meta property="article:tag" content="Unicode" />
+    
+    <meta property="article:tag" content="UCS-2" />
+    
+    <meta property="article:tag" content="UCS-4" />
+    
+    <meta property="article:tag" content="UTF-8" />
+    
+    
+
+    <title>字符编解码篇四 &middot; 道法自然</title>
+
+    
+    <meta name="description" content="&lt;p&gt;阅读条件:
+&amp;gt; 对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://blog.yitinglove.cn/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://blog.yitinglove.cn/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="http://blog.yitinglove.cn/index.xml" rel="alternate" type="application/rss+xml" title="道法自然" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.31.1" />
+
+    <link rel="canonical" href="http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://blog.yitinglove.cn/images/author.jpg
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://blog.yitinglove.cn/images/author.jpg,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": blog.yitinglove.cn,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": 字符编解码篇四,
+    "name": 字符编解码篇四,
+    "wordCount": 57,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/,
+    "datePublished": 2017-09-22T19:16Z,
+    "dateModified": 2017-09-22T19:16Z,
+    
+    "keywords": Unicode, UCS-2, UCS-4, UTF-8,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72539373-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://blog.yitinglove.cn/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://blog.yitinglove.cn/"><img src="http://blog.yitinglove.cn/images/author.jpg" alt="Home" /></a>
+  
+  
+      <a class="menu-button icon-feed" href="http://blog.yitinglove.cn/index.xml" >&nbsp;&nbsp;Subscribe</a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">字符编解码篇四</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-09-22T19:16:56&#43;08:00">
+            Sep 22, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/unicode/">#Unicode</a></span>
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/ucs-2/">#UCS-2</a></span>
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/ucs-4/">#UCS-4</a></span>
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/utf-8/">#UTF-8</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>阅读条件:
+&gt; 对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学</p>
+
+<hr />
+
+<p></p>
+
+<h2 id="前言">前言</h2>
+
+<p>书接上回,我们接着说.前面我们看到随着计算机的迅猛发展,各国家地区为了显示本国的字符,纷纷颁布了自己的字符编码方案.</p>
+
+<p>虽然这解决了本国文字的显示问题.但是不同编码集带来的兼容性问题日益突出.为了解决这种各自为政的问题,<a href="https://en.wikipedia.org/wiki/Unicode_Consortium">统一码联盟</a>颁布了所谓的Unicode, 又称统一码,万国码.</p>
+
+<h2 id="初衷">初衷</h2>
+
+<p>Unicode的初衷是希望可以包含这个世界上所有的字符,给予统一的编码方式.下面我们根据现代编码模型的结构来逐一分析.</p>
+
+<h3 id="抽象字符表acr">抽象字符表ACR</h3>
+
+<p>在这一层包含了世界上已知的绝大多数字符,截止2017年6月支持的字符数量已经超过13w.</p>
+
+<h3 id="编码字符集ccs">编码字符集CCS</h3>
+
+<p>Unicode使用整型值为ACR中的字符编号,并将这种编号称为码点(code point).比如中文汉字&rdquo;中&rdquo;的码点为<code>U+4E2D</code>.
+<code>U+</code>表明这是一个Unicode码点,而且使用16进制表示的.<code>4E2D</code>表示具体的码点值.</p>
+
+<h3 id="字符编码表cef">字符编码表CEF</h3>
+
+<p>在CEF层,Unicode就稍显复杂一些了.
+为了对码点进行具体的编码,最为直观的方式是将码点直接转为2进制数据.<code>UCS-2</code>和<code>UCS-4</code>就是这种思想下的产物.下面我们来具体看看.</p>
+
+<h4 id="ucs-2-ucs-4">UCS-2/UCS-4</h4>
+
+<p>UCS是<code>Universal Coded Character Set</code>的缩写.2和4表示的是编码后的大小,分别是2字节和4字节.
+通常<code>UCS-2</code>已经可以覆盖我们的使用范围.</p>
+
+<p>还是以中文汉字<code>中</code>为例,我们看看对应的UCS-2和UCS-4编码.</p>
+
+<p>UCS-2以两字节编码,直接将码点值转为2进制为<code>\x4e\x2d</code>.
+UCS-4以四字节编码,将码点值转为2进制后为<code>\x0\x0\x4e\x2d</code>.
+我们将这种编码后的序列,称为码元序列.</p>
+
+<p>这种编码方式好处是直观而且便于切割读取,因为编码是固定长度的.但是细心的读者也会发现这种编码方式会极大的浪费存储空间.因为字符的使用频率是不同的.</p>
+
+<p>比如英文字母的使用频率比较高,如果使用UCS-4编码将会浪费3个字节的空间.为了解决这个问题,Unicode又提出了UTF-8编码方案.</p>
+
+<h4 id="utf-8">UTF-8</h4>
+
+<p>UTF-8的目的也是将第二层CCS中的码点进行编码,但是这次我们不会那么直接,我们有一个对应关系.</p>
+
+<p><img src="http://ww1.sinaimg.cn/large/006kvZhRgy1fjsg3vq0pcj30go04maav.jpg" alt="transfer" /></p>
+
+<p>还是为中文汉字<code>中</code>为例,我们来看看UTF-8编码如何?</p>
+
+<p>首先判断码点的范围,是处于转换方案的第三级.所以采用的公式是<code>1110 xxxx 10xx xxxx 10xx xxxx</code>.
+<img src="http://ww1.sinaimg.cn/large/006kvZhRgy1fjsg6m4xj7j308h02hjr5.jpg" alt="code point" /></p>
+
+<p><img src="http://ww1.sinaimg.cn/large/006kvZhRgy1fjsg74qv6ej30c0060glg.jpg" alt="plus" /></p>
+
+<p>通过计算,我们可以得出汉字<code>中</code>的UTF-8编码为<code>\xE4\xB8\xAD</code>.</p>
+
+<p>仅以汉字为例,UTF-8的编码长度超过了UCS-2的编码长度.但是仔细观察转换表,会发现英文的UTF-8编码长度一直都是一个字节.这将极大地提高编码效率.</p>
+
+<h3 id="字符编码方案ces">字符编码方案CES</h3>
+
+<p>通常我们所说的编码方案都指的是这一层的概念.</p>
+
+<p>对于UCS-2和UCS-4而言,一个码元序列中的顺序是区分不了的.所以我们必须规定大小端的读写顺序.
+所以又有了UCS-2-be, UCS-2-le, UCS-4-be, UCS-4-le.</p>
+
+<p>而对于UTF-8而言,一个码元就是一个字节,所以不在需要区分.换言之,UTF-8本身也属于CES层的概念.</p>
+
+<h2 id="总结">总结</h2>
+
+<p>至此,我们将Unicode的概念介绍完毕.下面的问题就是操作系统如何使用这些字符编码方案,保存文件,网络传输的时候,如何使用这些编码方案.在编程语言中如何使用这些编码方案.</p>
+
+<p>Ps: 最近做了一个在公司内部做了一个关于字符编解码的分享,反响还不错.下面是PPT链接:
+链接: <a href="https://pan.baidu.com/s/1eSozK10">https://pan.baidu.com/s/1eSozK10</a> 密码: j6ap</p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://blog.yitinglove.cn/" style="background-image: url(/images/author.jpg)"><span class="hidden">成祎's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="http://blog.yitinglove.cn/">成祎</a></h4>
+  
+  <p>Read <a href="http://blog.yitinglove.cn/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Shanghai, China</span>
+    <span class="author-link icon-link"><a href="blog.yitinglove.cn">blog.yitinglove.cn</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=%e5%ad%97%e7%ac%a6%e7%bc%96%e8%a7%a3%e7%a0%81%e7%af%87%e5%9b%9b&nbsp;-&nbsp;%e9%81%93%e6%b3%95%e8%87%aa%e7%84%b6&amp;url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2017-09-22-%25E5%25AD%2597%25E7%25AC%25A6%25E7%25BC%2596%25E7%25A0%2581%25E7%25AF%2587%25E5%259B%259B%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2017-09-22-%25E5%25AD%2597%25E7%25AC%25A6%25E7%25BC%2596%25E7%25A0%2581%25E7%25AF%2587%25E5%259B%259B%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2017-09-22-%25E5%25AD%2597%25E7%25AC%25A6%25E7%25BC%2596%25E7%25A0%2581%25E7%25AF%2587%25E5%259B%259B%2f&amp;description=%e5%ad%97%e7%ac%a6%e7%bc%96%e8%a7%a3%e7%a0%81%e7%af%87%e5%9b%9b"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2017-09-22-%25E5%25AD%2597%25E7%25AC%25A6%25E7%25BC%2596%25E7%25A0%2581%25E7%25AF%2587%25E5%259B%259B%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "http:\/\/blog.yitinglove.cn\/post\/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B\/";  
+this.page.identifier = "http:\/\/blog.yitinglove.cn\/post\/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://blog-yitinglove-cn.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="http://blog.yitinglove.cn/post/2017-09-27-%E5%B9%B2%E6%B3%95-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+          <section class="post">
+              <h2>干法_读书笔记</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://blog.yitinglove.cn/post/2017-09-14-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%89/">
+          <section class="post">
+              <h2>字符编解码篇三</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">道法自然</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/index.js"></script>
+    
+</body>
+</html>
+

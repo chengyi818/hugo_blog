@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="平铺式窗口管理器i3"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="平铺式窗口管理器i3 &middot; 道法自然" />
+  	<meta property="og:site_name" content="道法自然" />
+  	<meta property="og:url" content="http://blog.yitinglove.cn/post/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3/" />
+
+    
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2016-03-27T19:16:56&#43;08:00" />
+
+    
+    <meta property="article:tag" content="tool" />
+    
+    
+
+    <title>平铺式窗口管理器i3 &middot; 道法自然</title>
+
+    
+    <meta name="description" content="&lt;p&gt;本周是成胖子每周一博的第十五周 :smile:&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ww1.sinaimg.cn/large/006kvZhRjw1f2bm4kl8afj30af06imyd.jpg&#34; alt=&#34;最终效果图&#34; /&gt;&lt;/p&gt;
+
+" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://blog.yitinglove.cn/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://blog.yitinglove.cn/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="http://blog.yitinglove.cn/index.xml" rel="alternate" type="application/rss+xml" title="道法自然" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.31.1" />
+
+    <link rel="canonical" href="http://blog.yitinglove.cn/post/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://blog.yitinglove.cn/images/author.jpg
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://blog.yitinglove.cn/images/author.jpg,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": blog.yitinglove.cn,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": 平铺式窗口管理器i3,
+    "name": 平铺式窗口管理器i3,
+    "wordCount": 100,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://blog.yitinglove.cn/post/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3/,
+    "datePublished": 2016-03-27T19:16Z,
+    "dateModified": 2016-03-27T19:16Z,
+    
+    "keywords": tool,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://blog.yitinglove.cn/post/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72539373-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://blog.yitinglove.cn/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://blog.yitinglove.cn/"><img src="http://blog.yitinglove.cn/images/author.jpg" alt="Home" /></a>
+  
+  
+      <a class="menu-button icon-feed" href="http://blog.yitinglove.cn/index.xml" >&nbsp;&nbsp;Subscribe</a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">平铺式窗口管理器i3</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-03-27T19:16:56&#43;08:00">
+            Mar 27, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/tool/">#tool</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>本周是成胖子每周一博的第十五周 :smile:</p>
+
+<hr />
+
+<h2 id="前言">前言</h2>
+
+<p><img src="http://ww1.sinaimg.cn/large/006kvZhRjw1f2bm4kl8afj30af06imyd.jpg" alt="最终效果图" /></p>
+
+<p>小伙伴们感觉这个桌面炫酷不炫酷?</p>
+
+<p></p>
+
+<p><a href="http://yumminhuang.github.io/blog/2015/03/29/i3-%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8%E7%AE%80%E4%BB%8B/">窗口管理器</a>可以分为平铺式和层叠式,通常我们使用的都是层叠式,也就是每个窗口都可以相互重叠.</p>
+
+<p>对于<strong>多显示器</strong>或者<strong>大尺寸显示器</strong>而言,平铺式窗口往往更有优势.</p>
+
+<p>常见的平铺式管理器有:</p>
+
+<ul>
+<li><a href="http://xmonad.org/">xmond</a></li>
+<li><a href="https://awesome.naquadah.org/">awesome</a></li>
+<li><a href="https://i3wm.org/">i3wm</a></li>
+</ul>
+
+<p>经过筛选,我最终选择了i3.</p>
+
+<hr />
+
+<h2 id="安装与使用">安装与使用</h2>
+
+<h3 id="安装">安装</h3>
+
+<p>Ubuntu稳定版本安装方法:</p>
+
+<pre><code># echo &quot;deb http://debian.sur5r.net/i3/ $(lsb_release -c -s) universe&quot; &gt;&gt; /etc/apt/sources.list
+# apt-get update
+# apt-get --allow-unauthenticated install sur5r-keyring
+# apt-get update
+# apt-get install i3 i3lock dmenu i3status
+</code></pre>
+
+<p>其他安装方法参见<a href="http://i3wm.org/downloads/">这里</a></p>
+
+<h3 id="使用">使用</h3>
+
+<ul>
+<li>安装完成后,注销.</li>
+<li>在重新登陆界面,可以选择桌面窗口管理器.</li>
+<li>选择i3,输入用户名,密码登陆.</li>
+</ul>
+
+<hr />
+
+<h2 id="配置">配置</h2>
+
+<h3 id="配置文件">配置文件</h3>
+
+<p>i3的配置文件,包括两个:</p>
+
+<ol>
+<li>主配置文件</li>
+<li>状态栏配置文件</li>
+</ol>
+
+<p>我的配置文件已经上传到我的<a href="https://github.com/chengyi818/dotfiles">dotfiles</a>中.</p>
+
+<p>其中主配置文件是<code>home/i3/config</code>,状态栏配置文件是<code>.i3status.conf</code>.
+可以直接下载使用.</p>
+
+<h3 id="说明">说明</h3>
+
+<ul>
+<li>如果需要增加开机启动的程序或者脚本,可以仿照主配置文件最后一行的写法,添加自定义的开机执行程序.</li>
+</ul>
+
+<h2 id="我的快捷键">我的快捷键</h2>
+
+<p>根据我的需求,我重新定制了部分快捷键,请参见配置文件中的说明.</p>
+
+<h3 id="常用快捷键">常用快捷键</h3>
+
+<p>MOD键被映射为windows键,也就是左手边Alt左边的键.</p>
+
+<ul>
+<li>MOD + h,j,k,l：移动屏幕焦点；</li>
+<li>MOD + Shift + h,j,k,l：移动容器；</li>
+<li>MOD + v：垂直分割容器；</li>
+<li>MOD + z：水平分割容器；</li>
+<li>MOD + d：打开应用程序启动器Dmenu；</li>
+<li>MOD + Enter：打开终端。</li>
+<li>MOD + Shift + q : 关闭当前程序</li>
+<li>MOD + Shift + e : 退出i3,可以重新选择窗口管理器.</li>
+</ul>
+
+<h2 id="尾记">尾记</h2>
+
+<p>*i3*是面向高级用户的窗口管理工具,使用起来让你很有极客范.大量的操作将使用键盘完成.
+很有意思,值得尝试.</p>
+
+<p>下周再见 :wave:</p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://blog.yitinglove.cn/" style="background-image: url(/images/author.jpg)"><span class="hidden">成祎's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="http://blog.yitinglove.cn/">成祎</a></h4>
+  
+  <p>Read <a href="http://blog.yitinglove.cn/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Shanghai, China</span>
+    <span class="author-link icon-link"><a href="blog.yitinglove.cn">blog.yitinglove.cn</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=%e5%b9%b3%e9%93%ba%e5%bc%8f%e7%aa%97%e5%8f%a3%e7%ae%a1%e7%90%86%e5%99%a8i3&nbsp;-&nbsp;%e9%81%93%e6%b3%95%e8%87%aa%e7%84%b6&amp;url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-03-27-%25E5%25B9%25B3%25E9%2593%25BA%25E7%25AA%2597%25E5%258F%25A3%25E7%25AE%25A1%25E7%2590%2586%25E5%2599%25A8i3%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-03-27-%25E5%25B9%25B3%25E9%2593%25BA%25E7%25AA%2597%25E5%258F%25A3%25E7%25AE%25A1%25E7%2590%2586%25E5%2599%25A8i3%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-03-27-%25E5%25B9%25B3%25E9%2593%25BA%25E7%25AA%2597%25E5%258F%25A3%25E7%25AE%25A1%25E7%2590%2586%25E5%2599%25A8i3%2f&amp;description=%e5%b9%b3%e9%93%ba%e5%bc%8f%e7%aa%97%e5%8f%a3%e7%ae%a1%e7%90%86%e5%99%a8i3"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-03-27-%25E5%25B9%25B3%25E9%2593%25BA%25E7%25AA%2597%25E5%258F%25A3%25E7%25AE%25A1%25E7%2590%2586%25E5%2599%25A8i3%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "http:\/\/blog.yitinglove.cn\/post\/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3\/";  
+this.page.identifier = "http:\/\/blog.yitinglove.cn\/post\/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://blog-yitinglove-cn.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="http://blog.yitinglove.cn/post/2016-04-02-%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3%E7%BB%AD/">
+          <section class="post">
+              <h2>工具说_窗口管理器i3实用软件</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://blog.yitinglove.cn/post/2016-03-19-%E7%BF%BB%E5%A2%99%E4%B9%8B%E6%88%91%E8%A7%81/">
+          <section class="post">
+              <h2>翻墙之我见</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">道法自然</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/index.js"></script>
+    
+</body>
+</html>
+

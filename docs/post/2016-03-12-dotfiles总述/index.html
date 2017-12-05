@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="dotfiles总述"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="dotfiles总述 &middot; 道法自然" />
+  	<meta property="og:site_name" content="道法自然" />
+  	<meta property="og:url" content="http://blog.yitinglove.cn/post/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/" />
+
+    
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2016-03-12T19:16:56&#43;08:00" />
+
+    
+    <meta property="article:tag" content="tool" />
+    
+    
+
+    <title>dotfiles总述 &middot; 道法自然</title>
+
+    
+    <meta name="description" content="&lt;p&gt;本周是成胖子每周一博的第十三周:)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;在github上偶然浏览到&lt;a href=&#34;https://dotfiles.github.io/&#34;&gt;dotfiles&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;因为Unix及Linux下的很多" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://blog.yitinglove.cn/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://blog.yitinglove.cn/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="http://blog.yitinglove.cn/index.xml" rel="alternate" type="application/rss+xml" title="道法自然" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.31.1" />
+
+    <link rel="canonical" href="http://blog.yitinglove.cn/post/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://blog.yitinglove.cn/images/author.jpg
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://blog.yitinglove.cn/images/author.jpg,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": blog.yitinglove.cn,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": dotfiles总述,
+    "name": dotfiles总述,
+    "wordCount": 55,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://blog.yitinglove.cn/post/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/,
+    "datePublished": 2016-03-12T19:16Z,
+    "dateModified": 2016-03-12T19:16Z,
+    
+    "keywords": tool,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://blog.yitinglove.cn/post/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72539373-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://blog.yitinglove.cn/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://blog.yitinglove.cn/"><img src="http://blog.yitinglove.cn/images/author.jpg" alt="Home" /></a>
+  
+  
+      <a class="menu-button icon-feed" href="http://blog.yitinglove.cn/index.xml" >&nbsp;&nbsp;Subscribe</a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">dotfiles总述</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-03-12T19:16:56&#43;08:00">
+            Mar 12, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/tool/">#tool</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>本周是成胖子每周一博的第十三周:)</p>
+
+<hr />
+
+<h2 id="前言">前言</h2>
+
+<p>在github上偶然浏览到<a href="https://dotfiles.github.io/">dotfiles</a>.</p>
+
+<blockquote>
+<p>因为Unix及Linux下的很多配置文件都是隐藏文件,以&rdquo;.&ldquo;开始,所以我们用dotfiles称呼这些文件.</p>
+</blockquote>
+
+<p></p>
+
+<p>dotfiles整理有三个目的:</p>
+
+<ul>
+<li><p>备份/存储/同步</p></li>
+
+<li><p>学习/发现</p></li>
+
+<li><p>分享</p></li>
+</ul>
+
+<p>对于开发人员而言,一个代码编辑环境无疑是重中之重.我最近组装和改造了我自己的dotfiles.非常欢迎fork和使用,如果有什么问题,可以互相交流.</p>
+
+<p><a href="https://github.com/chengyi818/dotfiles">一键下载使用</a></p>
+
+<h2 id="dotfiles原理">dotfiles原理</h2>
+
+<p>在类Unix环境下,用户的配置在用户主目录下.比如bashrc,vimrc.我们一般都是直接修改这里.</p>
+
+<p>如果有<strong>备份的需求</strong>怎么办呢?</p>
+
+<blockquote>
+<p>最简单的办法就是把相应的文件打包压缩,然后就可以放到网盘或者U盘当中了.</p>
+</blockquote>
+
+<p>可是如果我们经常不时地<strong>更新</strong>配置文件,怎么才能很方便地压缩呢?</p>
+
+<blockquote>
+<ul>
+<li><p>有个笨办法,我每次更新完了,我就自己手动把每个文件重新压缩下.</p></li>
+
+<li><p>升级一下,可以写个简单地脚本,每次自动执行压缩命令</p></li>
+
+<li><p>再升级一下,可以把所有的配置文件拉到一个文件中,然后软链接到用户主目录.</p></li>
+</ul>
+</blockquote>
+
+<p>配置文件要怎么<strong>存储</strong>呢?</p>
+
+<blockquote>
+<ul>
+<li>毫无疑问,放到云上是最好的.dropbox或者百度云都还不错.</li>
+</ul>
+</blockquote>
+
+<p>难道我每次要自己手动<strong>同步</strong>么?</p>
+
+<blockquote>
+<ul>
+<li>我们现在有了<strong>github</strong>这么方便的工具,不使用一下太可惜了.</li>
+</ul>
+</blockquote>
+
+<p>综上,我们把常用配置放到同一个文件夹中,然后将它们链接到用户主目录.同时将这个文件夹加入git版本管理,最后上传到github当中.</p>
+
+<h2 id="安装主要过程">安装主要过程</h2>
+
+<blockquote>
+<p>我希望可以通过执行一条命令,把任何环境配置成自己最熟悉趁手的环境.</p>
+</blockquote>
+
+<p>一键脚本主要包含如下几个步骤:</p>
+
+<ul>
+<li><p>安装必要的软件,比如<a href="https://github.com/technicalpickles/homesick">homesick</a>,git,cmake,ctags等.</p></li>
+
+<li><p>备份现在的配置文件.</p></li>
+
+<li><p>安装zsh框架<a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a></p></li>
+
+<li><p>创建软链接</p></li>
+
+<li><p>安装vim框架<a href="https://github.com/spf13/spf13-vim">spf13</a></p></li>
+
+<li><p>安装小工具<a href="https://github.com/nvbn/thefuck">thefuck</a></p></li>
+
+<li><p>尝试编译<a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></p></li>
+</ul>
+
+<h2 id="安装说明">安装说明</h2>
+
+<p>前面我们已经提及了我们的主要过程,程序员当然不应该重复造轮子,所以我选用了大量的现有组件.</p>
+
+<ul>
+<li>下载配置,创建软链接,同步配置</li>
+</ul>
+
+<blockquote>
+<p>使用homesick,使用方法和命令非常类似于git,缺点是没有提供原有文件的备份.</p>
+</blockquote>
+
+<ul>
+<li>zsh配置</li>
+</ul>
+
+<blockquote>
+<p>直接使用了很火的oh-my-zsh</p>
+</blockquote>
+
+<ul>
+<li>vim配置</li>
+</ul>
+
+<blockquote>
+<p>vim真的是博大精深,用了这么久了,还是每次都有新发现,真的不愧是是编辑器之神.我使用了spf13的vim配置.基本主流插件都有了,而且比较容易进行个人定制.</p>
+</blockquote>
+
+<ul>
+<li>我的工作</li>
+</ul>
+
+<blockquote>
+<p>我主要做的就是使用shell脚本备份原有配置,同时尽量把安装过程自动化.我只在很有限的几台电脑上测试过.如果使用过程中有问题,请issue告诉我.</p>
+</blockquote>
+
+<h2 id="私人定制">私人定制</h2>
+
+<p>每个人都有自己的喜好,我的配置你不一定趁手.如果想进行个人定制,简单的三步就可以了.</p>
+
+<ol>
+<li><p>进入<a href="https://github.com/chengyi818/dotfiles">github</a>,fork我的仓库.</p></li>
+
+<li><p>将README.md中的一键安装脚本路径修改为你自己的仓库.</p></li>
+
+<li><p>将仓库中的install.sh文件头部的<code>REPO_URL</code>修改为你的仓库名.</p></li>
+</ol>
+
+<p>这样你就拥有了可以陪伴自己一生的工具箱,关于我们主要组件的使用方法请去原作者网页浏览,如果有机会,再给大家介绍.</p>
+
+<h2 id="使用小结">使用小结</h2>
+
+<p>我目前主要使用Linux Mint.我的命令终端使用konsole.tmux主要用于控制多个窗口.oh-my-zsh使得命令行操作更加高效强大.vim的配置插件让你的手指在键盘上舞蹈.</p>
+
+<p>如果有机会真的要尝试下,八星八钻,花30分钟,你买不了吃亏,你买不了上当.抱着试一试地态度,你真的会爱上它们.</p>
+
+<h2 id="尾记">尾记</h2>
+
+<p>今天只是简要地说明了我的dotfiles.说实话,我想做这个已经很久了,一直拖.现在总算是阶段性完成了.如果有人能够受益,多使用真的是太好了.</p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://blog.yitinglove.cn/" style="background-image: url(/images/author.jpg)"><span class="hidden">成祎's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="http://blog.yitinglove.cn/">成祎</a></h4>
+  
+  <p>Read <a href="http://blog.yitinglove.cn/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Shanghai, China</span>
+    <span class="author-link icon-link"><a href="blog.yitinglove.cn">blog.yitinglove.cn</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=dotfiles%e6%80%bb%e8%bf%b0&nbsp;-&nbsp;%e9%81%93%e6%b3%95%e8%87%aa%e7%84%b6&amp;url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-03-12-dotfiles%25E6%2580%25BB%25E8%25BF%25B0%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-03-12-dotfiles%25E6%2580%25BB%25E8%25BF%25B0%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-03-12-dotfiles%25E6%2580%25BB%25E8%25BF%25B0%2f&amp;description=dotfiles%e6%80%bb%e8%bf%b0"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2016-03-12-dotfiles%25E6%2580%25BB%25E8%25BF%25B0%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "http:\/\/blog.yitinglove.cn\/post\/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0\/";  
+this.page.identifier = "http:\/\/blog.yitinglove.cn\/post\/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://blog-yitinglove-cn.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="http://blog.yitinglove.cn/post/2016-03-19-%E7%BF%BB%E5%A2%99%E4%B9%8B%E6%88%91%E8%A7%81/">
+          <section class="post">
+              <h2>翻墙之我见</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://blog.yitinglove.cn/post/2016-03-05-linux%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/">
+          <section class="post">
+              <h2>Linux工具推荐</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">道法自然</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/index.js"></script>
+    
+</body>
+</html>
+
