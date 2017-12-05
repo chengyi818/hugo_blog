@@ -18,9 +18,9 @@ layoutDir = "layouts"
 buildDrafts = false
 canonifyURLs = true
 
-# 主题
+# 主题 cactus
 themesDir = "themes"
-theme = "cactus"
+theme = "casper"
 
 # 评论
 DisqusShortname = "yitinglove-cn-blog"
