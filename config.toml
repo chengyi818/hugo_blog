@@ -36,7 +36,20 @@ DisqusShortname = "blog-yitinglove-cn"
     # 作者图片
     logo = "images/author.jpg"
     # 封面图片
-    # cover = "images/cover.jpg"
+    cover = "images/cover.jpg"
     googleAnalyticsUserID = "UA-72539373-3"
     githubName = "chengyi818"
     hideHUGOSupport = false
+
+# 右侧菜单
+[[menu.main]] #页面菜单参数
+  name = "目录"
+  weight = -120
+  identifier = "blog"
+  url = "/"
+
+# [[menu.main]]
+#   name = "About me"
+#   weight = -110
+#   identifier = "about"
+#   url = "/about"
