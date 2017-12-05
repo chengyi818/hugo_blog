@@ -1,9 +1,9 @@
 ---
 title: "Test"
-date: 2017-12-05T10:23:10+08:00
-draft: False
+date: 2017-12-05T11:52:39+08:00
+tags: ['test']
+share: true
 ---
 
 ## test
 test
-

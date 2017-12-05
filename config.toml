@@ -5,22 +5,40 @@ baseURL = "http://blog.yitinglove.cn/"
 languageCode = "zh_CN"
 
 # 博客标题
-title = "夜来卧听风吹雨,铁马冰河入梦来"
+title = "道法自然"
 
+# 格式
+# 每页记录数
+paginate = 5
+
+# Directory
 publishDir = "docs"
 contentDir = "content"
 layoutDir = "layouts"
 buildDrafts = false
 canonifyURLs = true
 
+# 主题
 themesDir = "themes"
 theme = "casper"
+
+# 评论
+DisqusShortname = "yitinglove-cn-blog"
 
 [taxonomies]
     category = "categories"
     tag = "tags"
 
 [params]
-    author = "chengyi"
-
-
+    description = "闻之我也野，视之我也饶，行之我也明"
+    author = "成祎"
+    authorlocation = "Shanghai, China"
+    authorwebsite = "blog.yitinglove.cn"
+    bio = "巍擎 | 安全开发工程师"
+    # 作者图片
+    # logo = "images/author.jpg"
+    # 封面图片
+    # cover = "images/cover.jpg"
+    googleAnalyticsUserID = "UA-72539373-3"
+    githubName = "chengyi818"
+    hideHUGOSupport = false
