@@ -1,0 +1,7 @@
+# 博客地址
+baseURL = "https://chengyi818.github.io/hugo_test_blog"
+
+# 语言
+languageCode = "zh_CN"
+title = "My New Hugo Site"
+publishDir = "docs"
