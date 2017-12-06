@@ -37,7 +37,7 @@ DisqusShortname = "blog-yitinglove-cn"
     # 作者图片
     logo = "images/author.jpg"
     # 封面图片
-    cover = "images/cover.jpg"
+    cover = "images/sky_1.jpg"
     googleAnalyticsUserID = "UA-72539373-3"
     githubName = "chengyi818"
     hideHUGOSupport = false
