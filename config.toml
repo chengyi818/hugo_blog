@@ -22,7 +22,8 @@ buildDrafts = false
 canonifyurls = true
 hjsStyle = "default"
 
-# 主题 cactus/beautifulhugo
+# 主题 
+# hugo-fabric
 theme = "casper"
 
 # 评论
