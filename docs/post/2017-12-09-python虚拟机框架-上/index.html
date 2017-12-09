@@ -7,7 +7,9 @@
 
     
     
-        <meta name="twitter:card" content="summary"/>
+        
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513433390&di=1bd3c0a1f4e0c177273b09b46360cc0a&imgtype=jpg&er=1&src=http%3A%2F%2Fimage.uc.cn%2Fs%2Fwemedia%2Fs%2F2017%2F90bd60bcd7c480d7c06d59ac37eedc00x1244x701x177.jpeg"/>
     
 
 
@@ -23,9 +25,7 @@
   	<meta property="og:url" content="http://blog.yitinglove.cn/post/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/" />
 
     
-        
-            <meta property="og:image" content="/images/sky_1.jpg"/>
-        
+       <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513433390&di=1bd3c0a1f4e0c177273b09b46360cc0a&imgtype=jpg&er=1&src=http%3A%2F%2Fimage.uc.cn%2Fs%2Fwemedia%2Fs%2F2017%2F90bd60bcd7c480d7c06d59ac37eedc00x1244x701x177.jpeg"/>
     
 
     
@@ -43,8 +43,11 @@
     <title>2017_12_09_Python虚拟机框架_上 &middot; 道法自然</title>
 
     
-    <meta name="description" content="&lt;p&gt;阅读条件:
-&amp;gt; C语言基础, Python爱好者&lt;/p&gt;
+    <meta name="description" content="&lt;p&gt;阅读条件:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;C语言基础, Python爱好者&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;hr /&gt;
 
@@ -52,10 +55,7 @@
 
 &lt;p&gt;前面我们已经谈到过python面向对象的实现.今天我们来看看Python虚拟机的基础.&lt;/p&gt;
 
-&lt;p&gt;主要内容分为两个部分:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Python源码编译后的结果" />
+&lt;p&gt;主要内容分为两个部分" />
     
 
     <meta name="HandheldFriendly" content="True" />
@@ -118,7 +118,7 @@
     },
     "headline": 2017_12_09_Python虚拟机框架_上,
     "name": 2017_12_09_Python虚拟机框架_上,
-    "wordCount": 411,
+    "wordCount": 410,
     "timeRequired": "PT2M",
     "inLanguage": {
       "@type": "Language",
@@ -127,6 +127,13 @@
     "url": http://blog.yitinglove.cn/post/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/,
     "datePublished": 2017-12-09T20:22Z,
     "dateModified": 2017-12-09T20:22Z,
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": http://blog.yitinglove.cn/https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1513433390&amp;di=1bd3c0a1f4e0c177273b09b46360cc0a&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fimage.uc.cn%2Fs%2Fwemedia%2Fs%2F2017%2F90bd60bcd7c480d7c06d59ac37eedc00x1244x701x177.jpeg,
+        "width": 3000,
+        "height": 1445
+    },
     
     "keywords": Python, Source Code,
     "description": ,
@@ -186,8 +193,10 @@
 
 
 
-<header class="main-header post-head no-cover">
-  <nav class="main-nav clearfix">
+  
+  <header class="main-header post-head" style="background-image: url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1513433390&amp;di=1bd3c0a1f4e0c177273b09b46360cc0a&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fimage.uc.cn%2Fs%2Fwemedia%2Fs%2F2017%2F90bd60bcd7c480d7c06d59ac37eedc00x1244x701x177.jpeg)">
+  
+  <nav class="main-nav overlay clearfix">
 
 
   
@@ -227,8 +236,11 @@
     </header>
 
     <section class="post-content">
-      <p>阅读条件:
-&gt; C语言基础, Python爱好者</p>
+      <p>阅读条件:</p>
+
+<blockquote>
+<p>C语言基础, Python爱好者</p>
+</blockquote>
 
 <hr />
 
@@ -247,8 +259,9 @@
 
 <h2 id="编译python源码">编译Python源码</h2>
 
-<p>大多时候,我们运行python代码都不会关注源码的编译结果.因为python虚拟机是将编译和运行两部分合二为一了.
-而另一种常见的解释型语言java,则将两部分分开,分别是: <code>javac</code>和<code>java</code>.我们通过<code>javac</code>命令来生成java源码对应的class文件,再通过java命令来运行.</p>
+<p>大多时候,我们运行python代码都不会关注源码的编译结果.因为python虚拟机是将编译和运行两部分合二为一了.</p>
+
+<p>而另一种常见的解释型语言java,则将两部分分开,分别是: <code>javac</code>和<code>java</code>.我们通过<code>javac</code>命令来生成java源码对应的class文件,再通过java命令来运行.</p>
 
 <p>事实上,python也可以达到同样的结果.我们通过以下的命令可以生成<code>.pyc</code>文件.</p>
 
