@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:image" content="http://zp1.douguo.net/upload/dish/4/f/1/600_4f080bca49a39eeaad3f047b94771ea1.jpg"/>
+    
+
+
+
+<meta name="twitter:title" content="Python对象模型之我见"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python对象模型之我见 &middot; 道法自然" />
+  	<meta property="og:site_name" content="道法自然" />
+  	<meta property="og:url" content="http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/" />
+
+    
+       <meta property="og:image" content="http://zp1.douguo.net/upload/dish/4/f/1/600_4f080bca49a39eeaad3f047b94771ea1.jpg"/>
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-01-14T19:09:42&#43;08:00" />
+
+    
+    <meta property="article:tag" content="Python Metaclass" />
+    
+    <meta property="article:tag" content="Source Code" />
+    
+    
+
+    <title>Python对象模型之我见 &middot; 道法自然</title>
+
+    
+    <meta name="description" content="&lt;p&gt;阅读条件:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;C语言基础,Python对象模型基本了解&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;在深入学习Python的过程中,不可避免地会接触到这样的概念:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;在Pyth" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://blog.yitinglove.cn/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://blog.yitinglove.cn/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://blog.yitinglove.cn/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="http://blog.yitinglove.cn/index.xml" rel="alternate" type="application/rss+xml" title="道法自然" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.32.4" />
+
+    <link rel="canonical" href="http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://blog.yitinglove.cn/images/author.jpg
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://blog.yitinglove.cn/images/author.jpg,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": blog.yitinglove.cn,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": Python对象模型之我见,
+    "name": Python对象模型之我见,
+    "wordCount": 53,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/,
+    "datePublished": 2018-01-14T19:09Z,
+    "dateModified": 2018-01-14T19:09Z,
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": http://blog.yitinglove.cn/http://zp1.douguo.net/upload/dish/4/f/1/600_4f080bca49a39eeaad3f047b94771ea1.jpg,
+        "width": 3000,
+        "height": 1445
+    },
+    
+    "keywords": Python Metaclass, Source Code,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72539373-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://blog.yitinglove.cn/">Home</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://blog.yitinglove.cn/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+  
+  <header class="main-header post-head" style="background-image: url(http://zp1.douguo.net/upload/dish/4/f/1/600_4f080bca49a39eeaad3f047b94771ea1.jpg)">
+  
+  <nav class="main-nav overlay clearfix">
+
+
+  
+      <a class="blog-logo" href="http://blog.yitinglove.cn/"><img src="http://blog.yitinglove.cn/images/author.jpg" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python对象模型之我见</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2018-01-14T19:09:42&#43;08:00">
+            Jan 14, 2018
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/python-metaclass/">#Python Metaclass</a></span>
+         
+          <span class="post-tag small"><a href="http://blog.yitinglove.cn//tags/source-code/">#Source Code</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>阅读条件:</p>
+
+<blockquote>
+<p>C语言基础,Python对象模型基本了解</p>
+</blockquote>
+
+<hr />
+
+<h2 id="前言">前言</h2>
+
+<p>在深入学习Python的过程中,不可避免地会接触到这样的概念:</p>
+
+<blockquote>
+<p>在Python中一切都是对象</p>
+</blockquote>
+
+<p>这个<strong>一切</strong>甚至比我想象的还要深入,因为在Python的实现层面也都是用面向对象实现的.那么与对象模型相关的<code>类</code>,<code>实例</code>的概念是不是也是用面向对象实现的呢?是的,在Python中,类的定义本身也是一个对象.</p>
+
+<p></p>
+
+<p>从实现层面来看,我认为只要能用一个<code>PyObject*</code>来指向的结构体都是对象.我认为Python中的对象可以分为以下几类:</p>
+
+<ol>
+<li>普通内建类对象,不需要开发者实现,由系统提供的类对象,比如int, list等.</li>
+<li>特殊内建类对象,不要开发者实现,但是在对象模型中具有特殊功能,其实也就是两个特殊对象,type和object.</li>
+<li>自定义类对象,开发者实现的类所生成的对象.</li>
+<li>实例对象,由类对象实例化所生成的对象.</li>
+</ol>
+
+<p>下面我们来分别讲讲这些过程.</p>
+
+<h2 id="示意图">示意图</h2>
+
+<p>下面这幅是从网上摘抄过来的.也是经典Python对象模型示意图.</p>
+
+<p><img src="http://www.lightxue.com/images/relationship-among-object-class-metaclass-in-python/python_types_map.png" alt="Python内存对象间的关系" /></p>
+
+<p>三个框分别表示元类,类型,一般对象.其中虚线表示类与实例的关系,实线表示父类与子类的继承关系.</p>
+
+<h2 id="创世纪的三个过程">创世纪的三个过程</h2>
+
+<p>在Python虚拟机中叱咤风云的往往是一个个实例对象.但是在创造他们之前,我们需要经过漫长的过程.了解这个过程,将极大地帮助我们了解元类.</p>
+
+<h3 id="内建类对象的初始化">内建类对象的初始化</h3>
+
+<p>在CPython中,所有的内建类对象表现为一个个C语言结构体,而且都是静态初始化的全局变量.所以他们几乎天然就是一个PyObject对象了.为什么说几乎呢?因为还需要对他们进行一点点改造.</p>
+
+<p>这个过程的实现在<code>Objects/typeobject.c</code>的<code>PyType_Ready</code>中.这个函数主要完成如下工作:</p>
+
+<ol>
+<li>确定本类的基类</li>
+<li>递归地初始化基类</li>
+<li>确定本类的类型</li>
+<li>填充本类的<strong>dict</strong></li>
+<li>从基类中的继承</li>
+<li>将本类加入基类的子类列表</li>
+</ol>
+
+<p>这里面值得关注的是第4步和第5步.在完成了这些工作之后,内建对象的构建就完成了.</p>
+
+<p>我们在多说两句,关于特殊内建对象.object对象是所有类对象的基类,也是第一个被初始化的.而type对象是绝大多数对象的类型对象.</p>
+
+<h3 id="自定义类对象的生成">自定义类对象的生成</h3>
+
+<p>一个自定义的类对象的生成,要经过几个步骤呢?首先,要准备材料.主要是自定义类的名字,自定义类的基类列表以及自定义类的属性列表.这里变量和方法都可以归为属性.然后,就是调用元类了.主要代码<code>Objects/typeobject.c/type_call</code>一路追下去.</p>
+
+<p>步骤如下:</p>
+
+<ol>
+<li>调用metaclass-&gt;ob_type-&gt;tp_call,也就是type_call.</li>
+<li>调用metaclass-&gt;tp_new,也就是type_new.</li>
+<li>调用metaclass-&gt;tp_alloc,这个方法type本身没有定义,是从object继承而来,所以是object-&gt;tp_alloc.也就是PyType_GenericAlloc.</li>
+<li>初始化新建的type.为其中的一些域赋值.</li>
+<li>调用PyType_Ready.</li>
+<li>调用<code>fixup_slot_dispatchers</code>,这个很有意思.是处理重载的关键.如果你覆盖了基类的方法,会在这里实现.</li>
+<li>调用metaclass-&gt;tp_init,这个方法同样从object继承,也就是object_init.</li>
+</ol>
+
+<h3 id="实例对象的生成">实例对象的生成</h3>
+
+<p>主要步骤如下:</p>
+
+<ol>
+<li>调用class-&gt;ob_type-&gt;tp_call,一般来讲就是type_call.</li>
+<li>调用class-&gt;tp_new,这个方法是从object继承而来,也就是object_new.我们看到这也是创建类对象和实例对象的主要区别点.</li>
+<li>调用class-&gt;tp_alloc,同样是PyType_GenericAlloc.</li>
+<li>调用class-&gt;tp_init.我们经常定义的<code>def __init__</code>就是在这里调用的.</li>
+</ol>
+
+<h2 id="基类和类型在python中的作用">基类和类型在Python中的作用</h2>
+
+<p>在弄清楚一系列对象的创建过程后,在更高的维度我是怎么看的呢?
+<code>object</code>是一切类对象的基类,是<strong>众基之基</strong>.所有对象如果没有重写的话,那么所有对象都会从<code>object</code>中继承方法.所以object最重要的作用是什么呢?就是把所有类都要具有的方法,抽出来,聚集到一起.这就是<code>object</code>.</p>
+
+<p>实例是类对象实例化的结果.同一类对象的各个实例之间其实大体相似,区别只是个别属性.而类对象之间的结构也是大体相似的,而元类就是各个类对象的类.</p>
+
+<p>通过重载元类的<code>__new__</code>,<code>__init__</code>,我们能够控制类对象的生成.重载<code>__call__</code>,我们能够控制实例对象的生成.</p>
+
+<h2 id="总结">总结</h2>
+
+<p>现在总算基本弄清楚Python的对象模型.这块还是有点复杂的.我这里其实就是自己的小结.更多地内容还是得去看书,看源码.</p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://blog.yitinglove.cn/" style="background-image: url(/images/author.jpg)"><span class="hidden">成祎's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="http://blog.yitinglove.cn/">成祎</a></h4>
+  
+  <p>Read <a href="http://blog.yitinglove.cn/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Shanghai, China</span>
+    <span class="author-link icon-link"><a href="blog.yitinglove.cn">blog.yitinglove.cn</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%e5%af%b9%e8%b1%a1%e6%a8%a1%e5%9e%8b%e4%b9%8b%e6%88%91%e8%a7%81&nbsp;-&nbsp;%e9%81%93%e6%b3%95%e8%87%aa%e7%84%b6&amp;url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2018-01-14-python%25E5%2585%2583%25E7%25B1%25BB%25E4%25B9%258B%25E6%2588%2591%25E8%25A7%2581%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2018-01-14-python%25E5%2585%2583%25E7%25B1%25BB%25E4%25B9%258B%25E6%2588%2591%25E8%25A7%2581%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2018-01-14-python%25E5%2585%2583%25E7%25B1%25BB%25E4%25B9%258B%25E6%2588%2591%25E8%25A7%2581%2f&amp;description=Python%e5%af%b9%e8%b1%a1%e6%a8%a1%e5%9e%8b%e4%b9%8b%e6%88%91%e8%a7%81"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fblog.yitinglove.cn%2fpost%2f2018-01-14-python%25E5%2585%2583%25E7%25B1%25BB%25E4%25B9%258B%25E6%2588%2591%25E8%25A7%2581%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "http:\/\/blog.yitinglove.cn\/post\/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81\/";  
+this.page.identifier = "http:\/\/blog.yitinglove.cn\/post\/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://blog-yitinglove-cn.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+  
+      <a class="read-next-story prev" style="background-image: url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1513433390&amp;di=1bd3c0a1f4e0c177273b09b46360cc0a&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fimage.uc.cn%2Fs%2Fwemedia%2Fs%2F2017%2F90bd60bcd7c480d7c06d59ac37eedc00x1244x701x177.jpeg)" href="http://blog.yitinglove.cn/post/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/">
+          <section class="post">
+              <h2>Python虚拟机框架_上</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">道法自然</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://blog.yitinglove.cn/js/index.js"></script>
+    
+</body>
+</html>
+
