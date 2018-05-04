@@ -6,10 +6,29 @@
     <description>Recent content on 道法自然</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
-    <lastBuildDate>Fri, 19 Jan 2018 19:56:17 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 04 May 2018 19:46:40 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.yitinglove.cn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>成胖子的xv6之旅</title>
+      <link>http://blog.yitinglove.cn/post/2018-05-04-xv6-journey/</link>
+      <pubDate>Fri, 04 May 2018 19:46:40 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/post/2018-05-04-xv6-journey/</guid>
+      <description>&lt;p&gt;阅读条件:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;C语言基础, 操作系统爱好者&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;最近博客更新比较少,是因为我今年的主要学习方向是系统性完成对操作系统主要概念,框架的掌握.因此我给自己安排的计划主要包括如下内容:&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Python虚拟机初始化</title>
