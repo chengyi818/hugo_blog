@@ -9,10 +9,10 @@
     <lastBuildDate>Sun, 14 Jan 2018 19:09:42 +0800</lastBuildDate><atom:link href="http://blog.yitinglove.cn/tags/metaclass/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python对象模型之我见</title>
-      <link>http://blog.yitinglove.cn/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</link>
+      <link>http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</link>
       <pubDate>Sun, 14 Jan 2018 19:09:42 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</guid>
+      <guid>http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础,Python对象模型基本了解&lt;/p&gt;

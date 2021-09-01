@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 22 Sep 2017 19:16:56 +0800</lastBuildDate><atom:link href="http://blog.yitinglove.cn/tags/ucs-4/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>字符编解码篇四</title>
-      <link>http://blog.yitinglove.cn/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/</link>
+      <link>http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/</link>
       <pubDate>Fri, 22 Sep 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学&lt;/p&gt;

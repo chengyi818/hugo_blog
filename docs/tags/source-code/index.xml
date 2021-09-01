@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 19 Jan 2018 19:56:17 +0800</lastBuildDate><atom:link href="http://blog.yitinglove.cn/tags/source-code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python虚拟机初始化</title>
-      <link>http://blog.yitinglove.cn/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+      <link>http://blog.yitinglove.cn/post/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
       <pubDate>Fri, 19 Jan 2018 19:56:17 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
+      <guid>http://blog.yitinglove.cn/post/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础, Python虚拟机基本了解&lt;/p&gt;
@@ -24,10 +24,10 @@
     
     <item>
       <title>Python对象模型之我见</title>
-      <link>http://blog.yitinglove.cn/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</link>
+      <link>http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</link>
       <pubDate>Sun, 14 Jan 2018 19:09:42 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</guid>
+      <guid>http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础,Python对象模型基本了解&lt;/p&gt;
@@ -43,10 +43,10 @@
     
     <item>
       <title>Python虚拟机框架_上</title>
-      <link>http://blog.yitinglove.cn/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/</link>
+      <link>http://blog.yitinglove.cn/post/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/</link>
       <pubDate>Sat, 09 Dec 2017 20:22:50 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础, Python爱好者&lt;/p&gt;
@@ -63,10 +63,10 @@
     
     <item>
       <title>Python对象模型</title>
-      <link>http://blog.yitinglove.cn/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
+      <link>http://blog.yitinglove.cn/post/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
       <pubDate>Thu, 19 Oct 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础, Python爱好者&lt;/p&gt;

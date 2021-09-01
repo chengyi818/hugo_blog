@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 04 May 2018 19:46:40 +0800</lastBuildDate><atom:link href="http://blog.yitinglove.cn/tags/operating-system/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>成胖子的xv6之旅</title>
-      <link>http://blog.yitinglove.cn/2018-05-04-xv6-journey/</link>
+      <link>http://blog.yitinglove.cn/post/2018-05-04-xv6-journey/</link>
       <pubDate>Fri, 04 May 2018 19:46:40 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2018-05-04-xv6-journey/</guid>
+      <guid>http://blog.yitinglove.cn/post/2018-05-04-xv6-journey/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础, 操作系统爱好者&lt;/p&gt;

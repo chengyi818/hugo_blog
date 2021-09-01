@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 04 May 2018 19:46:40 +0800</lastBuildDate><atom:link href="http://blog.yitinglove.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>成胖子的xv6之旅</title>
-      <link>http://blog.yitinglove.cn/2018-05-04-xv6-journey/</link>
+      <link>http://blog.yitinglove.cn/post/2018-05-04-xv6-journey/</link>
       <pubDate>Fri, 04 May 2018 19:46:40 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2018-05-04-xv6-journey/</guid>
+      <guid>http://blog.yitinglove.cn/post/2018-05-04-xv6-journey/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础, 操作系统爱好者&lt;/p&gt;
@@ -23,10 +23,10 @@
     
     <item>
       <title>Python虚拟机初始化</title>
-      <link>http://blog.yitinglove.cn/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+      <link>http://blog.yitinglove.cn/post/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
       <pubDate>Fri, 19 Jan 2018 19:56:17 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
+      <guid>http://blog.yitinglove.cn/post/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础, Python虚拟机基本了解&lt;/p&gt;
@@ -38,10 +38,10 @@
     
     <item>
       <title>Python对象模型之我见</title>
-      <link>http://blog.yitinglove.cn/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</link>
+      <link>http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</link>
       <pubDate>Sun, 14 Jan 2018 19:09:42 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</guid>
+      <guid>http://blog.yitinglove.cn/post/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础,Python对象模型基本了解&lt;/p&gt;
@@ -57,10 +57,10 @@
     
     <item>
       <title>Python虚拟机框架_上</title>
-      <link>http://blog.yitinglove.cn/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/</link>
+      <link>http://blog.yitinglove.cn/post/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/</link>
       <pubDate>Sat, 09 Dec 2017 20:22:50 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础, Python爱好者&lt;/p&gt;
@@ -77,10 +77,10 @@
     
     <item>
       <title>Python对象模型</title>
-      <link>http://blog.yitinglove.cn/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
+      <link>http://blog.yitinglove.cn/post/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
       <pubDate>Thu, 19 Oct 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C语言基础, Python爱好者&lt;/p&gt;
@@ -90,10 +90,10 @@
     
     <item>
       <title>干法_读书笔记</title>
-      <link>http://blog.yitinglove.cn/2017-09-27-%E5%B9%B2%E6%B3%95-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <link>http://blog.yitinglove.cn/post/2017-09-27-%E5%B9%B2%E6%B3%95-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Wed, 27 Sep 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-09-27-%E5%B9%B2%E6%B3%95-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-09-27-%E5%B9%B2%E6%B3%95-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;适合所有人&lt;/p&gt;
@@ -103,10 +103,10 @@
     
     <item>
       <title>字符编解码篇四</title>
-      <link>http://blog.yitinglove.cn/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/</link>
+      <link>http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/</link>
       <pubDate>Fri, 22 Sep 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学&lt;/p&gt;
@@ -116,10 +116,10 @@
     
     <item>
       <title>字符编解码篇三</title>
-      <link>http://blog.yitinglove.cn/2017-09-14-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%89/</link>
+      <link>http://blog.yitinglove.cn/post/2017-09-14-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%89/</link>
       <pubDate>Thu, 14 Sep 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-09-14-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%89/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-09-14-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%89/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学&lt;/p&gt;
@@ -129,10 +129,10 @@
     
     <item>
       <title>字符编解码_篇二</title>
-      <link>http://blog.yitinglove.cn/2017-09-10-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%BA%8C/</link>
+      <link>http://blog.yitinglove.cn/post/2017-09-10-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%BA%8C/</link>
       <pubDate>Sun, 10 Sep 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-09-10-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%BA%8C/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-09-10-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%BA%8C/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学&lt;/p&gt;
@@ -142,10 +142,10 @@
     
     <item>
       <title>字符编解码_篇一</title>
-      <link>http://blog.yitinglove.cn/2017-08-20-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%80/</link>
+      <link>http://blog.yitinglove.cn/post/2017-08-20-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%80/</link>
       <pubDate>Sun, 20 Aug 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-08-20-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%80/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-08-20-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%80/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学&lt;/p&gt;
@@ -155,10 +155,10 @@
     
     <item>
       <title>Ubuntu 14.04保存屏幕亮度</title>
-      <link>http://blog.yitinglove.cn/2017-06-12-save-brightness-on-ubuntu-14-04/</link>
+      <link>http://blog.yitinglove.cn/post/2017-06-12-save-brightness-on-ubuntu-14-04/</link>
       <pubDate>Mon, 12 Jun 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-06-12-save-brightness-on-ubuntu-14-04/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-06-12-save-brightness-on-ubuntu-14-04/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Ubuntu 14.04使用者&lt;/p&gt;
@@ -168,10 +168,10 @@
     
     <item>
       <title>vim从入门到放弃_篇四</title>
-      <link>http://blog.yitinglove.cn/2017-04-23-vim_to_emacs_4/</link>
+      <link>http://blog.yitinglove.cn/post/2017-04-23-vim_to_emacs_4/</link>
       <pubDate>Sun, 23 Apr 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-04-23-vim_to_emacs_4/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-04-23-vim_to_emacs_4/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;编辑器爱好者,了解vim基本使用&lt;/p&gt;
@@ -185,10 +185,10 @@
     
     <item>
       <title>vim从入门到放弃_篇三</title>
-      <link>http://blog.yitinglove.cn/2017-04-04-vim_to_emacs_3/</link>
+      <link>http://blog.yitinglove.cn/post/2017-04-04-vim_to_emacs_3/</link>
       <pubDate>Tue, 04 Apr 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-04-04-vim_to_emacs_3/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-04-04-vim_to_emacs_3/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;编辑器爱好者,了解vim基本使用&lt;/p&gt;
@@ -202,10 +202,10 @@
     
     <item>
       <title>vim从入门到放弃_篇二</title>
-      <link>http://blog.yitinglove.cn/2017-03-26-vim_to_emacs_2/</link>
+      <link>http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/</link>
       <pubDate>Sun, 26 Mar 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-03-26-vim_to_emacs_2/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;编辑器爱好者,了解vim基本使用&lt;/p&gt;
@@ -219,10 +219,10 @@
     
     <item>
       <title>vim从入门到放弃_篇一</title>
-      <link>http://blog.yitinglove.cn/2017-03-19-vim_to_emacs_1/</link>
+      <link>http://blog.yitinglove.cn/post/2017-03-19-vim_to_emacs_1/</link>
       <pubDate>Sun, 19 Mar 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-03-19-vim_to_emacs_1/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-03-19-vim_to_emacs_1/</guid>
       <description>&lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;编辑器爱好者,了解vim基本使用&lt;/p&gt;
@@ -236,10 +236,10 @@
     
     <item>
       <title>把Effective Python读薄之三</title>
-      <link>http://blog.yitinglove.cn/2017-03-14-effective-python_3/</link>
+      <link>http://blog.yitinglove.cn/post/2017-03-14-effective-python_3/</link>
       <pubDate>Tue, 14 Mar 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-03-14-effective-python_3/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-03-14-effective-python_3/</guid>
       <description>&lt;p&gt;本文是我总结的Effective Python的第三章&lt;/p&gt;
 &lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -249,10 +249,10 @@
     
     <item>
       <title>把Effective Python读薄之二</title>
-      <link>http://blog.yitinglove.cn/2017-02-18-effective-python_2/</link>
+      <link>http://blog.yitinglove.cn/post/2017-02-18-effective-python_2/</link>
       <pubDate>Sat, 18 Feb 2017 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2017-02-18-effective-python_2/</guid>
+      <guid>http://blog.yitinglove.cn/post/2017-02-18-effective-python_2/</guid>
       <description>&lt;p&gt;本文是我总结的Effective Python的第二章&lt;/p&gt;
 &lt;p&gt;阅读条件:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -262,10 +262,10 @@
     
     <item>
       <title>把Effective Python读薄之一</title>
-      <link>http://blog.yitinglove.cn/2016-12-18-effective-python_1/</link>
+      <link>http://blog.yitinglove.cn/post/2016-12-18-effective-python_1/</link>
       <pubDate>Sun, 18 Dec 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-12-18-effective-python_1/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-12-18-effective-python_1/</guid>
       <description>&lt;p&gt;这两天看到一篇博客,名为&amp;lt;把编程珠玑读薄&amp;gt;,是为名.&lt;/p&gt;
 &lt;p&gt;本文是我总结的Effective Python的第一章&lt;/p&gt;
 &lt;p&gt;阅读条件:&lt;/p&gt;
@@ -276,38 +276,38 @@
     
     <item>
       <title>Python模块和包</title>
-      <link>http://blog.yitinglove.cn/2016-11-26-python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/</link>
+      <link>http://blog.yitinglove.cn/post/2016-11-26-python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/</link>
       <pubDate>Sat, 26 Nov 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-11-26-python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-11-26-python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/</guid>
       <description></description>
     </item>
     
     <item>
       <title>xmodmap小结</title>
-      <link>http://blog.yitinglove.cn/2016-11-05-xmodmap/</link>
+      <link>http://blog.yitinglove.cn/post/2016-11-05-xmodmap/</link>
       <pubDate>Sat, 05 Nov 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-11-05-xmodmap/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-11-05-xmodmap/</guid>
       <description></description>
     </item>
     
     <item>
       <title>我的chrome续</title>
-      <link>http://blog.yitinglove.cn/2016-04-23-%E6%88%91%E7%9A%84chrome%E7%BB%AD/</link>
+      <link>http://blog.yitinglove.cn/post/2016-04-23-%E6%88%91%E7%9A%84chrome%E7%BB%AD/</link>
       <pubDate>Sat, 23 Apr 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-04-23-%E6%88%91%E7%9A%84chrome%E7%BB%AD/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-04-23-%E6%88%91%E7%9A%84chrome%E7%BB%AD/</guid>
       <description>&lt;p&gt;chrome是一个非常强大的工具,可能很快就要成为市占率第一的浏览器了.&lt;/p&gt;
 &lt;p&gt;本周我们来看看chrome的一些不广为人知的功能.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>我的chrome_插件篇</title>
-      <link>http://blog.yitinglove.cn/2016-04-09-%E6%88%91%E7%9A%84chrome_%E6%8F%92%E4%BB%B6%E7%AF%87/</link>
+      <link>http://blog.yitinglove.cn/post/2016-04-09-%E6%88%91%E7%9A%84chrome_%E6%8F%92%E4%BB%B6%E7%AF%87/</link>
       <pubDate>Sat, 09 Apr 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-04-09-%E6%88%91%E7%9A%84chrome_%E6%8F%92%E4%BB%B6%E7%AF%87/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-04-09-%E6%88%91%E7%9A%84chrome_%E6%8F%92%E4%BB%B6%E7%AF%87/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第十七周 😄&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;1前言&#34;&gt;1.前言&lt;/h2&gt;
@@ -316,10 +316,10 @@
     
     <item>
       <title>工具说_窗口管理器i3实用软件</title>
-      <link>http://blog.yitinglove.cn/2016-04-02-%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3%E7%BB%AD/</link>
+      <link>http://blog.yitinglove.cn/post/2016-04-02-%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3%E7%BB%AD/</link>
       <pubDate>Sat, 02 Apr 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-04-02-%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3%E7%BB%AD/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-04-02-%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3%E7%BB%AD/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第十六周 😄&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -331,10 +331,10 @@
     
     <item>
       <title>平铺式窗口管理器i3</title>
-      <link>http://blog.yitinglove.cn/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3/</link>
+      <link>http://blog.yitinglove.cn/post/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3/</link>
       <pubDate>Sun, 27 Mar 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-03-27-%E5%B9%B3%E9%93%BA%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8i3/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第十五周 😄&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -344,10 +344,10 @@
     
     <item>
       <title>翻墙之我见</title>
-      <link>http://blog.yitinglove.cn/2016-03-19-%E7%BF%BB%E5%A2%99%E4%B9%8B%E6%88%91%E8%A7%81/</link>
+      <link>http://blog.yitinglove.cn/post/2016-03-19-%E7%BF%BB%E5%A2%99%E4%B9%8B%E6%88%91%E8%A7%81/</link>
       <pubDate>Sat, 19 Mar 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-03-19-%E7%BF%BB%E5%A2%99%E4%B9%8B%E6%88%91%E8%A7%81/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-03-19-%E7%BF%BB%E5%A2%99%E4%B9%8B%E6%88%91%E8%A7%81/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第十四周😄&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
@@ -359,10 +359,10 @@
     
     <item>
       <title>dotfiles总述</title>
-      <link>http://blog.yitinglove.cn/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/</link>
+      <link>http://blog.yitinglove.cn/post/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/</link>
       <pubDate>Sat, 12 Mar 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第十三周:)&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -374,10 +374,10 @@
     
     <item>
       <title>Linux工具推荐</title>
-      <link>http://blog.yitinglove.cn/2016-03-05-linux%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</link>
+      <link>http://blog.yitinglove.cn/post/2016-03-05-linux%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</link>
       <pubDate>Sat, 05 Mar 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-03-05-linux%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-03-05-linux%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第十二周:)&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -387,10 +387,10 @@
     
     <item>
       <title>时间管理pomotodo</title>
-      <link>http://blog.yitinglove.cn/2016-02-27-pomotodo/</link>
+      <link>http://blog.yitinglove.cn/post/2016-02-27-pomotodo/</link>
       <pubDate>Sat, 27 Feb 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-02-27-pomotodo/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-02-27-pomotodo/</guid>
       <description>&lt;p&gt;春节放假休息了两周
 本周是成胖子每周一博的第十一周:)&lt;/p&gt;
 &lt;hr&gt;
@@ -410,10 +410,10 @@
     
     <item>
       <title>个人事务管理doit.im</title>
-      <link>http://blog.yitinglove.cn/2016-02-08-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86gtd/</link>
+      <link>http://blog.yitinglove.cn/post/2016-02-08-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86gtd/</link>
       <pubDate>Mon, 08 Feb 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-02-08-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86gtd/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-02-08-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86gtd/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第十周:)&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -426,10 +426,10 @@
     
     <item>
       <title>工具说总序_道器论</title>
-      <link>http://blog.yitinglove.cn/2016-01-30-%E5%B7%A5%E5%85%B7%E8%AF%B4%E6%80%BB%E5%BA%8F/</link>
+      <link>http://blog.yitinglove.cn/post/2016-01-30-%E5%B7%A5%E5%85%B7%E8%AF%B4%E6%80%BB%E5%BA%8F/</link>
       <pubDate>Sat, 30 Jan 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-01-30-%E5%B7%A5%E5%85%B7%E8%AF%B4%E6%80%BB%E5%BA%8F/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-01-30-%E5%B7%A5%E5%85%B7%E8%AF%B4%E6%80%BB%E5%BA%8F/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第九周:)&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;##前言&lt;/p&gt;
@@ -443,10 +443,10 @@
     
     <item>
       <title>思维导图xmind</title>
-      <link>http://blog.yitinglove.cn/2016-01-24-%E5%B7%A5%E5%85%B7%E8%AF%B4_%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</link>
+      <link>http://blog.yitinglove.cn/post/2016-01-24-%E5%B7%A5%E5%85%B7%E8%AF%B4_%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</link>
       <pubDate>Sun, 24 Jan 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-01-24-%E5%B7%A5%E5%85%B7%E8%AF%B4_%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-01-24-%E5%B7%A5%E5%85%B7%E8%AF%B4_%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博第八周.&lt;/p&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt; 我从小就有很强的好奇心,看到新鲜东西总想着试试.现在算是半只脚踏入Linux的门槛,可以看到很多好玩的东西,令人眼花缭乱.我现在就像一个圆,随着里面的面积越来越大,周长越来越长,和外面未知世界的接触面积也越来越大,内心也越来越焦灼.愈发地感觉时不我待,要看要学要做的事情太多了.&lt;/p&gt;</description>
@@ -454,10 +454,10 @@
     
     <item>
       <title>第一个lxc容器</title>
-      <link>http://blog.yitinglove.cn/2016-01-17-%E7%AC%AC%E4%B8%80%E4%B8%AAlxc%E5%AE%B9%E5%99%A8/</link>
+      <link>http://blog.yitinglove.cn/post/2016-01-17-%E7%AC%AC%E4%B8%80%E4%B8%AAlxc%E5%AE%B9%E5%99%A8/</link>
       <pubDate>Sun, 17 Jan 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-01-17-%E7%AC%AC%E4%B8%80%E4%B8%AAlxc%E5%AE%B9%E5%99%A8/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-01-17-%E7%AC%AC%E4%B8%80%E4%B8%AAlxc%E5%AE%B9%E5%99%A8/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第七周:)&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;##前言&lt;/p&gt;
@@ -466,10 +466,10 @@
     
     <item>
       <title>openwrt编译打包过程</title>
-      <link>http://blog.yitinglove.cn/2016-01-10-openwrt%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</link>
+      <link>http://blog.yitinglove.cn/post/2016-01-10-openwrt%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</link>
       <pubDate>Sun, 10 Jan 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-01-10-openwrt%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-01-10-openwrt%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博第六周,更好地阅读体验,请点击&lt;a href=&#34;https://www.zybuluo.com/icyriver/note/258252&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -478,20 +478,20 @@
     
     <item>
       <title>openwrt单个ipk编译过程</title>
-      <link>http://blog.yitinglove.cn/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/</link>
+      <link>http://blog.yitinglove.cn/post/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/</link>
       <pubDate>Sun, 03 Jan 2016 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/</guid>
+      <guid>http://blog.yitinglove.cn/post/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/</guid>
       <description>&lt;p&gt;本周是成胖子每周一博的第五周.
 更好的阅读体验,请点击&lt;a href=&#34;https://www.zybuluo.com/icyriver/note/257687&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>openwrt主Makefile解析</title>
-      <link>http://blog.yitinglove.cn/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/</link>
+      <link>http://blog.yitinglove.cn/post/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Sat, 26 Dec 2015 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/</guid>
+      <guid>http://blog.yitinglove.cn/post/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/</guid>
       <description>&lt;p&gt;本周成胖子每周一博到了第四周&lt;/p&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;前一篇,我们大概描述了整个镜像文件的生成过程.本周我们来解析主Makefile,看看主要编译过程是怎么产生的.&lt;/p&gt;</description>
@@ -499,10 +499,10 @@
     
     <item>
       <title>openwrt编译过程概述</title>
-      <link>http://blog.yitinglove.cn/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/</link>
+      <link>http://blog.yitinglove.cn/post/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 20 Dec 2015 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/</guid>
+      <guid>http://blog.yitinglove.cn/post/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;又到了成胖子每周一博的时间了,本周是第三周.
 本周我们继续了解&lt;code&gt;openwrt&lt;/code&gt;的编译过程,如果还有没写过简单ipk或者编译过openwrt的朋友,可以参见我之前的&lt;a href=&#34;http://blog.csdn.net/icy_river/article/details/48260859&#34;&gt;博客&lt;/a&gt;或者网上的其他&lt;a href=&#34;https://www.baidu.com/s?wd=%E7%BC%96%E8%AF%91openwrt&amp;amp;rsv_spt=1&amp;amp;rsv_iqid=0x8f1fcaec0016b4fc&amp;amp;issp=1&amp;amp;f=8&amp;amp;rsv_bp=0&amp;amp;rsv_idx=2&amp;amp;ie=utf-8&amp;amp;tn=baiduhome_pg&amp;amp;rsv_enter=1&amp;amp;rsv_sug3=15&amp;amp;rsv_sug1=10&#34;&gt;文章&lt;/a&gt;&lt;/p&gt;</description>
@@ -510,10 +510,10 @@
     
     <item>
       <title>openwrt目录概述</title>
-      <link>http://blog.yitinglove.cn/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/</link>
+      <link>http://blog.yitinglove.cn/post/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 13 Dec 2015 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/</guid>
+      <guid>http://blog.yitinglove.cn/post/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt; 这段时间总是在和&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenWrt&#34;&gt;openwrt&lt;/a&gt;打交道,之前也零零散散地写过一点，还是希望能有点体系。还记得我刚看到源代码的时候，觉得无从下手.我想从Makefile的整个执行过程入手,搞清楚编译源代码的几个小时中,到底发生了哪些故事.&lt;/p&gt;
 &lt;p&gt; 本文是这个系列的第一篇.主要讲一下我对openwrt整个目录结构的理解.我们将源代码从&lt;a href=&#34;https://dev.openwrt.org/wiki/GetSource&#34;&gt;官方下载&lt;/a&gt;而来的目录称之为原始目录,将编译后生成的目录称之为生成目录,分两部分介绍各个目录.&lt;/p&gt;</description>
@@ -521,10 +521,10 @@
     
     <item>
       <title>Openwrt LuCI模块练习详细步骤</title>
-      <link>http://blog.yitinglove.cn/2015-09-02-openwrt_luci%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</link>
+      <link>http://blog.yitinglove.cn/post/2015-09-02-openwrt_luci%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</link>
       <pubDate>Wed, 02 Sep 2015 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2015-09-02-openwrt_luci%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</guid>
+      <guid>http://blog.yitinglove.cn/post/2015-09-02-openwrt_luci%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;又到了成胖子每周一博的时间了.最近在学习openwrt luci方面的知识,为了贯穿整个知识体系,练习题目为:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -544,10 +544,10 @@
     
     <item>
       <title>openwrt简单ipk生成及Makefile解释</title>
-      <link>http://blog.yitinglove.cn/2015-08-31-helloworld-ipk/</link>
+      <link>http://blog.yitinglove.cn/post/2015-08-31-helloworld-ipk/</link>
       <pubDate>Mon, 31 Aug 2015 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2015-08-31-helloworld-ipk/</guid>
+      <guid>http://blog.yitinglove.cn/post/2015-08-31-helloworld-ipk/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;类似的文章其实网上比较多了,我写这个的目的:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -559,10 +559,10 @@
     
     <item>
       <title>xargs用法详解</title>
-      <link>http://blog.yitinglove.cn/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</link>
+      <link>http://blog.yitinglove.cn/post/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Thu, 20 Aug 2015 19:16:56 +0800</pubDate>
       
-      <guid>http://blog.yitinglove.cn/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid>
+      <guid>http://blog.yitinglove.cn/post/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;　最近我从svn上checkout出来了一个文件夹,然后加入了git的跟踪目录.用过svn的同学可能知道,这个文件夹里面每一层级都有个.svn隐藏文件夹,需要删除他们.本来我准备笨拙地一个一个手动删除的,一位同事在我面前敲了大概是&lt;code&gt;$find . -type d -name &amp;quot;*.svn&amp;quot; | xargs rm -rf&lt;/code&gt;这样的命令,顿时觉得很高端大气上档次.刚好新学了Markdown,就顺便整理下xargs的用法,练练手.&lt;a href=&#34;http://czmmiao.iteye.com/blog/1949225&#34;&gt;参考网址&lt;/a&gt;,当然更主要的参考来自于伟大的&lt;code&gt;$man xargs&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
