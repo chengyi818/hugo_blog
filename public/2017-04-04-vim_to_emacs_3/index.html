@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>vim从入门到放弃_篇三 - 为学日益,为道日损</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="成祎" /><meta name="description" content="阅读条件:
+ 编辑器爱好者,了解vim基本使用
+  篇一: 初识vim 篇二: vim的配置与使用 篇三: vim的不足和新的选择 篇四: spacemacs入门
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.87.0 with theme even" />
+
+
+<link rel="canonical" href="http://blog.yitinglove.cn/2017-04-04-vim_to_emacs_3/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="vim从入门到放弃_篇三" />
+<meta property="og:description" content="阅读条件:
+
+编辑器爱好者,了解vim基本使用
+
+
+篇一: 初识vim
+篇二: vim的配置与使用
+篇三: vim的不足和新的选择
+篇四: spacemacs入门" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.yitinglove.cn/2017-04-04-vim_to_emacs_3/" /><meta property="article:section" content="" />
+<meta property="article:published_time" content="2017-04-04T19:16:56+08:00" />
+<meta property="article:modified_time" content="2017-04-04T19:16:56+08:00" />
+
+<meta itemprop="name" content="vim从入门到放弃_篇三">
+<meta itemprop="description" content="阅读条件:
+
+编辑器爱好者,了解vim基本使用
+
+
+篇一: 初识vim
+篇二: vim的配置与使用
+篇三: vim的不足和新的选择
+篇四: spacemacs入门"><meta itemprop="datePublished" content="2017-04-04T19:16:56+08:00" />
+<meta itemprop="dateModified" content="2017-04-04T19:16:56+08:00" />
+<meta itemprop="wordCount" content="1348">
+<meta itemprop="keywords" content="tool,vim,emacs," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="vim从入门到放弃_篇三"/>
+<meta name="twitter:description" content="阅读条件:
+
+编辑器爱好者,了解vim基本使用
+
+
+篇一: 初识vim
+篇二: vim的配置与使用
+篇三: vim的不足和新的选择
+篇四: spacemacs入门"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>阅读条件:</p>
+<blockquote>
+<p>编辑器爱好者,了解vim基本使用</p>
+</blockquote>
+<hr>
+<p>篇一: <a href="http://yitinglove.cn/blog/2017/03/19/vim_to_emacs_1/">初识vim</a>
+篇二: <a href="http://yitinglove.cn/blog/2017/03/26/vim_to_emacs_2/">vim的配置与使用</a>
+篇三: <a href="http://yitinglove.cn/blog/2017/04/04/vim_to_emacs_3/">vim的不足和新的选择</a>
+篇四: <a href="http://yitinglove.cn/blog/2017/04/23/vim_to_emacs_4/">spacemacs入门</a></p>
+<h2 id="前言">前言</h2>
+<p>前面两篇主要介绍了vim的一些优势.本篇主要是推荐大家去试试Emacs的一个发行版<a href="http://spacemacs.org/">Spacemacs</a>.</p>
+<p>关于Vim和Emacs孰优孰劣的争论已经非常多了,但是很少有人能够同时精通两种编辑器,大部分人都是在捍卫自己的选择.</p>
+<p>国内Emacs的用户要远远少于Vim,所以推荐Vim用户可以去了解了解Emacs.虽然有一些学习成本,但是我觉得物有所值.</p>
+<h2 id="vim的精髓">Vim的精髓</h2>
+<p>vim的精髓在于模式切换,简而言之,在插入模式下,按键的作用是输入.但是在普通模式下,按键又被赋予了大量特殊功能.</p>
+<h2 id="vim的不足">Vim的不足</h2>
+<h3 id="遗忘的快捷键">遗忘的快捷键</h3>
+<p>我个人感觉我已经算是比较重度的vim用户了,却依然有大量记不住的快捷键.然而人脑的记忆模型就是这样的,长时间不使用的东西,自然就会发生遗忘.</p>
+<p>那么当我想使用某个快捷键时,能不能快速的搜索呢?或者有什么助记的方法呢?</p>
+<h3 id="扩展语言">扩展语言</h3>
+<p><code>vimscript</code>是一种小众的脚本语言,虽然我没有详细研究过.但是看了各种介绍后,我感觉对我的吸引力不大.</p>
+<h3 id="重叠的插件">重叠的插件</h3>
+<p>在vim中,经常发生一件工作好几个插件重叠的情况.比如Python语法检查,<code>YouCompleteMe</code>,<code>Syntantic</code>,<code>Python-mode</code>都会涉及.有时真的搞不太清楚,到底是谁在其作用.</p>
+<h2 id="emacs的优势">Emacs的优势</h2>
+<h3 id="强大的扩展语言">强大的扩展语言</h3>
+<p>Emacs的扩展语言是久闻大名的Emacs lisp &ndash; 著名的函数式编程语言的鼻祖.我对lisp非常感兴趣.从我现在的观点来看,Vim和Emacs完全不冲突.Emacs完全可以通过<code>Evil</code>插件来借鉴Vim的模式切换.</p>
+<p>正是由于Emacs强大的扩展和定制性,所以Emacs才会被称为神之编辑器 &ndash; 无所不能.</p>
+<h2 id="spacemacs">Spacemacs</h2>
+<p>对于从vim迁移到Emacs的同学,我个人强烈推荐,我自己正在使用的<a href="http://spacemacs.org/">spacemacs</a>.目前已经在<a href="https://github.com/syl20bnr/spacemacs">Github</a>上有了11000+的star了.</p>
+<h3 id="切换成本低">切换成本低</h3>
+<p>通过默认的<code>Evil</code>插件,基本实现了绝大多数Vim的功能,稍微熟悉就可以上手工作.我们将在下篇介绍Spacemacs的快速入门.</p>
+<h3 id="快捷键解释和助记">快捷键解释和助记</h3>
+<p>通过空格键可以呼出快捷键菜单,通过有意义的分类后,你会发现快捷键非常容易查找.比如<code>空格+w</code>可以和窗口(window)相关的快捷键.</p>
+<p>另过,也可以通过<code>空格+h</code>中的各种帮助来查找快捷键,甚至是解释某个快捷键的功能.</p>
+<h3 id="插件包的引入">插件包的引入</h3>
+<p>layer是指一个功能相关的package的集合.通过社区维护的layer的引入,我们可以通过快速引入一个layer来实现插件功能,而不需要去分别配置.</p>
+<p>其实如果阅读过spf13配置的同学,已经可以看到spf13已经使用了类似的概念.但是这是配置上的概念,没有社区为你维护.相对来讲,spacemacs的layer要更为成熟.</p>
+<h3 id="其他更强大的功能">其他更强大的功能</h3>
+<p>Emacs还可以实现一些更为强大的功能,有些对我比较有吸引力.比如使用org-mode实现GTD.比如番茄钟功能的引入.比如可以直接使用有道词典查单词.</p>
+<h2 id="尾记">尾记</h2>
+<p>对于Spacemacs我也是刚刚入门,希望大家不要抱着偏见来看这些编辑器.Vim的模式切换已经深入人心,对于Vim的学习成本不会成为沉没成本.</p>
+<p>怀着一颗好奇心去试试Spacemacs,说不定有新的惊喜呢 :)</p>
+  </div>
+</article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'blog-yitinglove-cn';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="chengyi818@foxmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/chengyi818" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://blog.yitinglove.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>成祎</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

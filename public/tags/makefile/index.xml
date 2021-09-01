@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Makefile on 为学日益,为道日损</title>
+    <link>http://blog.yitinglove.cn/tags/makefile/</link>
+    <description>Recent content in Makefile on 为学日益,为道日损</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 10 Jan 2016 19:16:56 +0800</lastBuildDate><atom:link href="http://blog.yitinglove.cn/tags/makefile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>openwrt编译打包过程</title>
+      <link>http://blog.yitinglove.cn/2016-01-10-openwrt%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Sun, 10 Jan 2016 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/2016-01-10-openwrt%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</guid>
+      <description>&lt;p&gt;本周是成胖子每周一博第六周,更好地阅读体验,请点击&lt;a href=&#34;https://www.zybuluo.com/icyriver/note/258252&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt; 前面我们已经讲了openwrt编译的大部分过程,包括大致的编译步骤,ipk的编译等.今天是我这个系列的最后一篇,我们来看看openwrt的各个部分是如何组织成为最后的bin文件的.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>openwrt单个ipk编译过程</title>
+      <link>http://blog.yitinglove.cn/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Sun, 03 Jan 2016 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/</guid>
+      <description>&lt;p&gt;本周是成胖子每周一博的第五周.
+更好的阅读体验,请点击&lt;a href=&#34;https://www.zybuluo.com/icyriver/note/257687&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>openwrt主Makefile解析</title>
+      <link>http://blog.yitinglove.cn/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Sat, 26 Dec 2015 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/</guid>
+      <description>&lt;p&gt;本周成胖子每周一博到了第四周&lt;/p&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;前一篇,我们大概描述了整个镜像文件的生成过程.本周我们来解析主Makefile,看看主要编译过程是怎么产生的.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>openwrt编译过程概述</title>
+      <link>http://blog.yitinglove.cn/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Sun, 20 Dec 2015 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;又到了成胖子每周一博的时间了,本周是第三周.
+本周我们继续了解&lt;code&gt;openwrt&lt;/code&gt;的编译过程,如果还有没写过简单ipk或者编译过openwrt的朋友,可以参见我之前的&lt;a href=&#34;http://blog.csdn.net/icy_river/article/details/48260859&#34;&gt;博客&lt;/a&gt;或者网上的其他&lt;a href=&#34;https://www.baidu.com/s?wd=%E7%BC%96%E8%AF%91openwrt&amp;amp;rsv_spt=1&amp;amp;rsv_iqid=0x8f1fcaec0016b4fc&amp;amp;issp=1&amp;amp;f=8&amp;amp;rsv_bp=0&amp;amp;rsv_idx=2&amp;amp;ie=utf-8&amp;amp;tn=baiduhome_pg&amp;amp;rsv_enter=1&amp;amp;rsv_sug3=15&amp;amp;rsv_sug1=10&#34;&gt;文章&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>openwrt目录概述</title>
+      <link>http://blog.yitinglove.cn/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Sun, 13 Dec 2015 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt; 这段时间总是在和&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenWrt&#34;&gt;openwrt&lt;/a&gt;打交道,之前也零零散散地写过一点，还是希望能有点体系。还记得我刚看到源代码的时候，觉得无从下手.我想从Makefile的整个执行过程入手,搞清楚编译源代码的几个小时中,到底发生了哪些故事.&lt;/p&gt;
+&lt;p&gt; 本文是这个系列的第一篇.主要讲一下我对openwrt整个目录结构的理解.我们将源代码从&lt;a href=&#34;https://dev.openwrt.org/wiki/GetSource&#34;&gt;官方下载&lt;/a&gt;而来的目录称之为原始目录,将编译后生成的目录称之为生成目录,分两部分介绍各个目录.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
