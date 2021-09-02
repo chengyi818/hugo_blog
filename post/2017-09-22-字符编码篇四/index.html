@@ -1,0 +1,255 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>字符编解码篇四 - 为学日益,为道日损</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="成祎"><meta name=description content="阅读条件:
+ 对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学
+ "><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.88.0 with theme even">
+<link rel=canonical href=http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="字符编解码篇四">
+<meta property="og:description" content="阅读条件:
+
+对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学
+
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://blog.yitinglove.cn/post/2017-09-22-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AF%87%E5%9B%9B/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2017-09-22T19:16:56+08:00">
+<meta property="article:modified_time" content="2017-09-22T19:16:56+08:00">
+<meta itemprop=name content="字符编解码篇四">
+<meta itemprop=description content="阅读条件:
+
+对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学
+
+"><meta itemprop=datePublished content="2017-09-22T19:16:56+08:00">
+<meta itemprop=dateModified content="2017-09-22T19:16:56+08:00">
+<meta itemprop=wordCount content="1367">
+<meta itemprop=keywords content="Unicode,UCS-2,UCS-4,UTF-8,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="字符编解码篇四">
+<meta name=twitter:description content="阅读条件:
+
+对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学
+
+"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>字符编解码篇四</h1>
+<div class=post-meta>
+<span class=post-time> 2017-09-22 </span>
+<span class=more-meta> 约 1367 字 </span>
+<span class=more-meta> 预计阅读 3 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#前言>前言</a></li>
+<li><a href=#初衷>初衷</a>
+<ul>
+<li><a href=#抽象字符表acr>抽象字符表ACR</a></li>
+<li><a href=#编码字符集ccs>编码字符集CCS</a></li>
+<li><a href=#字符编码表cef>字符编码表CEF</a></li>
+<li><a href=#字符编码方案ces>字符编码方案CES</a></li>
+</ul>
+</li>
+<li><a href=#总结>总结</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<p>阅读条件:</p>
+<blockquote>
+<p>对字符编解码有一些了解,但是又不够深入,在实际项目中遇到问题有些束手无措的同学</p>
+</blockquote>
+<hr>
+<h2 id=前言>前言</h2>
+<p>书接上回,我们接着说.前面我们看到随着计算机的迅猛发展,各国家地区为了显示本国的字符,纷纷颁布了自己的字符编码方案.</p>
+<p>虽然这解决了本国文字的显示问题.但是不同编码集带来的兼容性问题日益突出.为了解决这种各自为政的问题,<a href=https://en.wikipedia.org/wiki/Unicode_Consortium>统一码联盟</a>颁布了所谓的Unicode, 又称统一码,万国码.</p>
+<h2 id=初衷>初衷</h2>
+<p>Unicode的初衷是希望可以包含这个世界上所有的字符,给予统一的编码方式.下面我们根据现代编码模型的结构来逐一分析.</p>
+<h3 id=抽象字符表acr>抽象字符表ACR</h3>
+<p>在这一层包含了世界上已知的绝大多数字符,截止2017年6月支持的字符数量已经超过13w.</p>
+<h3 id=编码字符集ccs>编码字符集CCS</h3>
+<p>Unicode使用整型值为ACR中的字符编号,并将这种编号称为码点(code point).比如中文汉字"中"的码点为<code>U+4E2D</code>.
+<code>U+</code>表明这是一个Unicode码点,而且使用16进制表示的.<code>4E2D</code>表示具体的码点值.</p>
+<h3 id=字符编码表cef>字符编码表CEF</h3>
+<p>在CEF层,Unicode就稍显复杂一些了.
+为了对码点进行具体的编码,最为直观的方式是将码点直接转为2进制数据.<code>UCS-2</code>和<code>UCS-4</code>就是这种思想下的产物.下面我们来具体看看.</p>
+<h4 id=ucs-2ucs-4>UCS-2/UCS-4</h4>
+<p>UCS是<code>Universal Coded Character Set</code>的缩写.2和4表示的是编码后的大小,分别是2字节和4字节.
+通常<code>UCS-2</code>已经可以覆盖我们的使用范围.</p>
+<p>还是以中文汉字<code>中</code>为例,我们看看对应的UCS-2和UCS-4编码.</p>
+<p>UCS-2以两字节编码,直接将码点值转为2进制为<code>\x4e\x2d</code>.
+UCS-4以四字节编码,将码点值转为2进制后为<code>\x0\x0\x4e\x2d</code>.
+我们将这种编码后的序列,称为码元序列.</p>
+<p>这种编码方式好处是直观而且便于切割读取,因为编码是固定长度的.但是细心的读者也会发现这种编码方式会极大的浪费存储空间.因为字符的使用频率是不同的.</p>
+<p>比如英文字母的使用频率比较高,如果使用UCS-4编码将会浪费3个字节的空间.为了解决这个问题,Unicode又提出了UTF-8编码方案.</p>
+<h4 id=utf-8>UTF-8</h4>
+<p>UTF-8的目的也是将第二层CCS中的码点进行编码,但是这次我们不会那么直接,我们有一个对应关系.</p>
+<p><img src=http://ww1.sinaimg.cn/large/006kvZhRgy1fjsg3vq0pcj30go04maav.jpg alt=transfer></p>
+<p>还是为中文汉字<code>中</code>为例,我们来看看UTF-8编码如何?</p>
+<p>首先判断码点的范围,是处于转换方案的第三级.所以采用的公式是<code>1110 xxxx 10xx xxxx 10xx xxxx</code>.
+<img src=http://ww1.sinaimg.cn/large/006kvZhRgy1fjsg6m4xj7j308h02hjr5.jpg alt="code point"></p>
+<p><img src=http://ww1.sinaimg.cn/large/006kvZhRgy1fjsg74qv6ej30c0060glg.jpg alt=plus></p>
+<p>通过计算,我们可以得出汉字<code>中</code>的UTF-8编码为<code>\xE4\xB8\xAD</code>.</p>
+<p>仅以汉字为例,UTF-8的编码长度超过了UCS-2的编码长度.但是仔细观察转换表,会发现英文的UTF-8编码长度一直都是一个字节.这将极大地提高编码效率.</p>
+<h3 id=字符编码方案ces>字符编码方案CES</h3>
+<p>通常我们所说的编码方案都指的是这一层的概念.</p>
+<p>对于UCS-2和UCS-4而言,一个码元序列中的顺序是区分不了的.所以我们必须规定大小端的读写顺序.
+所以又有了UCS-2-be, UCS-2-le, UCS-4-be, UCS-4-le.</p>
+<p>而对于UTF-8而言,一个码元就是一个字节,所以不在需要区分.换言之,UTF-8本身也属于CES层的概念.</p>
+<h2 id=总结>总结</h2>
+<p>至此,我们将Unicode的概念介绍完毕.下面的问题就是操作系统如何使用这些字符编码方案,保存文件,网络传输的时候,如何使用这些编码方案.在编程语言中如何使用这些编码方案.</p>
+<p>Ps: 最近做了一个在公司内部做了一个关于字符编解码的分享,反响还不错.下面是PPT链接:
+链接: <a href=https://pan.baidu.com/s/1eSozK10>https://pan.baidu.com/s/1eSozK10</a> 密码: j6ap</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>成祎</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2017-09-22
+</span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/unicode/>Unicode</a>
+<a href=/tags/ucs-2/>UCS-2</a>
+<a href=/tags/ucs-4/>UCS-4</a>
+<a href=/tags/utf-8/>UTF-8</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/2017-09-27-%E5%B9%B2%E6%B3%95-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">干法_读书笔记</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/post/2017-09-14-%E5%AD%97%E7%AC%A6%E7%BC%96%E8%A7%A3%E7%A0%81%E7%AF%87%E4%B8%89/>
+<span class="next-text nav-default">字符编解码篇三</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='blog-yitinglove-cn',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
+<a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
+<a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

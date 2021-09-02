@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>openwrt目录概述 - 为学日益,为道日损</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="成祎" /><meta name="description" content="前言  这段时间总是在和openwrt打交道,之前也零零散散地写过一点，还是希望能有点体系。还记得我刚看到源代码的时候，觉得无从下手.我想从Makefile的整个执行过程入手,搞清楚编译源代码的几个小时中,到底发生了哪些故事.
+ 本文是这个系列的第一篇.主要讲一下我对openwrt整个目录结构的理解.我们将源代码从官方下载而来的目录称之为原始目录,将编译后生成的目录称之为生成目录,分两部分介绍各个目录.
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.87.0 with theme even" />
+
+
+<link rel="canonical" href="http://blog.yitinglove.cn/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="openwrt目录概述" />
+<meta property="og:description" content="前言
+ 这段时间总是在和openwrt打交道,之前也零零散散地写过一点，还是希望能有点体系。还记得我刚看到源代码的时候，觉得无从下手.我想从Makefile的整个执行过程入手,搞清楚编译源代码的几个小时中,到底发生了哪些故事.
+ 本文是这个系列的第一篇.主要讲一下我对openwrt整个目录结构的理解.我们将源代码从官方下载而来的目录称之为原始目录,将编译后生成的目录称之为生成目录,分两部分介绍各个目录." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.yitinglove.cn/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/" /><meta property="article:section" content="" />
+<meta property="article:published_time" content="2015-12-13T19:16:56+08:00" />
+<meta property="article:modified_time" content="2015-12-13T19:16:56+08:00" />
+
+<meta itemprop="name" content="openwrt目录概述">
+<meta itemprop="description" content="前言
+ 这段时间总是在和openwrt打交道,之前也零零散散地写过一点，还是希望能有点体系。还记得我刚看到源代码的时候，觉得无从下手.我想从Makefile的整个执行过程入手,搞清楚编译源代码的几个小时中,到底发生了哪些故事.
+ 本文是这个系列的第一篇.主要讲一下我对openwrt整个目录结构的理解.我们将源代码从官方下载而来的目录称之为原始目录,将编译后生成的目录称之为生成目录,分两部分介绍各个目录."><meta itemprop="datePublished" content="2015-12-13T19:16:56+08:00" />
+<meta itemprop="dateModified" content="2015-12-13T19:16:56+08:00" />
+<meta itemprop="wordCount" content="2045">
+<meta itemprop="keywords" content="openwrt,Makefile," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="openwrt目录概述"/>
+<meta name="twitter:description" content="前言
+ 这段时间总是在和openwrt打交道,之前也零零散散地写过一点，还是希望能有点体系。还记得我刚看到源代码的时候，觉得无从下手.我想从Makefile的整个执行过程入手,搞清楚编译源代码的几个小时中,到底发生了哪些故事.
+ 本文是这个系列的第一篇.主要讲一下我对openwrt整个目录结构的理解.我们将源代码从官方下载而来的目录称之为原始目录,将编译后生成的目录称之为生成目录,分两部分介绍各个目录."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h2 id="前言">前言</h2>
+<p> 这段时间总是在和<a href="https://en.wikipedia.org/wiki/OpenWrt">openwrt</a>打交道,之前也零零散散地写过一点，还是希望能有点体系。还记得我刚看到源代码的时候，觉得无从下手.我想从Makefile的整个执行过程入手,搞清楚编译源代码的几个小时中,到底发生了哪些故事.</p>
+<p> 本文是这个系列的第一篇.主要讲一下我对openwrt整个目录结构的理解.我们将源代码从<a href="https://dev.openwrt.org/wiki/GetSource">官方下载</a>而来的目录称之为原始目录,将编译后生成的目录称之为生成目录,分两部分介绍各个目录.</p>
+<hr>
+<h2 id="原始目录">原始目录</h2>
+<p>下载源码后,源文件如下图所示,下面我们来一一解释;
+<img src="http://img.blog.csdn.net/20151213153906453" alt="原始目录"></p>
+<h4 id="1-scripts">1. scripts</h4>
+<p>存放了一些脚本,使用了bash,python,perl等多种脚本语言.编译过程中,用于第三方软件包管理的feeds文件也是在这个目录当中.在编译过程中,使用到的脚本也统一放在这个目录中.</p>
+<h4 id="2-tools">2. tools</h4>
+<p>编译时,主机需要使用一些工具软件,<code>tools</code> 里包含了获取和编译这些工具的命令.软件包里面有Makefile文件,有的还包含了patch.每个Makefile当中都有一句<code>$(eval $(call HostBuild))</code>,这表明编译这个工具是为了在<strong>主机</strong>上使用的.</p>
+<h4 id="3-config">3. config</h4>
+<p>存放着整个系统的配置文件</p>
+<h4 id="4-docs">4. docs</h4>
+<p>包含了整个宿主机的文件源码的介绍, 里面还有Makefile为目标系统生成docs.使用<code>make -C docs/</code>可以为目标系统生成文档.</p>
+<h4 id="5-toolchain">5. toolchain</h4>
+<p>嵌入式的童鞋应该都知道交叉编译链,这个文件中存放的就是编译交叉编译链的软件包.包括:<code>binutils,gcc,libc</code>等等.</p>
+<h4 id="6-target">6. target</h4>
+<p>openwrt的源码可以编译出各个平台适用的二进制文件,各平台在这个目录里定义了firmware和kernel的编译过程。</p>
+<h4 id="7-package">7. package</h4>
+<p>存放了openwrt系统中适用的软件包,包含针对各个软件包的Makefile。openwrt定义了一套Makefile模板.各软件参照这个模板定义了自己的信息，如软件包的版本、下载地址、编译方式、安装地址等。在二次开发过程中,这个文件夹我们会经常打交道.
+事实上,通过<code>./scripts/feed update -a和./scripts/feed install -a</code>的软件包也会存放在这个目录之中.</p>
+<h4 id="8-include">8. include</h4>
+<p>openwrt的Makefile都存放在这里。文件名为 *.mk 。这里的文件上是在Makefile里被include的,类似于库文件.这些文件定义了编译过程.</p>
+<h4 id="9-其他">9. 其他</h4>
+<p>主要目录就是前面提及的8个,剩下的是单个文件.</p>
+<h5 id="91-makefile">9.1 Makefile:</h5>
+<blockquote>
+<p>在顶层目录执行<code>make</code>命令的入口文件.</p>
+</blockquote>
+<h5 id="92-rulesmk">9.2 rules.mk</h5>
+<blockquote>
+<p>定义了Makefile中使用的一些通用变量和函数</p>
+</blockquote>
+<h5 id="93-configin">9.3 Config.in</h5>
+<blockquote>
+<p>在<code>include/toplevel.mk</code>中我们可以看到,这是和<code>make menuconfig</code>相关联的文件.</p>
+</blockquote>
+<h5 id="94-feedsconfdefault">9.4 feeds.conf.default</h5>
+<blockquote>
+<p>是下载第三方一些软件包时所使用的地址</p>
+</blockquote>
+<h5 id="95-license--readme">9.5 LICENSE &amp; README</h5>
+<blockquote>
+<p>即软件许可证和软件基本说明.其中README描述了编译软件的基本过程和依赖文件.</p>
+</blockquote>
+<p>至此我们把原始目录大致浏览了一遍,下面我们看看生成目录.</p>
+<h2 id="生成目录">生成目录</h2>
+<p>在我们编译完成后除了下载的源码文件,多出来的部分很明显就是编译过程中新生成的.如下图:
+<img src="http://img.blog.csdn.net/20151213171412350" alt="生成目录"></p>
+<h4 id="1-feeds">1. feeds</h4>
+<p>openwrt的附加软件包管理器的扩展包索引目录.有点绕,简单来说就是下载管理软件包的.默认的<code>feeds</code>下载有<code>packages、management、luci、routing、telephony</code>。如要下载其他的软件包，需打开源码根目录下面的feeds.conf.default文件，去掉相应软件包前面的#号，然后更新源:
+<code>./scripts/feeds update -a</code>
+安装下载好的包:
+<code>./scripts/feeds install -a</code></p>
+<h4 id="2-build_dir">2. build_dir</h4>
+<p>在前面的原始目录中,我们提到了host工具,toolchain工具还有目标文件.openwrt将在这个目录中展开各个软件包,进行编译.所以这个文件夹中包含3个子文件夹:</p>
+<h5 id="21-host">2.1 host</h5>
+<blockquote>
+<p>在该文件夹中编译主机使用的工具软件</p>
+</blockquote>
+<h5 id="22-toolchain-xxx">2.2 toolchain-XXX</h5>
+<blockquote>
+<p>在该文件夹中编译交叉工具链</p>
+</blockquote>
+<h5 id="23-target-xxx">2.3 target-XXX</h5>
+<blockquote>
+<p>在此编译目标平台的目标文件,包括各个软件包和内核文件.</p>
+</blockquote>
+<h4 id="3-bin">3. bin</h4>
+<p>保存编译完成后的二进制文件,包括:完整的bin文件,所有的ipk文件.</p>
+<h4 id="4-dl">4. dl</h4>
+<p>在编译过程中使用的很多软件,刚开始下载源码并没有包含,而是在编译过程中从其他服务器下载的,这里是统一的保存目录</p>
+<h4 id="5-staging_dir">5. staging_dir</h4>
+<p>用于保存在<code>build_dir</code>目录中编译完成的软件.所以这里也和<code>build_dir</code>有同样的子目录结构.
+比如,在<code>target-XXX</code>文件夹中保存了目标平台编译好的头文件,库文件.在我们开发自己的ipk文件时,编译过程中,预处理头文件,链接动态库,静态库都是到这个子文件夹中.</p>
+<h4 id="6tmp">6.tmp</h4>
+<p>从名字来看,是临时文件夹.在编译过程中,有大量中间临时文件需要保存,都是在这里.</p>
+<h4 id="7logs">7.logs</h4>
+<p>这个文件夹,有时可以看到,有时没有.这是因为这个文件夹保存的是,编译过程中出错的信息,只有当编译出错了才会出现.我们可以从这里获取信息,从而分析我们的软件编译为什么没有完成.</p>
+<p>至此我们把openwrt的目录结构大体浏览了一遍.</p>
+<h2 id="尾记">尾记</h2>
+<ol>
+<li>本文中不少内容都是从网上看到的,时间长了,我已经找不到出处了.这也是我写博客的一个原因,我从互联网学到不少知识,现在再反馈给网络.感谢所有有自由共享精神的朋友.</li>
+<li>知识学习是不断递进的过程.这部分知识是我目前知道的一个大概,还不够深刻.更深入的学习Makefile和openwrt之后,再来慢慢更新.</li>
+</ol>
+  </div>
+</article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'blog-yitinglove-cn';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="chengyi818@foxmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/chengyi818" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://blog.yitinglove.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>成祎</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python虚拟机初始化 - 为学日益,为道日损</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="成祎" /><meta name="description" content="阅读条件:
+ C语言基础, Python虚拟机基本了解
+  前言 Python源码剖析一书的第二部分主要讲述了虚拟机主循环是如何运行的.那么在命令行启动python之后,到执行主循环之前都经历了哪些事情呢?这是我们今天要解决的问题.
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.87.0 with theme even" />
+
+
+<link rel="canonical" href="http://blog.yitinglove.cn/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python虚拟机初始化" />
+<meta property="og:description" content="阅读条件:
+
+C语言基础, Python虚拟机基本了解
+
+
+前言
+Python源码剖析一书的第二部分主要讲述了虚拟机主循环是如何运行的.那么在命令行启动python之后,到执行主循环之前都经历了哪些事情呢?这是我们今天要解决的问题." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.yitinglove.cn/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/" /><meta property="article:section" content="" />
+<meta property="article:published_time" content="2018-01-19T19:56:17+08:00" />
+<meta property="article:modified_time" content="2018-01-19T19:56:17+08:00" />
+
+<meta itemprop="name" content="Python虚拟机初始化">
+<meta itemprop="description" content="阅读条件:
+
+C语言基础, Python虚拟机基本了解
+
+
+前言
+Python源码剖析一书的第二部分主要讲述了虚拟机主循环是如何运行的.那么在命令行启动python之后,到执行主循环之前都经历了哪些事情呢?这是我们今天要解决的问题."><meta itemprop="datePublished" content="2018-01-19T19:56:17+08:00" />
+<meta itemprop="dateModified" content="2018-01-19T19:56:17+08:00" />
+<meta itemprop="wordCount" content="1671">
+<meta itemprop="keywords" content="Python,Source Code," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python虚拟机初始化"/>
+<meta name="twitter:description" content="阅读条件:
+
+C语言基础, Python虚拟机基本了解
+
+
+前言
+Python源码剖析一书的第二部分主要讲述了虚拟机主循环是如何运行的.那么在命令行启动python之后,到执行主循环之前都经历了哪些事情呢?这是我们今天要解决的问题."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>阅读条件:</p>
+<blockquote>
+<p>C语言基础, Python虚拟机基本了解</p>
+</blockquote>
+<hr>
+<h2 id="前言">前言</h2>
+<p><strong>Python源码剖析</strong>一书的第二部分主要讲述了虚拟机主循环是如何运行的.那么在命令行启动python之后,到执行主循环之前都经历了哪些事情呢?这是我们今天要解决的问题.</p>
+<p>另外还要一个思考: 在写python代码的时候,我们经常会写:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">if __name__ == &#34;__main__&#34;:
+    balabala
+</code></pre></td></tr></table>
+</div>
+</div><p>这个<code>balabala</code>是如何能运行呢?</p>
+<h2 id="入口">入口</h2>
+<p>在python-2.5.6中,代码入口位于:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[Modules/main.c]
+int Py_Main() {
+    ...
+    Py_Initialize();
+    ...
+    PyRun_AnyFileExFlags();
+    ...
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>我们要剖析的初始化动作主要在<code>Py_Initialize</code>,而初始化完成后,进入运行时就需要依靠<code>PyRun_AnyFileExFlags</code>.</p>
+<h2 id="初始化">初始化</h2>
+<h3 id="py_initialize">Py_Initialize</h3>
+<p>这个函数我们看到啥也没干,直接进入<code>Py_InitializeEx</code></p>
+<h3 id="py_initializeex">Py_InitializeEx</h3>
+<p>这个函数就厉害了,我们慢慢看.</p>
+<h4 id="创建进程结构体">创建进程结构体</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    // 创建一个interp结构体,空壳
+    interp = PyInterpreterState_New();
+</code></pre></td></tr></table>
+</div>
+</div><p>在python中,使用<code>PyInterpreterState</code>结构体来描述进程.本质上,后面的初始化工作就是在填充这个进程描述结构体.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">typedef struct _is {
+    struct _is *next; //链表,链接不同的进程
+    struct _ts *tstate_head; // 链表,管理本进程下的线程
+
+    PyObject *modules; //字典, 管理所有的模块
+    PyObject *sysdict; //字典, sys module方法
+    PyObject *builtins; //字典, 内置方法
+    PyObject *modules_reloading;
+
+    PyObject *codec_search_path; // module搜索路径
+    PyObject *codec_search_cache;
+    PyObject *codec_error_registry;
+} PyInterpreterState;
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="创建线程结构体">创建线程结构体</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    // 创建一个thread结构体,挂到interp下
+	tstate = PyThreadState_New(interp);
+    // 设置当前线程
+	(void) PyThreadState_Swap(tstate);
+</code></pre></td></tr></table>
+</div>
+</div><p>同进程类似,Python使用<code>PyThreadState</code>来描述线程.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">typedef struct _ts {
+    struct _ts *next;
+    PyInterpreterState *interp;
+
+    struct _frame *frame;
+    ....
+
+} PyThreadState;
+</code></pre></td></tr></table>
+</div>
+</div><p>可以想象,线程结构体必然要挂到进程体之下.同样的在线程结构体中,我们发现了<code>_frame</code>的身影.说明Frameobject又挂在了线程之下.</p>
+<h4 id="初始化内置数据结构">初始化内置数据结构</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">	_Py_ReadyTypes();
+
+    // 创建了builtin objects: string类型
+	if (!_PyFrame_Init())
+		Py_FatalError(&#34;Py_Initialize: can&#39;t init frames&#34;);
+
+    // 初始化int类型
+	if (!_PyInt_Init())
+		Py_FatalError(&#34;Py_Initialize: can&#39;t init ints&#34;);
+
+    // 初始化float类型
+	_PyFloat_Init();
+
+</code></pre></td></tr></table>
+</div>
+</div><p>这部分内容可以衔接到,我们之前谈到过的内置对象初始的过程中.</p>
+<h4 id="设置__builtin__-module">设置__builtin__ module</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    // 并将module添加到interp-&gt;modules
+	bimod = _PyBuiltin_Init();
+    // 从builtin module抽取dict,赋给interp-&gt;builtins,加速查找
+	interp-&gt;builtins = PyModule_GetDict(bimod);
+
+</code></pre></td></tr></table>
+</div>
+</div><p>正是这里,我们创建了<code>__builtin__</code>module,并将我们耳熟能详的大量内置方法放了进去.</p>
+<h4 id="设置sys-module">设置sys module</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    // 设置 sys module
+    // 并将module添加到interp-&gt;modules
+	sysmod = _PySys_Init();
+    // interp-&gt;sysdict赋值
+	interp-&gt;sysdict = PyModule_GetDict(sysmod);
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到sys module的方法,在初始化的时候,都可以添加完毕.只是我们在自己的名字空间还是看不到他们.</p>
+<h4 id="设置搜索路径">设置搜索路径</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    // 设置搜索路径,即sys.path
+	PySys_SetPath(Py_GetPath());
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="设置__main__-module">设置__main__ module</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    // 设置__main__ module
+	initmain(); /* Module __main__ */
+</code></pre></td></tr></table>
+</div>
+</div><p>这里我们稍微说下这个<code>__main__</code>,这个在初始化完成后,基本上是个空壳.但是我们后面我们执行过程都在这个名字空间中,这也是我们上面问题的答案.</p>
+<p>至此,我们的初始化工作大体完成.</p>
+<h2 id="运行">运行</h2>
+<h3 id="pyrun_anyfileexflags">PyRun_AnyFIleExFlags</h3>
+<p>兵分两路,一个是交互式执行,一个是脚本执行.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">		PyRun_InteractiveLoopFlags(fp, filename, flags); // 交互执行
+		PyRun_SimpleFileExFlags(fp, filename, closeit, flags); // 脚本文件执行
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="交互执行">交互执行</h3>
+<h4 id="pyrun_interactiveoneflags">PyRun_InteractiveOneFlags</h4>
+<p>本质上,这里就是编译输入的语句.然后交由<code>run_mod</code>执行</p>
+<h3 id="脚本执行">脚本执行</h3>
+<h4 id="pyrun_simplefileexflags">PyRun_SimpleFileExFlags</h4>
+<p>首先,判断是执行<code>pyc</code>文件,还是编译执行<code>py</code>文件.然后调用<code>PyRun_FileExFlags</code>,这个函数也会调用<code>run_mod</code>.</p>
+<p>这里我们看到其实执行的真正入口就是<code>run_mod</code>.交互执行和脚本执行殊途同归.</p>
+<h3 id="run_mod">run_mod</h3>
+<h4 id="pyast_compile">PyAst_Compile</h4>
+<p>根据AST语法树,编译生成python字节码.也就是PyCodeObject.</p>
+<h4 id="pyeval_evalcode">PyEval_EvalCode</h4>
+<p>这个函数会调用<code>PyEval_EvalCodeEx</code>.千辛万苦,我们终于走到了我们熟悉的虚拟机主循环.</p>
+<h2 id="总结">总结</h2>
+<p>这里,我们总结下python虚拟机的初始化过程.</p>
+<p>首先是准备进程,线程相关结构体.然后初始化一些必备模块,如<code>builtin</code>, <code>sys</code>, <code>__main__</code>.</p>
+<p>第二步是编译输入的文件,从而生成PyCodeObject.再之后就是调用执行主逻辑<code>PyEval_EvalCodeEx</code>来运行这个PyCodeObject.</p>
+<p>从此之后,python虚拟机就完全运行起来啦.</p>
+  </div>
+</article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'blog-yitinglove-cn';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="chengyi818@foxmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/chengyi818" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://blog.yitinglove.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>成祎</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

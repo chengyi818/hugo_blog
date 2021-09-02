@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>dotfiles总述 - 为学日益,为道日损</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="成祎" /><meta name="description" content="本周是成胖子每周一博的第十三周:)
+ 前言 在github上偶然浏览到dotfiles.
+ 因为Unix及Linux下的很多配置文件都是隐藏文件,以&amp;quot;.&amp;ldquo;开始,所以我们用dotfiles称呼这些文件.
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.87.0 with theme even" />
+
+
+<link rel="canonical" href="http://blog.yitinglove.cn/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="dotfiles总述" />
+<meta property="og:description" content="本周是成胖子每周一博的第十三周:)
+
+前言
+在github上偶然浏览到dotfiles.
+
+因为Unix及Linux下的很多配置文件都是隐藏文件,以&quot;.&ldquo;开始,所以我们用dotfiles称呼这些文件.
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.yitinglove.cn/2016-03-12-dotfiles%E6%80%BB%E8%BF%B0/" /><meta property="article:section" content="" />
+<meta property="article:published_time" content="2016-03-12T19:16:56+08:00" />
+<meta property="article:modified_time" content="2016-03-12T19:16:56+08:00" />
+
+<meta itemprop="name" content="dotfiles总述">
+<meta itemprop="description" content="本周是成胖子每周一博的第十三周:)
+
+前言
+在github上偶然浏览到dotfiles.
+
+因为Unix及Linux下的很多配置文件都是隐藏文件,以&quot;.&ldquo;开始,所以我们用dotfiles称呼这些文件.
+"><meta itemprop="datePublished" content="2016-03-12T19:16:56+08:00" />
+<meta itemprop="dateModified" content="2016-03-12T19:16:56+08:00" />
+<meta itemprop="wordCount" content="1462">
+<meta itemprop="keywords" content="tool," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="dotfiles总述"/>
+<meta name="twitter:description" content="本周是成胖子每周一博的第十三周:)
+
+前言
+在github上偶然浏览到dotfiles.
+
+因为Unix及Linux下的很多配置文件都是隐藏文件,以&quot;.&ldquo;开始,所以我们用dotfiles称呼这些文件.
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>本周是成胖子每周一博的第十三周:)</p>
+<hr>
+<h2 id="前言">前言</h2>
+<p>在github上偶然浏览到<a href="https://dotfiles.github.io/">dotfiles</a>.</p>
+<blockquote>
+<p>因为Unix及Linux下的很多配置文件都是隐藏文件,以&quot;.&ldquo;开始,所以我们用dotfiles称呼这些文件.</p>
+</blockquote>
+<p>dotfiles整理有三个目的:</p>
+<ul>
+<li>
+<p>备份/存储/同步</p>
+</li>
+<li>
+<p>学习/发现</p>
+</li>
+<li>
+<p>分享</p>
+</li>
+</ul>
+<p>对于开发人员而言,一个代码编辑环境无疑是重中之重.我最近组装和改造了我自己的dotfiles.非常欢迎fork和使用,如果有什么问题,可以互相交流.</p>
+<p><a href="https://github.com/chengyi818/dotfiles">一键下载使用</a></p>
+<h2 id="dotfiles原理">dotfiles原理</h2>
+<p>在类Unix环境下,用户的配置在用户主目录下.比如bashrc,vimrc.我们一般都是直接修改这里.</p>
+<p>如果有<strong>备份的需求</strong>怎么办呢?</p>
+<blockquote>
+<p>最简单的办法就是把相应的文件打包压缩,然后就可以放到网盘或者U盘当中了.</p>
+</blockquote>
+<p>可是如果我们经常不时地<strong>更新</strong>配置文件,怎么才能很方便地压缩呢?</p>
+<blockquote>
+<ul>
+<li>有个笨办法,我每次更新完了,我就自己手动把每个文件重新压缩下.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>升级一下,可以写个简单地脚本,每次自动执行压缩命令</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>再升级一下,可以把所有的配置文件拉到一个文件中,然后软链接到用户主目录.</li>
+</ul>
+</blockquote>
+<p>配置文件要怎么<strong>存储</strong>呢?</p>
+<blockquote>
+<ul>
+<li>毫无疑问,放到云上是最好的.dropbox或者百度云都还不错.</li>
+</ul>
+</blockquote>
+<p>难道我每次要自己手动<strong>同步</strong>么?</p>
+<blockquote>
+<ul>
+<li>我们现在有了<strong>github</strong>这么方便的工具,不使用一下太可惜了.</li>
+</ul>
+</blockquote>
+<p>综上,我们把常用配置放到同一个文件夹中,然后将它们链接到用户主目录.同时将这个文件夹加入git版本管理,最后上传到github当中.</p>
+<h2 id="安装主要过程">安装主要过程</h2>
+<blockquote>
+<p>我希望可以通过执行一条命令,把任何环境配置成自己最熟悉趁手的环境.</p>
+</blockquote>
+<p>一键脚本主要包含如下几个步骤:</p>
+<ul>
+<li>
+<p>安装必要的软件,比如<a href="https://github.com/technicalpickles/homesick">homesick</a>,git,cmake,ctags等.</p>
+</li>
+<li>
+<p>备份现在的配置文件.</p>
+</li>
+<li>
+<p>安装zsh框架<a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a></p>
+</li>
+<li>
+<p>创建软链接</p>
+</li>
+<li>
+<p>安装vim框架<a href="https://github.com/spf13/spf13-vim">spf13</a></p>
+</li>
+<li>
+<p>安装小工具<a href="https://github.com/nvbn/thefuck">thefuck</a></p>
+</li>
+<li>
+<p>尝试编译<a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></p>
+</li>
+</ul>
+<h2 id="安装说明">安装说明</h2>
+<p>前面我们已经提及了我们的主要过程,程序员当然不应该重复造轮子,所以我选用了大量的现有组件.</p>
+<ul>
+<li>下载配置,创建软链接,同步配置</li>
+</ul>
+<blockquote>
+<p>使用homesick,使用方法和命令非常类似于git,缺点是没有提供原有文件的备份.</p>
+</blockquote>
+<ul>
+<li>zsh配置</li>
+</ul>
+<blockquote>
+<p>直接使用了很火的oh-my-zsh</p>
+</blockquote>
+<ul>
+<li>vim配置</li>
+</ul>
+<blockquote>
+<p>vim真的是博大精深,用了这么久了,还是每次都有新发现,真的不愧是是编辑器之神.我使用了spf13的vim配置.基本主流插件都有了,而且比较容易进行个人定制.</p>
+</blockquote>
+<ul>
+<li>我的工作</li>
+</ul>
+<blockquote>
+<p>我主要做的就是使用shell脚本备份原有配置,同时尽量把安装过程自动化.我只在很有限的几台电脑上测试过.如果使用过程中有问题,请issue告诉我.</p>
+</blockquote>
+<h2 id="私人定制">私人定制</h2>
+<p>每个人都有自己的喜好,我的配置你不一定趁手.如果想进行个人定制,简单的三步就可以了.</p>
+<ol>
+<li>
+<p>进入<a href="https://github.com/chengyi818/dotfiles">github</a>,fork我的仓库.</p>
+</li>
+<li>
+<p>将README.md中的一键安装脚本路径修改为你自己的仓库.</p>
+</li>
+<li>
+<p>将仓库中的install.sh文件头部的<code>REPO_URL</code>修改为你的仓库名.</p>
+</li>
+</ol>
+<p>这样你就拥有了可以陪伴自己一生的工具箱,关于我们主要组件的使用方法请去原作者网页浏览,如果有机会,再给大家介绍.</p>
+<h2 id="使用小结">使用小结</h2>
+<p>我目前主要使用Linux Mint.我的命令终端使用konsole.tmux主要用于控制多个窗口.oh-my-zsh使得命令行操作更加高效强大.vim的配置插件让你的手指在键盘上舞蹈.</p>
+<p>如果有机会真的要尝试下,八星八钻,花30分钟,你买不了吃亏,你买不了上当.抱着试一试地态度,你真的会爱上它们.</p>
+<h2 id="尾记">尾记</h2>
+<p>今天只是简要地说明了我的dotfiles.说实话,我想做这个已经很久了,一直拖.现在总算是阶段性完成了.如果有人能够受益,多使用真的是太好了.</p>
+  </div>
+</article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'blog-yitinglove-cn';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="chengyi818@foxmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/chengyi818" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://blog.yitinglove.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>成祎</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
