@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lxc on 为学日益,为道日损</title>
+    <link>http://blog.yitinglove.cn/tags/lxc/</link>
+    <description>Recent content in lxc on 为学日益,为道日损</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 Jan 2016 19:16:56 +0800</lastBuildDate><atom:link href="http://blog.yitinglove.cn/tags/lxc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>第一个lxc容器</title>
+      <link>http://blog.yitinglove.cn/post/2016-01-17-%E7%AC%AC%E4%B8%80%E4%B8%AAlxc%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sun, 17 Jan 2016 19:16:56 +0800</pubDate>
+      
+      <guid>http://blog.yitinglove.cn/post/2016-01-17-%E7%AC%AC%E4%B8%80%E4%B8%AAlxc%E5%AE%B9%E5%99%A8/</guid>
+      <description>&lt;p&gt;本周是成胖子每周一博的第七周:)&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;##前言&lt;/p&gt;
+&lt;p&gt;  我的工作是做路由器开发的.为了实现一次开发在不同平台的快速部署,我们尝试在路由器运行LXC容器.通过它来实现我们的虚拟化目标,我们通过打开内核开关,交叉编译lxc工具以及制作基于busybox的简单文件系统,已经达到了基本目标.同时我们在容器内移植了openwrt的opkg功能,使得容器内部可以通过opkg的方式快速安装ipk,从而在传统路由器上快速实现了openwrt的特色功能.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

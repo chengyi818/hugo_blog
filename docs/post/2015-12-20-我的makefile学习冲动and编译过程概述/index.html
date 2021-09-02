@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>openwrt编译过程概述 - 为学日益,为道日损</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="成祎" /><meta name="description" content="前言 又到了成胖子每周一博的时间了,本周是第三周. 本周我们继续了解openwrt的编译过程,如果还有没写过简单ipk或者编译过openwrt的朋友,可以参见我之前的博客或者网上的其他文章
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.87.0 with theme even" />
+
+
+<link rel="canonical" href="http://blog.yitinglove.cn/post/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="openwrt编译过程概述" />
+<meta property="og:description" content="前言
+又到了成胖子每周一博的时间了,本周是第三周.
+本周我们继续了解openwrt的编译过程,如果还有没写过简单ipk或者编译过openwrt的朋友,可以参见我之前的博客或者网上的其他文章" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.yitinglove.cn/post/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2015-12-20T19:16:56+08:00" />
+<meta property="article:modified_time" content="2015-12-20T19:16:56+08:00" />
+
+<meta itemprop="name" content="openwrt编译过程概述">
+<meta itemprop="description" content="前言
+又到了成胖子每周一博的时间了,本周是第三周.
+本周我们继续了解openwrt的编译过程,如果还有没写过简单ipk或者编译过openwrt的朋友,可以参见我之前的博客或者网上的其他文章"><meta itemprop="datePublished" content="2015-12-20T19:16:56+08:00" />
+<meta itemprop="dateModified" content="2015-12-20T19:16:56+08:00" />
+<meta itemprop="wordCount" content="1296">
+<meta itemprop="keywords" content="openwrt,Makefile," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="openwrt编译过程概述"/>
+<meta name="twitter:description" content="前言
+又到了成胖子每周一博的时间了,本周是第三周.
+本周我们继续了解openwrt的编译过程,如果还有没写过简单ipk或者编译过openwrt的朋友,可以参见我之前的博客或者网上的其他文章"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">为学日益,为道日损</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">为学日益,为道日损</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">openwrt编译过程概述</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-12-20 </span>
+        
+          <span class="more-meta"> 约 1296 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#一-年轻的冲动">一 年轻的冲动</a></li>
+        <li><a href="#二-学习曲线">二 学习曲线</a>
+          <ul>
+            <li><a href="#21-makefile基本语法">2.1 Makefile基本语法</a></li>
+            <li><a href="#22-bash基础">2.2 bash基础</a></li>
+            <li><a href="#23-world">2.3 world</a></li>
+          </ul>
+        </li>
+        <li><a href="#三-编译过程概述">三 编译过程概述</a>
+          <ul>
+            <li><a href="#32-编译host工具">3.2 编译host工具</a></li>
+            <li><a href="#33-编译交叉工具链">3.3 编译交叉工具链</a></li>
+            <li><a href="#34-编译内核模块">3.4 编译内核模块</a></li>
+            <li><a href="#35-编译ipk">3.5 编译ipk</a></li>
+            <li><a href="#36-安装ipk">3.6 安装ipk</a></li>
+            <li><a href="#37-编译内核">3.7 编译内核</a></li>
+            <li><a href="#38-合成">3.8 合成</a></li>
+          </ul>
+        </li>
+        <li><a href="#尾声">尾声</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="前言">前言</h2>
+<p>又到了成胖子每周一博的时间了,本周是第三周.
+本周我们继续了解<code>openwrt</code>的编译过程,如果还有没写过简单ipk或者编译过openwrt的朋友,可以参见我之前的<a href="http://blog.csdn.net/icy_river/article/details/48260859">博客</a>或者网上的其他<a href="https://www.baidu.com/s?wd=%E7%BC%96%E8%AF%91openwrt&amp;rsv_spt=1&amp;rsv_iqid=0x8f1fcaec0016b4fc&amp;issp=1&amp;f=8&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=1&amp;rsv_sug3=15&amp;rsv_sug1=10">文章</a></p>
+<h2 id="一-年轻的冲动">一 年轻的冲动</h2>
+<p>为什么我在学习的过程中,有先学习整个编译过程和Makefile的冲动呢?</p>
+<blockquote>
+<p>1.我们知道电脑的运算速度是很快的.即使如此,一个完整的编译过程往往需要好几个小时.这中间到底发生了些什么?屏幕上一闪而过的像天书一样的东西,我怎么才能有所了解?</p>
+</blockquote>
+<p>2.经历漫长的等待,我们得到了一个镜像bin文件.这里面到底包含了什么东西?我可以知道么?</p>
+<blockquote>
+</blockquote>
+<p>3.编译单个ipk的时候,我按照模板写的Makefile怎么和我在书上见的长的不太一样呢?</p>
+<blockquote>
+</blockquote>
+<p>4.在单个ipk中,怎么包含头文件,动态库,静态库?怎么解决依赖关系?</p>
+<blockquote>
+</blockquote>
+<p>5.在输入<code>make menuconfig</code>之后,又发生了什么?弹出的图形界面中,怎么会有我放在<code>package</code>目录中的源码的信息?</p>
+<blockquote>
+</blockquote>
+<p>6.有的时候,编译报错了.提示信息它认识我,我不认识它.我要怎么排查呢?</p>
+<blockquote>
+</blockquote>
+<p>&hellip;</p>
+<p>零零散散的总是有很多疑问困扰着我.我相信有很多刚接触<code>openwrt</code>的朋友都和我有同感.而所有这些都是可以通过完整学习编译过程来解答的.这样想想是不是更有学习的动力了呢?</p>
+<h2 id="二-学习曲线">二 学习曲线</h2>
+<h3 id="21-makefile基本语法">2.1 Makefile基本语法</h3>
+<p> 我们知道编译过程是通过Makefile来控制的.这样而言,Makefile的基本语法就必须有所了解.网上有很多零散的资料往往不成体系.推荐阅读一个是陈皓自己写的和翻译的GNU Make的<a href="http://blog.csdn.net/haoel/article/details/2886">手册</a>.还是比较全的.英文还凑合的朋友,我推荐还是尽力读读官方的<a href="https://www.gnu.org/software/make/manual/">手册</a>,简介精炼,没事学点英文也是好的.后面的文章,假定读者对Makefile语法有所了解.</p>
+<h3 id="22-bash基础">2.2 bash基础</h3>
+<p>Makefile中的执行部分(recipe)是有bash脚本组成的,所以我们同时应当对bash shell有所了解.</p>
+<h3 id="23-world">2.3 world</h3>
+<p>有了这两部分的预备知识,我们将开始我们的征途.我们的目标是<strong>world</strong>.</p>
+<h2 id="三-编译过程概述">三 编译过程概述</h2>
+<p>###3.1 主机预装工具</p>
+<p>在编译源码之前,我们必须手动安装一部分工具 .</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev
+</code></pre></td></tr></table>
+</div>
+</div><p>这部分是在执行编译工作之前的.</p>
+<h3 id="32-编译host工具">3.2 编译host工具</h3>
+<p>除了我们在第一步安装的工具,编译过程中还需要其他一些主机工具.这部分工具将首先编译.</p>
+<h3 id="33-编译交叉工具链">3.3 编译交叉工具链</h3>
+<p><code>openwrt</code>自带交叉编译链,当然在编译目标平台软件前,需要先编译.</p>
+<h3 id="34-编译内核模块">3.4 编译内核模块</h3>
+<p>因为部分内核模块将会生成独立的ipk,所以内核模块需要首先编译.</p>
+<h3 id="35-编译ipk">3.5 编译ipk</h3>
+<p>这里将编译<code>package</code>目录下的各个软件包,这也是和我们最为息息相关的.之后的博客将会重点介绍这个部分.</p>
+<h3 id="36-安装ipk">3.6 安装ipk</h3>
+<p>将生成的ipk安装到文件系统之中(比如build_dir/target-XXX/root-ramips目录).</p>
+<h3 id="37-编译内核">3.7 编译内核</h3>
+<p>在完成ipk编译之后,将会编译内核,压缩内核.同时使用mkimage工具,在内核前面生成一个用于uboot识别的头部.</p>
+<h3 id="38-合成">3.8 合成</h3>
+<p>在最后一步,将squashfs格式的文件系统和内核连接在一起,即生成了目标镜像文件.</p>
+<h2 id="尾声">尾声</h2>
+<p>本周到此为止,下一篇我们将介绍根目录下的Makefile,从而知道为什么编译的大致过程是上面提及的八步.</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">成祎</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-12-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/openwrt/">openwrt</a>
+          <a href="/tags/makefile/">Makefile</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">openwrt主Makefile解析</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/">
+            <span class="next-text nav-default">openwrt目录概述</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'blog-yitinglove-cn';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="chengyi818@foxmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/chengyi818" class="iconfont icon-github" title="github"></a>
+  <a href="http://blog.yitinglove.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>成祎</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
