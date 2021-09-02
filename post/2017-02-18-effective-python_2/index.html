@@ -1,0 +1,346 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>把Effective Python读薄之二 - 为学日益,为道日损</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="成祎"><meta name=description content="本文是我总结的Effective Python的第二章
+阅读条件:
+ 掌握Python基本语法
+"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.88.0 with theme even">
+<link rel=canonical href=http://blog.yitinglove.cn/post/2017-02-18-effective-python_2/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="把Effective Python读薄之二">
+<meta property="og:description" content="本文是我总结的Effective Python的第二章
+阅读条件:
+
+掌握Python基本语法
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://blog.yitinglove.cn/post/2017-02-18-effective-python_2/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2017-02-18T19:16:56+08:00">
+<meta property="article:modified_time" content="2017-02-18T19:16:56+08:00">
+<meta itemprop=name content="把Effective Python读薄之二">
+<meta itemprop=description content="本文是我总结的Effective Python的第二章
+阅读条件:
+
+掌握Python基本语法
+"><meta itemprop=datePublished content="2017-02-18T19:16:56+08:00">
+<meta itemprop=dateModified content="2017-02-18T19:16:56+08:00">
+<meta itemprop=wordCount content="1681">
+<meta itemprop=keywords content="python,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="把Effective Python读薄之二">
+<meta name=twitter:description content="本文是我总结的Effective Python的第二章
+阅读条件:
+
+掌握Python基本语法
+"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>把Effective Python读薄之二</h1>
+<div class=post-meta>
+<span class=post-time> 2017-02-18 </span>
+<span class=more-meta> 约 1681 字 </span>
+<span class=more-meta> 预计阅读 4 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#函数>函数</a>
+<ul>
+<li><a href=#14-特殊情况>14. 特殊情况</a></li>
+<li><a href=#15-闭包>15. 闭包</a></li>
+<li><a href=#16-生成器>16. 生成器</a></li>
+<li><a href=#17-迭代器>17. 迭代器</a></li>
+</ul>
+</li>
+<li><a href=#参数>参数</a>
+<ul>
+<li><a href=#18-位置参数星号参数>18. 位置参数/星号参数</a></li>
+<li><a href=#19-关键字参数>19. 关键字参数</a></li>
+<li><a href=#20-动态默认值的参数>20. 动态默认值的参数</a></li>
+<li><a href=#21-只能以关键字给出参数>21. 只能以关键字给出参数</a></li>
+</ul>
+</li>
+<li><a href=#小结>小结</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<p>本文是我总结的Effective Python的第二章</p>
+<p>阅读条件:</p>
+<blockquote>
+<p>掌握Python基本语法</p>
+</blockquote>
+<h2 id=函数>函数</h2>
+<p>函数几乎是所有语言中的重要组成部分,书中用了一章的内容来介绍更为Pythonic的函数用法.</p>
+<h3 id=14-特殊情况>14. 特殊情况</h3>
+<p>Python支持catch异常,所以在遇到错误情况时,我们应该主动抛出异常,帮助及时发现问题.</p>
+<p>而不是返回None或者其他数值,这样会掩盖问题.</p>
+<h3 id=15-闭包>15. 闭包</h3>
+<p>首先我们看看关于闭包的内容:</p>
+<ol>
+<li>闭包是定义在某个作用域的函数</li>
+<li>Python中函数是一级对象,即函数可以被引用,可以赋值给变量,可以当做参数传递给其他函数.</li>
+</ol>
+<p>其次,我们看看表达式<strong>引用变量</strong>时的遍历顺序:</p>
+<ol>
+<li>当前函数的作用域</li>
+<li>任何外围作用域(例如, 包含当前函数的其他函数)</li>
+<li>包含当前代码的那个模块的作用域(也叫, 全局作用域)</li>
+<li>内置作用域(即, 包含len及str等函数的作用域).通常而言,我们不会用到这个作用域
+若上述作用域都没有发现同名的变量,Python将会抛出NameError</li>
+</ol>
+<p>这也就是我们说的LEGB(local,enclosing,global,built-in)</p>
+<p>与之相对的,在给<strong>变量赋值</strong>时,情况大不相同:</p>
+<ol>
+<li>若在当前函数作用域已经定义过该变量,则该变量值发生变量.</li>
+<li>若尚未定义过该变量,则这次赋值将视为该变量的定义,其作用域也就是当前函数.</li>
+</ol>
+<p>综合看下,变量的范围问题,我们可以看到在引用变量时,范围逐级向外扩张.但是在变量赋值时,我们会将作用域限死在当前作用域.
+这主要是防止函数中的局部变量污染其他的作用域.</p>
+<p>那么,如果我非要在局部函数中修改其他作用域的变量呢?
+在Python3中,可以通过<code>nonlocal</code>关键字修改外围作用域,通过<code>global</code>关键字修改模块的全局作用域.</p>
+<h3 id=16-生成器>16. 生成器</h3>
+<p>在前一篇我们讲过关于列表生成器.对于占用小内存而言,列表生成器确实不错.</p>
+<p>但是如果数据量较大,那么生成器就是一个更好的选择了.</p>
+<p>生成器会在每次迭代后,再进行计算.</p>
+<h3 id=17-迭代器>17. 迭代器</h3>
+<p>在执行类似<code>for x in foo</code>这样的语句时,Python首先会调用<code>iter(foo)</code>.</p>
+<p>然后,内置函数<code>iter</code>又会调用<code>foo.__iter__</code>方法.此时该方法必须返回一个迭代器对象.</p>
+<p>返回的迭代器对象则必须实现名为<code>__next__</code>的方法.</p>
+<p>此后,for循环将会在迭代器对象上调用内置的next函数,而该函数则会调用迭代器对象实现的<code>__next__</code>方法.</p>
+<p>直至迭代器对象抛出<code>StopIteration</code>异常.</p>
+<p>在使用迭代器时,务必注意每个迭代器仅能迭代一次.</p>
+<h2 id=参数>参数</h2>
+<p>在函数的使用过程中,参数的使用和传递必然是很重要的.本章使用了4个小节来讲述的各种参数的使用方法</p>
+<h3 id=18-位置参数星号参数>18. 位置参数/星号参数</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>def log(message, *values):
+    if not values:
+        print(message)
+    else:
+        values_str = &#39;, &#39;.join(str(x) for x in values)
+        print(&#39;%s: %s&#39; % (message, values_str))
+
+log(&#39;My numbers are&#39;, 1, 2)
+log(&#39;Hi there&#39;)
+&gt;&gt;&gt;
+My numbers are: 1, 2
+Hi there
+</code></pre></td></tr></table>
+</div>
+</div><p>可以上面的函数定义中,log函数可以接受不定数量的参数.除了第一个参数,其余参数将会被放到元组<code>values</code>中.</p>
+<p>星号参数在使用中,需要注意两点:</p>
+<ol>
+<li>在星号参数为生成器时,生成器将会转化为元组,这时可能会占用大量内存.</li>
+<li>在我们重构log函数时,原先调用log的函数的语句需要重新检查,确保符合我们的预想.</li>
+</ol>
+<p>我个人觉得,星号参数不是特别容易控制.尤其是软件开发周期比较长,经历多次重构后.我个人不推荐使用.</p>
+<h3 id=19-关键字参数>19. 关键字参数</h3>
+<p>在定义函数和调用函数时,我们可以以关键字的形式给出参数.
+好处:</p>
+<ol>
+<li>在调用参数时,明确参数的含义,不容易发生参数误传.</li>
+<li>在定义函数时,可以给出参数的默认值.</li>
+<li>在重构函数时,很容易和原先的代码兼容.原先调用函数的部分,往往不需要经过修改.</li>
+</ol>
+<h3 id=20-动态默认值的参数>20. 动态默认值的参数</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>def log(message, when=None):
+    when = datetime.now() if when is None else when
+    print(&#34;%s: %s&#34; % (when, message))
+</code></pre></td></tr></table>
+</div>
+</div><p>如果在调用参数时,我们希望参数的值是动态获得的.
+比如当前的时间戳,那么应当在函数体中获得,而不是通过参数传递.</p>
+<p>另外需要注意:</p>
+<blockquote>
+<p>参数的默认值,只会在程序加载模块并读到本函数的定义时评估一次.对于{}或[]等动态的值,这可能会导致奇怪的行为.</p>
+</blockquote>
+<h3 id=21-只能以关键字给出参数>21. 只能以关键字给出参数</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>safe_division_c</span><span class=p>(</span><span class=n>number</span><span class=p>,</span> <span class=n>divisor</span><span class=p>,</span> <span class=o>*</span><span class=p>,</span>
+                    <span class=n>ignore_overflow</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>ignore_zero_division</span><span class=o>=</span><span class=kc>False</span><span class=p>):</span>
+    <span class=o>...</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Python3:</p>
+<blockquote>
+<p>在调用上面的函数时,参数<code>ignore_overflow</code>和<code>ignore_zero_divison</code>将必须以关键字的形式给出.</p>
+</blockquote>
+<h2 id=小结>小结</h2>
+<p>以上是Effective Python的第二章的总结.</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>成祎</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2017-02-18
+</span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/python/>python</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/2017-03-14-effective-python_3/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">把Effective Python读薄之三</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/post/2016-12-18-effective-python_1/>
+<span class="next-text nav-default">把Effective Python读薄之一</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='blog-yitinglove-cn',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
+<a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
+<a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

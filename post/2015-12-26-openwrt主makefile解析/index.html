@@ -1,0 +1,412 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>openwrt主Makefile解析 - 为学日益,为道日损</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="成祎"><meta name=description content="本周成胖子每周一博到了第四周
+前言 前一篇,我们大概描述了整个镜像文件的生成过程.本周我们来解析主Makefile,看看主要编译过程是怎么产生的.
+"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.88.0 with theme even">
+<link rel=canonical href=http://blog.yitinglove.cn/post/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="openwrt主Makefile解析">
+<meta property="og:description" content="本周成胖子每周一博到了第四周
+前言
+前一篇,我们大概描述了整个镜像文件的生成过程.本周我们来解析主Makefile,看看主要编译过程是怎么产生的.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://blog.yitinglove.cn/post/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2015-12-26T19:16:56+08:00">
+<meta property="article:modified_time" content="2015-12-26T19:16:56+08:00">
+<meta itemprop=name content="openwrt主Makefile解析">
+<meta itemprop=description content="本周成胖子每周一博到了第四周
+前言
+前一篇,我们大概描述了整个镜像文件的生成过程.本周我们来解析主Makefile,看看主要编译过程是怎么产生的."><meta itemprop=datePublished content="2015-12-26T19:16:56+08:00">
+<meta itemprop=dateModified content="2015-12-26T19:16:56+08:00">
+<meta itemprop=wordCount content="2125">
+<meta itemprop=keywords content="Makefile,openwrt,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="openwrt主Makefile解析">
+<meta name=twitter:description content="本周成胖子每周一博到了第四周
+前言
+前一篇,我们大概描述了整个镜像文件的生成过程.本周我们来解析主Makefile,看看主要编译过程是怎么产生的."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>openwrt主Makefile解析</h1>
+<div class=post-meta>
+<span class=post-time> 2015-12-26 </span>
+<span class=more-meta> 约 2125 字 </span>
+<span class=more-meta> 预计阅读 5 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#前言>前言</a></li>
+<li><a href=#主makefile结构>主Makefile结构</a></li>
+<li><a href=#顶层>顶层</a></li>
+<li><a href=#第二层>第二层</a></li>
+<li><a href=#尾记>尾记</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<p>本周成胖子每周一博到了第四周</p>
+<h2 id=前言>前言</h2>
+<p>前一篇,我们大概描述了整个镜像文件的生成过程.本周我们来解析主Makefile,看看主要编译过程是怎么产生的.</p>
+<h2 id=主makefile结构>主Makefile结构</h2>
+<p>我们以<code>chaos calmer</code>的代码为例,整个编译的入口是在源码根目录下的Makefile.编译的各种命令都应该在源码根目录下键入.
+整个主Makefile的结构如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>world:
+ifneq ($(OPENWRT_BUILD),1)
+	顶层
+else
+	第二层
+endif
+</code></pre></td></tr></table>
+</div>
+</div><p>开始部分是一些注释和变量定义及路径检查.
+根据<strong>Makefile的规则</strong>,在没有指定编译目标的时候,Makefile中的第一个目标将作为默认目标.
+换句话说,当我们执行<code>make V=s</code>时,这个时候编译的目标就是<code>world</code>.和我们执行<code>make world V=s</code>效果是一样的.</p>
+<h2 id=顶层>顶层</h2>
+<p>通常在编译时,我们不会定义变量<code>OPENWRT_BUILD</code>的值,所以通常我们是会走到顶层的.
+顶层代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>  <span class=nv>_SINGLE</span><span class=o>=</span><span class=nb>export</span> <span class=nv>MAKEFLAGS</span><span class=o>=</span><span class=k>$(</span>space<span class=k>)</span><span class=p>;</span>
+
+  override <span class=nv>OPENWRT_BUILD</span><span class=o>=</span><span class=m>1</span>
+  <span class=nb>export</span> OPENWRT_BUILD
+  <span class=nv>GREP_OPTIONS</span><span class=o>=</span>
+  <span class=nb>export</span> GREP_OPTIONS
+  include <span class=k>$(</span>TOPDIR<span class=k>)</span>/include/debug.mk
+  include <span class=k>$(</span>TOPDIR<span class=k>)</span>/include/depends.mk
+  include <span class=k>$(</span>TOPDIR<span class=k>)</span>/include/toplevel.mk
+</code></pre></td></tr></table>
+</div>
+</div><p>这里我们看到变量<code>OPENWRT_BUILD</code>被置为1.然后包含了3个<code>.mk</code>文件.
+这里稍微解释下<code>.mk</code>文件.它们一般没有什么执行动作,都是一些变量的定义还有依赖关系的说明.可以类比于C语言的头文件来理解.</p>
+<p>debug.mk:</p>
+<blockquote>
+<p>可以通过定义DEBUG的值来控制编译过程</p>
+</blockquote>
+<p>depends.mk</p>
+<blockquote>
+<p>主要定义了rdep这个变量</p>
+</blockquote>
+<p>toplevel.mk</p>
+<blockquote>
+<p>这个是我们跟踪编译过程的重要的文件.这个文件在源码根目录下的<code>include</code>文件夹下.</p>
+</blockquote>
+<p>核心代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>%::
+	@+$(PREP_MK) $(NO_TRACE_MAKE) -r -s prereq
+	@( \
+		cp .config tmp/.config; \
+		./scripts/config/conf --defconfig=tmp/.config -w tmp/.config Config.in &gt; /dev/null 2&gt;&amp;1; \
+		if ./scripts/kconfig.pl &#39;&gt;&#39; .config tmp/.config | grep -q CONFIG; then \
+			printf &#34;$(_R)WARNING: your configuration is out of sync. Please run make menuconfig, oldconfig or defconfig!$(_N)\n&#34; &gt;&amp;2; \
+		fi \
+	)
+	@+$(ULIMIT_FIX) $(SUBMAKE) -r $@ $(if $(WARN_PARALLEL_ERROR), || { \
+		printf &#34;$(_R)Build failed - please re-run with -j1 to see the real error message$(_N)\n&#34; &gt;&amp;2; \
+		false; \
+	} )
+</code></pre></td></tr></table>
+</div>
+</div><p>除了少数在toplevel中被定义的目标外,其他编译目标都会走到这里.将之简化后:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>%::
+	make prereq
+	make $@
+</code></pre></td></tr></table>
+</div>
+</div><p>首先执行<code>prereq</code>,然后再执行我们指定的目标或者默认目标<code>world</code>.
+prereq整理后的依赖关系如下:
+<img src=http://img.blog.csdn.net/20151226142730074 alt=prereq>
+其中
+staging_dir/host/.prereq-build:</p>
+<blockquote>
+<p>将会执行一系列主机检查,是否安装了必要的软件.</p>
+</blockquote>
+<p>prepare-tmpinfo:</p>
+<blockquote>
+<p>根据scan.mk,扫描<code>target/linux</code>和<code>package</code>目录,生成packageinfo和targetinfo.</p>
+</blockquote>
+<p>总之,顶层完成一系列必要的准备工作.对于绝大多数的目标而言,顶层是必经之路.当然,在<code>toplevel.mk</code>中,我们也可以看到目标<code>menuconfig</code>.也就是说对于目标<code>menuconfig</code>而言,将不会执行到第二层的逻辑.</p>
+<h2 id=第二层>第二层</h2>
+<p>在上面执行完<code>make prereq</code>之后,将执行<code>make world</code>.
+还记得我们进入顶层后修改了变量<code>OPENWRT_BUILD</code>么?当再次执行<code>make world</code>的时候,由于条件不满足,我们将直接进入第二层来执行.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>  include rules.mk
+  include $(INCLUDE_DIR)/depends.mk
+  include $(INCLUDE_DIR)/subdir.mk
+  include target/Makefile
+  include package/Makefile
+  include tools/Makefile
+  include toolchain/Makefile
+</code></pre></td></tr></table>
+</div>
+</div><p>rules.mk:</p>
+<blockquote>
+<p>很重要的一个mk文件,其中规定了很多有用的变量,包括各种目录路径的定义,交叉编译器等等.其中</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>ifeq ($(DUMP),)
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>-include $(TOPDIR)/.config
+endif</p>
+<blockquote>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-mysql data-lang=mysql><span class=err>就是包含了我们的配置文件</span><span class=p>.</span><span class=err>对于</span><span class=o>`</span><span class=n>Makefile</span><span class=o>`</span><span class=err>而言</span><span class=p>,</span><span class=o>`</span><span class=p>.</span><span class=n>config</span><span class=o>`</span><span class=err>文件就是一大串变量的定义</span><span class=p>.</span><span class=n>Makefile可以直接读取这些定义</span><span class=p>,</span><span class=err>从而控制编译过程</span><span class=p>.</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>subdir.mk:</p>
+<blockquote>
+<p>这个是读懂我们整个编译过程的<strong>关键</strong>所在,其中主要定义了两个函数:<em>subdir</em>和<em>stampfile</em>,我们稍后加以解释.</p>
+</blockquote>
+<p>接下来,包含了4个Makefile文件.我们以<code>target/Makefile</code>为例.该文件位于<code>target</code>目录下.
+核心部分为:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$(eval $(call stampfile,$(curdir),target,prereq,.config))
+$(eval $(call stampfile,$(curdir),target,compile,$(TMP_DIR)/.build))
+$(eval $(call stampfile,$(curdir),target,install,$(TMP_DIR)/.build))
+
+$(eval $(call subdir,$(curdir)))
+</code></pre></td></tr></table>
+</div>
+</div><p>这里调用了<code>subdir.mk</code>中定义的<code>stampfile</code>函数.将会生成<code>target/stamp-prereq</code>,<code>target/stamp-compile</code>,<code>target/stamp-install</code>三个变量.
+以<code>target/stamp-prereq</code>为例,执行部分为<code>make target/prereq</code>.同理<code>target/stamp-compile</code>,执行部分为<code>make target/compile</code>.</p>
+<p>最后又调用了<code>sbudir</code>函数,这个函数规定了目标和各子文件夹之间的依赖关系.如果有一定的Makefile基础可以去读读<code>subdir.mk</code>文件.
+举例而言就是:</p>
+<blockquote>
+<p>当执行目标为<code>target/compile</code>,这个目标将依赖于<code>target/linux/compile</code>.
+当执行目标为<code>package/compile</code>,这个目标将依赖于<code>package</code>目录下,各子文件夹的<code>compile</code>.</p>
+</blockquote>
+<p>下面就是规定了一系列的依赖关系,我已经将他们梳理了出来,如下图:
+<img src=http://img.blog.csdn.net/20151226151210514 alt=world></p>
+<p>这里就是第二层解析后的依赖关系.当依赖关系生成后,将会从最先被依赖的目标开始执行.
+比如我们可以看到进入第二层后,<code>tools/stamp-install</code>将会最先被执行,也就是主机工具将会最先被编译,安装.我们上一篇提高的整个编译过程能从上图中得出.</p>
+<h2 id=尾记>尾记</h2>
+<ol>
+<li>想要读懂Makefile,首先要梳理各个依赖关系.而要梳理各个依赖关系,关键要关注冒号和<code>make -C</code></li>
+<li>本周我们解析了主Makefile,在Makefile的执行过程中要理解make的执行过程.先读入Makefile,然后构建依赖关系,最后最先被依赖的目标将会先执行.</li>
+<li>我主要描绘了主要枝干,如果希望了解更多细节,还是要自己去阅读Makefile.</li>
+<li>接下来两篇,我们将主要分析下,和我们开发者比较相关的两个目标的执行过程:<code>package/stamp-compile</code>和<code>target/stamp-install</code>.下周再会^_^</li>
+</ol>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>成祎</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2015-12-26
+</span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/makefile/>Makefile</a>
+<a href=/tags/openwrt/>openwrt</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/2016-01-03-openwrt%E5%8D%95%E4%B8%AAipk%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">openwrt单个ipk编译过程</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/post/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/>
+<span class="next-text nav-default">openwrt编译过程概述</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='blog-yitinglove-cn',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
+<a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
+<a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

@@ -1,0 +1,942 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Openwrt LuCI模块练习详细步骤 - 为学日益,为道日损</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="成祎"><meta name=description content="前言 又到了成胖子每周一博的时间了.最近在学习openwrt luci方面的知识,为了贯穿整个知识体系,练习题目为:
+ 通过页面配置周期性地往/tmp/addtest文件写入内容和时间戳
+  1.在web主页面的下拉菜单做一个按钮,进入设置页面;
+  2.两个设置项:输入的内容和周期;
+  3.读取/tmp/addtest中的内容并显示在页面上;
+ 代码已经开源,欢迎交流~
+"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.88.0 with theme even">
+<link rel=canonical href=http://blog.yitinglove.cn/post/2015-09-02-openwrt_luci%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Openwrt LuCI模块练习详细步骤">
+<meta property="og:description" content="前言
+又到了成胖子每周一博的时间了.最近在学习openwrt luci方面的知识,为了贯穿整个知识体系,练习题目为:
+
+通过页面配置周期性地往/tmp/addtest文件写入内容和时间戳
+
+
+1.在web主页面的下拉菜单做一个按钮,进入设置页面;
+
+
+2.两个设置项:输入的内容和周期;
+
+
+3.读取/tmp/addtest中的内容并显示在页面上;
+
+代码已经开源,欢迎交流~">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://blog.yitinglove.cn/post/2015-09-02-openwrt_luci%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2015-09-02T19:16:56+08:00">
+<meta property="article:modified_time" content="2015-09-02T19:16:56+08:00">
+<meta itemprop=name content="Openwrt LuCI模块练习详细步骤">
+<meta itemprop=description content="前言
+又到了成胖子每周一博的时间了.最近在学习openwrt luci方面的知识,为了贯穿整个知识体系,练习题目为:
+
+通过页面配置周期性地往/tmp/addtest文件写入内容和时间戳
+
+
+1.在web主页面的下拉菜单做一个按钮,进入设置页面;
+
+
+2.两个设置项:输入的内容和周期;
+
+
+3.读取/tmp/addtest中的内容并显示在页面上;
+
+代码已经开源,欢迎交流~"><meta itemprop=datePublished content="2015-09-02T19:16:56+08:00">
+<meta itemprop=dateModified content="2015-09-02T19:16:56+08:00">
+<meta itemprop=wordCount content="5946">
+<meta itemprop=keywords content="openwrt,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Openwrt LuCI模块练习详细步骤">
+<meta name=twitter:description content="前言
+又到了成胖子每周一博的时间了.最近在学习openwrt luci方面的知识,为了贯穿整个知识体系,练习题目为:
+
+通过页面配置周期性地往/tmp/addtest文件写入内容和时间戳
+
+
+1.在web主页面的下拉菜单做一个按钮,进入设置页面;
+
+
+2.两个设置项:输入的内容和周期;
+
+
+3.读取/tmp/addtest中的内容并显示在页面上;
+
+代码已经开源,欢迎交流~"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Openwrt LuCI模块练习详细步骤</h1>
+<div class=post-meta>
+<span class=post-time> 2015-09-02 </span>
+<span class=more-meta> 约 5946 字 </span>
+<span class=more-meta> 预计阅读 12 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#前言>前言</a></li>
+<li><a href=#知识准备>知识准备</a>
+<ul>
+<li><a href=#源码编译及ipk生成>源码编译及ipk生成</a></li>
+<li><a href=#luci>LuCI</a></li>
+</ul>
+</li>
+<li><a href=#正文>正文</a>
+<ul>
+<li><a href=#准备工作>准备工作</a></li>
+<li><a href=#controller>controller</a></li>
+<li><a href=#uci>UCI</a></li>
+<li><a href=#model>Model</a></li>
+<li><a href=#initd>init.d</a></li>
+<li><a href=#src>src</a></li>
+<li><a href=#view>View</a></li>
+<li><a href=#makefile>Makefile</a></li>
+<li><a href=#编译安装>编译&安装</a></li>
+<li><a href=#调试方法>调试方法</a></li>
+</ul>
+</li>
+<li><a href=#尾记>尾记</a>
+<ul>
+<li><a href=#不足>不足</a></li>
+<li><a href=#感谢>感谢</a></li>
+<li><a href=#qa>Q&A</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h2 id=前言>前言</h2>
+<p>又到了成胖子每周一博的时间了.最近在学习openwrt luci方面的知识,为了贯穿整个知识体系,练习题目为:</p>
+<blockquote>
+<p>通过页面配置周期性地往/tmp/addtest文件写入内容和时间戳</p>
+</blockquote>
+<blockquote>
+<p>1.在web主页面的下拉菜单做一个按钮,进入设置页面;</p>
+</blockquote>
+<blockquote>
+<p>2.两个设置项:输入的内容和周期;</p>
+</blockquote>
+<blockquote>
+<p>3.读取/tmp/addtest中的内容并显示在页面上;</p>
+</blockquote>
+<p>代码已经<a href=https://github.com/chengyi818/addtest>开源</a>,欢迎交流~</p>
+<hr>
+<h2 id=知识准备>知识准备</h2>
+<h3 id=源码编译及ipk生成>源码编译及ipk生成</h3>
+<p>这部分网上相关文章很多,也可以参见<a href=http://www.cnblogs.com/chengyi818/p/4774043.html>拙作</a></p>
+<h3 id=luci>LuCI</h3>
+<p>首先回答一个问题:什么是Luci?</p>
+<p><del>>LuCI是OpenWrt上的Web管理界面，LuCI采用了MVC三层架构，使用Lua脚本开发.</del></p>
+<blockquote>
+<p>简单地说,Luci就是用来做openwrt的页面的.不同于常见的html+css+javascript,Openwrt是用lua脚本语言开发的.</p>
+</blockquote>
+<p>怎么开发一个页面呢?</p>
+<blockquote>
+<p>要开发一个新的功能页面,开发者只要根据MVC框架写些简单的lua脚本,剩下的部分由openwrt为你自动完成.</p>
+</blockquote>
+<p>说到MVC框架了,什么是MVC框架呢?</p>
+<blockquote>
+<p>MVC是model+view+controller的简写.为了便于开发,openwrt将实现不同功能的lua脚本放在不同的文件夹中.请看下图:</p>
+</blockquote>
+<p><img src=http://i3.tietuku.com/11e2965d6e4c95e4.jpg alt=MVC架构></p>
+<p>什么是controller控制器?</p>
+<blockquote>
+<p>我们在这里设置功能在页面的位置,同时设置点击页面后,将要调用的功能.是要去Model模型读写配置数据呢?还是要呈现一个静态页面,或者是直接执行lua脚本函数.</p>
+</blockquote>
+<p>什么是model模型?</p>
+<blockquote>
+<p>这里我们常用的是,通过cbi模块和UCI(统一配置接口)进行交互.简单地说,就是我们在这里将页面和路由器里面的配置关联起来,从而将页面的设置写到路由器当中.</p>
+</blockquote>
+<p>什么是view视图?</p>
+<blockquote>
+<p>这个应该是最容易理解的,就是呈现的页面的样式,有点类似于传统的html页面.</p>
+</blockquote>
+<p>上面说到了UCI(Unified Configuartion Interface),这是什么龟?</p>
+<blockquote>
+<p>openwrt将配置用统一的格式书写,放在规定的地方(/etc/config/),同时提供接口函数进行读取和设置.</p>
+</blockquote>
+<p>如果还不太明白,接着向下看.如果有可能跟着我动动手,相信你很快就会掌握:)</p>
+<hr>
+<h2 id=正文>正文</h2>
+<p>我们先看下最终效果图:</p>
+<p><img src=http://i3.tietuku.com/cf83e41dbd8859bf.jpg alt=最终效果></p>
+<p>我们在页面上面的<code>System</code>下拉框的下面加了一个<code>AddTest</code>按钮,下面有两个子选项:<code>Set</code>和<code>Info</code>.其中<code>Set</code>用于选择是否开启功能,设置时间间隔和内容.<code>Info</code>用于显示<code>/tmp/addtest</code>文件中的内容.</p>
+<h3 id=准备工作>准备工作</h3>
+<p>首先,嗯~
+你得有环境,得有电,有源码,编译过简单的ipk.如果没有,请<a href=http://www.cnblogs.com/chengyi818/p/4774043.html>回炉</a>重造.</p>
+<p>其次,建立相应的文件夹及文件.至于linux操作神马的,我相信你一定没有问题.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$mkdir -p ~/temp/addtest
+$cd ~/temp/addtest
+</code></pre></td></tr></table>
+</div>
+</div><p>最终文件树形图</p>
+<p><img src=http://i3.tietuku.com/e0e8a0b049ed0f45.jpg alt=树形图></p>
+<p>骨架已经有了,下面只需要往里面填肉了,是不是感觉很快~
+不要管为什么要这样,我们后面慢慢解释.</p>
+<hr>
+<h3 id=controller>controller</h3>
+<p>前面我们提到,controller主要用于控制页面按钮位置,以及调用的功能.首先来编辑这个文件.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$vim ~/temp/addtest/files/usr/lib/lua/luci/controller/addtest.lua
+</code></pre></td></tr></table>
+</div>
+</div><p>代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>module(&#34;luci.controller.addtest&#34;,package.seeall)
+
+function index()
+    entry({&#34;admin&#34;,&#34;system&#34;,&#34;addtest&#34;},alias(&#34;admin&#34;,&#34;system&#34;,&#34;addtest&#34;,&#34;set&#34;),_(&#34;AddTest&#34;),99).index=true
+    entry({&#34;admin&#34;,&#34;system&#34;,&#34;addtest&#34;,&#34;set&#34;},cbi(&#34;addtest&#34;),_(&#34;Set&#34;),1)
+    entry({&#34;admin&#34;,&#34;system&#34;,&#34;addtest&#34;,&#34;info&#34;},call(&#34;action_info&#34;),_(&#34;Info&#34;),2)
+end
+
+function action_info()
+    if not nixio.fs.access(&#34;/tmp/addtest&#34;) then
+        return
+    end
+
+    local info = nixio.fs.readfile(&#34;/tmp/addtest&#34;)
+    luci.template.render(&#34;addtest_info&#34;,{info=info})
+end
+</code></pre></td></tr></table>
+</div>
+</div><p>格式模板:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>module(&#34;luci.controller.控制器名&#34;, package.seeall)
+
+function index()
+        entry(路径, 调用目标, _(&#34;显示名称&#34;), 显示顺序)
+        end
+</code></pre></td></tr></table>
+</div>
+</div><p>这个脚本文件可以分为3块:第1行,3~7行,9~16行</p>
+<p>第1行</p>
+<blockquote>
+<p>说明了模块的名称,本文在controller目录下创建了<code>addtest.lua</code>文件,将模板中的控制器名替换为<code>addtest</code>即可.</p>
+</blockquote>
+<p>第3行</p>
+<blockquote>
+<p>第3~7行定义按钮的位置,调用的功能,显示名称.其中第3行和第7行是固定的模板格式,不需要修改</p>
+</blockquote>
+<p>第4行</p>
+<blockquote>
+<p>entry表示添加新的模块.
+第一个参数<code>{"admin","system","addtest"}</code>表示按钮的位置.<code>admin</code>表示我们这个功能只有以管理员身份登录页面才可以看到.<code>system</code>表示一级菜单名,<code>addtest</code>则是一级菜单下的子菜单.第二个参数<code>alias("admin","system","addtest","set")</code>表示调用的功能.这个按钮没有独立的功能,而是将它关联到它的下一级子菜单<code>set</code>.
+第三个参数<code>_("AddTest")</code>表示显示名称,可选.如果页面按钮想做成中文,可以在这里设置.
+第四个参数<code>99</code>表示显示顺序的优先级,Luci根据这个值为同一父菜单的所有子菜单排序.</p>
+</blockquote>
+<p>第5行</p>
+<blockquote>
+<p>第一个参数<code>{"admin","system","addtest","set"}</code>表示在<code>addtest</code>下再增加一个子选项<code>set</code>.
+第二个参数<code>cbi("addtest")</code>表示调用cbi模块,这里将会调用到<code>/usr/lib/lua/luci/model/cbi/addtest.lua</code></p>
+</blockquote>
+<p>第6行</p>
+<blockquote>
+<p>第二个参数<code>call("action_info")</code>表示执行指定方法,这里将会调用我们下面写的<code>acttion_info</code>函数.</p>
+</blockquote>
+<dl>
+<dt>备注</dt>
+<dd>关于<code>entry</code>第二个参数调用目标.我们还有一个<code>template</code>没有涉及,它表示访问指定页面.比如<code>template(addtest_info)</code>将会直接访问<code>/usr/lib/lua/luci/view/addtest_info.htm</code>.</dd>
+</dl>
+<p>9~16行</p>
+<blockquote>
+<p>这里使用lua语言调用<code>nixio</code>接口写了一个简单的函数,首先判断文件是否存在,然后读取其中的内容赋值给变量<code>info</code>,最后访问指定页面<code>/usr/lib/lua/luci/view/addtest_info.htm</code>,同时将变量<code>info</code>传递过去.
+<a href=http://luci.subsignal.org/api/luci/>luci接口手册</a>
+<a href=http://luci.subsignal.org/api/nixio/>nixio接口手册</a></p>
+</blockquote>
+<hr>
+<h3 id=uci>UCI</h3>
+<p>UCI是openwrt的配置管理机制,它将配置统一放到<code>/etc/config</code>文件夹下.详细地介绍请参考<a href=http://www.leiphone.com/news/201406/diy-a-smart-router-topic-system-configuration.html>这里</a>.
+下面来编辑这个文件</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$vim ~/temp/addtest/files/etc/config/addtest
+</code></pre></td></tr></table>
+</div>
+</div><p>代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>config arguments
+    option interval &#39;&#39;
+    option content &#39;&#39;
+</code></pre></td></tr></table>
+</div>
+</div><p>Section开始语法: <code>config '类型' '名字'</code>
+参数定义语法: <code>option '键' '值'</code>
+列表定义语法: <code>list '集合名字' '值'</code></p>
+<p>简单解释下,我们在<code>/etc/config</code>下新建一个名为<code>addtest</code>的配置文件,其中类型为<code>arguments</code>,名字省略.有两个键,一个名为<code>interval</code>用来存时间间隔.一个名为<code>content</code>用来存准备周期性输入的内容.</p>
+<hr>
+<h3 id=model>Model</h3>
+<p>在<strong>controller</strong>章节中,我们提到<code>cbi</code>会调用到<code>model</code>文件夹中的<code>addtest.lua</code>文件.下面我们来编辑它.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$vim ~/temp/addtest/files/usr/lib/lua/luci/model/cbi/addtest.lua
+</code></pre></td></tr></table>
+</div>
+</div><p>代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>m=Map(&#34;addtest&#34;,translate(&#34;Luci practice&#34;),translate(&#34;fat cheng&#39;s test&#34;))
+
+s=m:section(TypedSection,&#34;arguments&#34;,&#34;&#34;)
+s.addremove=true
+s.anonymous=false
+
+s:option(Flag,&#34;enable&#34;,translate(&#34;Enable&#34;))
+s:option(Value,&#34;interval&#34;,translate(&#34;Interval&#34;))
+s:option(Value,&#34;content&#34;,translate(&#34;Content&#34;))
+
+local apply=luci.http.formvalue(&#34;cbi.apply&#34;)
+if apply then
+    io.popen(&#34;/etc/init.d/addtestd restart&#34;)
+end
+
+return m
+</code></pre></td></tr></table>
+</div>
+</div><p>下面我们来解释下这个文件.</p>
+<p>第1行</p>
+<blockquote>
+<p>模板<code>m = Map("配置文件文件名", "配置页面标题", "配置页面说明")</code>
+第一个参数:上一步我们新建配置文件<code>/etc/config/addtest</code>.这里就是建立与配置文件的联系.
+第二,三两个参数,则是页面的主标题和副标题.还不清楚的话,翻上去看看最终效果图,看看它们在哪里.</p>
+</blockquote>
+<p>第3行</p>
+<blockquote>
+<p>在一个配置文件中可能有很多Section,所以我们需要创建与配置文件中我们想要的Section的联系.
+有两种方式可以选择:NamedSection(name,type,title,description)和TypedSection(type,title,description),前者根据配置文件中的Section名，而后者根据配置文件中的Section类型.我们选用了第二种.</p>
+</blockquote>
+<p>第4行</p>
+<blockquote>
+<p>设定不允许增加或删除Section</p>
+</blockquote>
+<p>第5行</p>
+<blockquote>
+<p>设定显示Section的名称,这里建议你可以试试设定为<code>true</code>,看看会发生什么.</p>
+</blockquote>
+<p>7~9行</p>
+<blockquote>
+<p>接着则是建立与Section中的option之间的联系.模板<code>s:option(交互形式,option键值,显示名称)</code>.
+第一个参数:常见的交互形式有Value(文本框),ListValue(下拉框),Flag(选择框).,不知道为啥我打不开<a href=http://luci.subsignal.org/trac/wiki/Documentation/CBI>官方文档</a>,这里也可以<a href=http://blog.csdn.net/qq_21949217/article/details/44151595>参考</a>
+第二个参数表示在配置文件中的option的键值
+第三个参数表示,你希望在页面上呈现的名称.
+创建后开发者无需考虑读取以及写入配置文件的问题，系统会自动处理.</p>
+</blockquote>
+<p>11~14行</p>
+<blockquote>
+<p>系统会为我们在页面上自动创建一些按钮<code>Save&Apply</code>,<code>Save</code>,<code>Reset</code>.我们仅仅将配置写入<code>/etc/config</code>下对应的文件是不够的,我们还希望可以根据这个配置进行一些操作.
+这部分代码的作用是,当你按下页面的<code>apply</code>按钮后,相当于在串口shell下输入<code>/etc/init.d/addtestd restart</code></p>
+</blockquote>
+<hr>
+<h3 id=initd>init.d</h3>
+<p>上一节我们已经可以读写配置了,怎么根据配置来进行操作呢?这是我们这一节要谈的.我们来编辑<code>~/temp/addtest/files/etc/init.d/addtestd</code>这个文件.
+代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/sh /etc/rc.common
+</span><span class=cp></span><span class=nv>START</span><span class=o>=</span><span class=m>50</span>
+
+run_addtest<span class=o>()</span>
+<span class=o>{</span>
+    <span class=nb>local</span> <span class=nb>enable</span>
+    config_get_bool <span class=nb>enable</span> <span class=nv>$1</span> <span class=nb>enable</span>
+
+    <span class=k>if</span> <span class=o>[</span> <span class=nv>$enable</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+        <span class=nb>local</span> interval
+        <span class=nb>local</span> content
+        config_get interval <span class=nv>$1</span> interval
+        config_get content <span class=nv>$1</span> content
+
+        addtest <span class=nv>$interval</span> <span class=nv>$content</span>
+    <span class=k>fi</span>
+<span class=o>}</span>
+
+start<span class=o>()</span>
+<span class=o>{</span>
+    config_load addtest
+    config_foreach run_addtest arguments
+<span class=o>}</span>
+
+stop<span class=o>()</span>
+<span class=o>{</span>
+    <span class=nv>result</span><span class=o>=</span><span class=sb>`</span>pidof addtest<span class=sb>`</span>
+    <span class=nb>kill</span> -9 <span class=nv>$result</span>
+    <span class=nb>echo</span> <span class=s2>&#34;addtest has stoped&#34;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第1行</p>
+<blockquote>
+<p>Linux 系统根据 &ldquo;#!&rdquo; 及该字串后面的信息确定该文件的类型,表示这个文件需要由/bin/sh和/etc/rc.common来解释执行.</p>
+</blockquote>
+<p>第2行</p>
+<blockquote>
+<p>表示启动的优先级,这里暂时用不到</p>
+</blockquote>
+<p>4~17行</p>
+<blockquote>
+<p>是一个函数,主要作用是读取<code>/etc/config/addtest</code>中的内容,然后根据是否打开开关在第15行将配置传递给可执行文件<code>addtest</code>,由它根据配置执行指定的操作.
+读取配置的方法,我强烈推荐你阅读<a href=http://wiki.openwrt.org/doc/devel/config-scripting>官方文档</a>,精炼而简洁.
+获取布尔值类型:<code>config_get_bool 变量名 Section名 Section参数名</code>
+获取变量值:<code>config_get 变量名 Section名 Section参数名</code></p>
+</blockquote>
+<p>19~23行</p>
+<blockquote>
+<p>对应于<code>/etc/init.d/addtestd start</code>.首先使用<code>config_load 配置文件名</code>的方法载入配置文件,然后使用<code>config_foreach 遍历函数名 Section类型</code>的方法,遍历配置文件中的Section.</p>
+</blockquote>
+<p>25~30行</p>
+<blockquote>
+<p>对应于<code>/etc/init.d/addtestd stop</code>.找到<code>addtest</code>这个进程的进程号,然后杀死它</p>
+</blockquote>
+<dl>
+<dt>备注</dt>
+<dd>前一节提到的<code>/etc/init.d/addtestd restart</code>中的<code>restart</code>命令,在<code>/etc/rc.common</code>进行了定义,简单来讲就是先执行了<code>stop</code>命令,再执行<code>start</code>命令.
+最后务必执行**<code>$sudo chmod 755 ~/temp/addtest/files/etc/init.d/addtestd</code>**.</dd>
+</dl>
+<hr>
+<h3 id=src>src</h3>
+<p>前一节,我们谈到<code>run_addtest</code>调用可执行文件<code>addtest</code>,现在我们编辑这部分内容</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$vim ~/temp/addtest/files/src/addtest.c
+</code></pre></td></tr></table>
+</div>
+</div><p>代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(int argc, char *argv[])
+{
+    int index;
+    for(index=0; index&lt;10; index++)
+    {
+        FILE *fp=fopen(&#34;/tmp/addtest&#34;,&#34;at&#34;);
+        system(&#34;date &gt;&gt; /tmp/addtest&#34;);
+        fprintf(fp, &#34;%s\n&#34;, argv[2]);
+        fclose(fp);
+        printf(&#34;interval=%d\n&#34;,atoi(argv[1]));
+        sleep(  atoi(argv[1]) );
+    }
+    return 0;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>这部分代码比较简短,我们不再解释.需要掌握的点有:</p>
+<blockquote>
+<p>1.<code>argc</code>和<code>argv[]</code>的使用方法</p>
+</blockquote>
+<blockquote>
+<p>2.<code>fopen</code>函数,<code>fclose</code>函数以及<code>fprintf</code>函数的使用方法</p>
+</blockquote>
+<blockquote>
+<p>3.<code>system</code>函数的使用方法</p>
+</blockquote>
+<blockquote>
+<p>4.<code>sleep</code>函数和<code>atoi</code>函数的使用方法,<code>argv[1]</code>的类型为<code>char</code>需要转换为整型.</p>
+</blockquote>
+<p>通过这个可执行文件,我们周期性地将时间戳和内容写入了<code>/tmp/addtest</code>文件.
+最后我们写一个简单的Makefile:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$vim $vim ~/temp/addtest/files/src/Makefile
+</code></pre></td></tr></table>
+</div>
+</div><p>代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>addtest : addtest.o
+	$(CC) addtest.o -o addtest
+
+addtest.o : addtest.c
+	$(CC) -c addtest.c
+
+clean :
+	rm *.o addtest
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id=view>View</h3>
+<p>上一节,我们已经根据配置将指定的内容周期性地写入了<code>/tmp/addtest</code>.在<strong>controller</strong>那一节,我们的函数<code>action_info</code>读取了<code>/tmp/addtest</code>中的内容并访问指定页面<code>/usr/lib/lua/luci/view/addtest_info.htm</code>,同时将读取的内容通过变量<code>info</code>传递过去.</p>
+<p>下面我们来编辑这个页面,
+<code>$vim ~/temp/addtest/files/usr/lib/lua/luci/view/addtest_info.htm</code>
+代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>&lt;%+header%&gt;
+&lt;h2&gt;&lt;a id=&#34;content&#34; name=&#34;content&#34;&gt;&lt;%:Addtest Info%&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;div id=&#34;content_addtest_info&#34;&gt;
+&lt;textarea readonly=&#34;readonly&#34; wrap=&#34;off&#34; rows=&#34;&lt;%=info:cmatch(&#34;\n&#34;)+2%&gt;&#34; id=&#34;info&#34;&gt;&lt;%=info:pcdata()%&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;%+footer%&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>这部分和传统的<code>html</code>很类似,我主要是根据其他页面照猫画虎,不是很美观.有机会还要加强这个方面的学习.</p>
+<hr>
+<h3 id=makefile>Makefile</h3>
+<p>不知不觉,我们居然已经将代码全部写完了,竟还有点恋恋不舍呢.下面我们用一个<code>Makefie</code>文件将它们打包生成一个ipk文件.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$vim ~/temp/addtest/Makefile
+</code></pre></td></tr></table>
+</div>
+</div><p>代码如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>include <span class=k>$(</span>TOPDIR<span class=k>)</span>/rules.mk
+
+PKG_NAME:<span class=o>=</span>addtest
+<span class=nv>PKG_VERSION</span><span class=o>=</span>1.0
+PKG_RELEASE:<span class=o>=</span><span class=m>1</span>
+
+PKG_BUILD_DIR:<span class=o>=</span><span class=k>$(</span>BUILD_DIR<span class=k>)</span>/<span class=k>$(</span>PKG_NAME<span class=k>)</span>
+
+include <span class=k>$(</span>INCLUDE_DIR<span class=k>)</span>/package.mk
+
+define Package/addtest
+	SECTION:<span class=o>=</span>utils
+	CATEGORY:<span class=o>=</span>Utilities
+	TITLE:<span class=o>=</span>Addtest--print something to /var/addtest
+endef
+
+define Package/addtest/description
+	It<span class=err>&#39;</span>s a test,print something to /var/addtest cyclicaliy
+endef
+
+define Build/Prepare
+	mkdir -p <span class=k>$(</span>PKG_BUILD_DIR<span class=k>)</span>
+	<span class=k>$(</span>CP<span class=k>)</span> ./src/* <span class=k>$(</span>PKG_BUILD_DIR<span class=k>)</span>/
+endef
+
+define Package/addtest/postinst
+<span class=c1>#!/bin/sh</span>
+rm -rf /tmp/luci*
+endef
+
+define Build/Configure
+endef
+
+define Build/Compile
+	<span class=k>$(</span>call Build/Compile/Default<span class=k>)</span>
+endef
+
+define Package/<span class=k>$(</span>PKG_NAME<span class=k>)</span>/install
+	<span class=k>$(</span>CP<span class=k>)</span> ./files/* <span class=k>$(</span>1<span class=k>)</span>/
+	<span class=k>$(</span>INSTALL_DIR<span class=k>)</span> <span class=k>$(</span>1<span class=k>)</span>/bin
+	<span class=k>$(</span>INSTALL_BIN<span class=k>)</span>  <span class=k>$(</span>PKG_BUILD_DIR<span class=k>)</span>/addtest  <span class=k>$(</span>1<span class=k>)</span>/bin
+endef
+
+<span class=k>$(</span><span class=nb>eval</span> <span class=k>$(</span>call BuildPackage,<span class=k>$(</span>PKG_NAME<span class=k>)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Makefile的解释,请参见<a href=http://www.cnblogs.com/chengyi818/p/4774043.html>拙作</a>.我们这里稍作补充.</p>
+<p>26~29行</p>
+<blockquote>
+<p>由于luci会将模块加载到<code>/tmp</code>目录下运行,每次新加载luci模块后,需要执行<code>$rm -rf /tmp/luci*</code>.这里表示安装了ipk之后,将会自动执行删除命令,重新载入.</p>
+</blockquote>
+<p>39行</p>
+<blockquote>
+<p>$(1)是传入的参数,表示系统镜像目录,你可以将之视为路由器最后的文件系统.所以这句的意思就是将我们<code>files</code>下的内容拷贝到路由器的文件系统中.这也是我们为什么要建立一开始那么复杂的目录树的原因.</p>
+</blockquote>
+<hr>
+<h3 id=编译安装>编译&安装</h3>
+<p>简直像裹脚布一样,又臭又长.不要说读了,我自己写的都快有点受不了了.读到这里的人真是辛苦了,下面到了我们收获果实的时候了.
+将文件拷贝到源码目录的<code>package</code>目录下.其余部分,请参考<a href=http://www.cnblogs.com/chengyi818/p/4774043.html>拙作</a></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$cp ~/temp/addtest ~/openwrt/package
+</code></pre></td></tr></table>
+</div>
+</div><p>把它拷贝到你的开发板中,试试看.</p>
+<hr>
+<h3 id=调试方法>调试方法</h3>
+<p>我们当然希望可以一次成功,不过世间不如意之事十之八九.我来谈谈我自己的调试方法.</p>
+<p><code>src</code>部分</p>
+<blockquote>
+<p><code>src</code>文件下有<code>Makefile</code>文件,你可以直接在编译机上执行<code>$make</code>生成可执行文件<code>addtest</code>,然后在编译机上<code>src</code>目录下执行<code>$./addtest 参数1 参数2</code>.最后记得执行<code>$make clean</code>.</p>
+</blockquote>
+<p><code>luci</code>部分</p>
+<blockquote>
+<p>将ipk安装到开发板后,可以通过串口或者ssh的方式登录开发板,然后直接在开发板中修改文件内容,再执行<code>$rm -rf /tmp/luci*</code>.最后重新载入设备页面.</p>
+</blockquote>
+<hr>
+<h2 id=尾记>尾记</h2>
+<p>不知不觉到了分手的时候,竟感觉有些忧桑呢.</p>
+<h3 id=不足>不足</h3>
+<ol>
+<li>我自己刚接触学习,难免很多不足</li>
+<li>页面输入没有防呆机制</li>
+</ol>
+<p>多多包含:)</p>
+<h3 id=感谢>感谢</h3>
+<p>除了官方文档之外,这两篇博客给我很多指导:
+<a href=http://www.tuicool.com/articles/zaUNfy>开发OpenWrt路由器上LuCI的模块</a>,<a href=http://blog.chinaunix.net/uid-23780428-id-4367351.html> openwrt中luci学习笔记</a>.
+我的同事宁财神给我们做了luci的框架介绍,同时在我的调试过程中,给予我很多帮助.
+最后感谢管工给出这样一个练习题,虽然很小巧,居然可以贯通整个知识体系.我现在还是为他的高屋建瓴感到惊叹.</p>
+<h3 id=qa>Q&A</h3>
+<p>在整篇文章学习完成后,我们希望可以回答以下几个问题:</p>
+<blockquote>
+<p>1.MVC是什么?各部分有哪些功能?</p>
+</blockquote>
+<blockquote>
+<p>2.怎么在页面上指定位置做出一个子页面.</p>
+</blockquote>
+<blockquote>
+<p>3.怎么将配置写入到路由器中,又怎么读取?</p>
+</blockquote>
+<blockquote>
+<p>4.页面怎么和可执行文件关联起来?或者通俗地说,页面点了一下,开发板怎么就执行了命令.</p>
+</blockquote>
+<blockquote>
+<p>5.ipk怎么生成,安装过程中发生了什么?</p>
+</blockquote>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>成祎</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2015-09-02
+</span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/openwrt/>openwrt</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/2015-12-13-openwrt%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">openwrt目录概述</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/post/2015-08-31-helloworld-ipk/>
+<span class="next-text nav-default">openwrt简单ipk生成及Makefile解释</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='blog-yitinglove-cn',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
+<a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
+<a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>
