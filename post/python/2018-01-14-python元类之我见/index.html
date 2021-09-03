@@ -1,0 +1,300 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Python对象模型之我见 - 为学日益,为道日损</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="成祎"><meta name=description content="阅读条件:
+ C语言基础,Python对象模型基本了解
+  前言 在深入学习Python的过程中,不可避免地会接触到这样的概念:
+ 在Python中一切都是对象
+ 这个一切甚至比我想象的还要深入,因为在Python的实现层面也都是用面向对象实现的.那么与对象模型相关的类,实例的概念是不是也是用面向对象实现的呢?是的,在Python中,类的定义本身也是一个对象.
+"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.88.0 with theme even">
+<link rel=canonical href=http://blog.yitinglove.cn/post/python/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Python对象模型之我见">
+<meta property="og:description" content="阅读条件:
+
+C语言基础,Python对象模型基本了解
+
+
+前言
+在深入学习Python的过程中,不可避免地会接触到这样的概念:
+
+在Python中一切都是对象
+
+这个一切甚至比我想象的还要深入,因为在Python的实现层面也都是用面向对象实现的.那么与对象模型相关的类,实例的概念是不是也是用面向对象实现的呢?是的,在Python中,类的定义本身也是一个对象.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://blog.yitinglove.cn/post/python/2018-01-14-python%E5%85%83%E7%B1%BB%E4%B9%8B%E6%88%91%E8%A7%81/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2018-01-14T19:09:42+08:00">
+<meta property="article:modified_time" content="2018-01-14T19:09:42+08:00">
+<meta itemprop=name content="Python对象模型之我见">
+<meta itemprop=description content="阅读条件:
+
+C语言基础,Python对象模型基本了解
+
+
+前言
+在深入学习Python的过程中,不可避免地会接触到这样的概念:
+
+在Python中一切都是对象
+
+这个一切甚至比我想象的还要深入,因为在Python的实现层面也都是用面向对象实现的.那么与对象模型相关的类,实例的概念是不是也是用面向对象实现的呢?是的,在Python中,类的定义本身也是一个对象."><meta itemprop=datePublished content="2018-01-14T19:09:42+08:00">
+<meta itemprop=dateModified content="2018-01-14T19:09:42+08:00">
+<meta itemprop=wordCount content="1911">
+<meta itemprop=keywords content="Python,Source Code,Metaclass,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Python对象模型之我见">
+<meta name=twitter:description content="阅读条件:
+
+C语言基础,Python对象模型基本了解
+
+
+前言
+在深入学习Python的过程中,不可避免地会接触到这样的概念:
+
+在Python中一切都是对象
+
+这个一切甚至比我想象的还要深入,因为在Python的实现层面也都是用面向对象实现的.那么与对象模型相关的类,实例的概念是不是也是用面向对象实现的呢?是的,在Python中,类的定义本身也是一个对象."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Python对象模型之我见</h1>
+<div class=post-meta>
+<span class=post-time> 2018-01-14 </span>
+<span class=more-meta> 约 1911 字 </span>
+<span class=more-meta> 预计阅读 4 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#前言>前言</a></li>
+<li><a href=#示意图>示意图</a></li>
+<li><a href=#创世纪的三个过程>创世纪的三个过程</a>
+<ul>
+<li><a href=#内建类对象的初始化>内建类对象的初始化</a></li>
+<li><a href=#自定义类对象的生成>自定义类对象的生成</a></li>
+<li><a href=#实例对象的生成>实例对象的生成</a></li>
+</ul>
+</li>
+<li><a href=#基类和类型在python中的作用>基类和类型在Python中的作用</a></li>
+<li><a href=#总结>总结</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<p>阅读条件:</p>
+<blockquote>
+<p>C语言基础,Python对象模型基本了解</p>
+</blockquote>
+<hr>
+<h2 id=前言>前言</h2>
+<p>在深入学习Python的过程中,不可避免地会接触到这样的概念:</p>
+<blockquote>
+<p>在Python中一切都是对象</p>
+</blockquote>
+<p>这个<strong>一切</strong>甚至比我想象的还要深入,因为在Python的实现层面也都是用面向对象实现的.那么与对象模型相关的<code>类</code>,<code>实例</code>的概念是不是也是用面向对象实现的呢?是的,在Python中,类的定义本身也是一个对象.</p>
+<p>从实现层面来看,我认为只要能用一个<code>PyObject*</code>来指向的结构体都是对象.我认为Python中的对象可以分为以下几类:</p>
+<ol>
+<li>普通内建类对象,不需要开发者实现,由系统提供的类对象,比如int, list等.</li>
+<li>特殊内建类对象,不要开发者实现,但是在对象模型中具有特殊功能,其实也就是两个特殊对象,type和object.</li>
+<li>自定义类对象,开发者实现的类所生成的对象.</li>
+<li>实例对象,由类对象实例化所生成的对象.</li>
+</ol>
+<p>下面我们来分别讲讲这些过程.</p>
+<h2 id=示意图>示意图</h2>
+<p>下面这幅是从网上摘抄过来的.也是经典Python对象模型示意图.</p>
+<p><img src=http://www.lightxue.com/images/relationship-among-object-class-metaclass-in-python/python_types_map.png alt=Python内存对象间的关系></p>
+<p>三个框分别表示元类,类型,一般对象.其中虚线表示类与实例的关系,实线表示父类与子类的继承关系.</p>
+<h2 id=创世纪的三个过程>创世纪的三个过程</h2>
+<p>在Python虚拟机中叱咤风云的往往是一个个实例对象.但是在创造他们之前,我们需要经过漫长的过程.了解这个过程,将极大地帮助我们了解元类.</p>
+<h3 id=内建类对象的初始化>内建类对象的初始化</h3>
+<p>在CPython中,所有的内建类对象表现为一个个C语言结构体,而且都是静态初始化的全局变量.所以他们几乎天然就是一个PyObject对象了.为什么说几乎呢?因为还需要对他们进行一点点改造.</p>
+<p>这个过程的实现在<code>Objects/typeobject.c</code>的<code>PyType_Ready</code>中.这个函数主要完成如下工作:</p>
+<ol>
+<li>确定本类的基类</li>
+<li>递归地初始化基类</li>
+<li>确定本类的类型</li>
+<li>填充本类的__dict__</li>
+<li>从基类中的继承</li>
+<li>将本类加入基类的子类列表</li>
+</ol>
+<p>这里面值得关注的是第4步和第5步.在完成了这些工作之后,内建对象的构建就完成了.</p>
+<p>我们在多说两句,关于特殊内建对象.object对象是所有类对象的基类,也是第一个被初始化的.而type对象是绝大多数对象的类型对象.</p>
+<h3 id=自定义类对象的生成>自定义类对象的生成</h3>
+<p>一个自定义的类对象的生成,要经过几个步骤呢?首先,要准备材料.主要是自定义类的名字,自定义类的基类列表以及自定义类的属性列表.这里变量和方法都可以归为属性.然后,就是调用元类了.主要代码<code>Objects/typeobject.c/type_call</code>一路追下去.</p>
+<p>步骤如下:</p>
+<ol>
+<li>调用metaclass->ob_type->tp_call,也就是type_call.</li>
+<li>调用metaclass->tp_new,也就是type_new.</li>
+<li>调用metaclass->tp_alloc,这个方法type本身没有定义,是从object继承而来,所以是object->tp_alloc.也就是PyType_GenericAlloc.</li>
+<li>初始化新建的type.为其中的一些域赋值.</li>
+<li>调用PyType_Ready.</li>
+<li>调用<code>fixup_slot_dispatchers</code>,这个很有意思.是处理重载的关键.如果你覆盖了基类的方法,会在这里实现.</li>
+<li>调用metaclass->tp_init,这个方法同样从object继承,也就是object_init.</li>
+</ol>
+<h3 id=实例对象的生成>实例对象的生成</h3>
+<p>主要步骤如下:</p>
+<ol>
+<li>调用class->ob_type->tp_call,一般来讲就是type_call.</li>
+<li>调用class->tp_new,这个方法是从object继承而来,也就是object_new.我们看到这也是创建类对象和实例对象的主要区别点.</li>
+<li>调用class->tp_alloc,同样是PyType_GenericAlloc.</li>
+<li>调用class->tp_init.我们经常定义的<code>def __init__</code>就是在这里调用的.</li>
+</ol>
+<h2 id=基类和类型在python中的作用>基类和类型在Python中的作用</h2>
+<p>在弄清楚一系列对象的创建过程后,在更高的维度我是怎么看的呢?
+<code>object</code>是一切类对象的基类,是<strong>众基之基</strong>.所有对象如果没有重写的话,那么所有对象都会从<code>object</code>中继承方法.所以object最重要的作用是什么呢?就是把所有类都要具有的方法,抽出来,聚集到一起.这就是<code>object</code>.</p>
+<p>实例是类对象实例化的结果.同一类对象的各个实例之间其实大体相似,区别只是个别属性.而类对象之间的结构也是大体相似的,而元类就是各个类对象的类.</p>
+<p>通过重载元类的<code>__new__</code>,<code>__init__</code>,我们能够控制类对象的生成.重载<code>__call__</code>,我们能够控制实例对象的生成.</p>
+<h2 id=总结>总结</h2>
+<p>现在总算基本弄清楚Python的对象模型.这块还是有点复杂的.我这里其实就是自己的小结.更多地内容还是得去看书,看源码.</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>成祎</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2018-01-14
+</span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/python/>Python</a>
+<a href=/tags/source-code/>Source Code</a>
+<a href=/tags/metaclass/>Metaclass</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/python/2018-01-19-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Python虚拟机初始化</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/post/python/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/>
+<span class="next-text nav-default">Python虚拟机框架_上</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='blog-yitinglove-cn',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=gitalk-container></div>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
+<script type=text/javascript>var gitalk=new Gitalk({id:'2018-01-14 19:09:42 \u002b0800 \u002b0800',title:'Python对象模型之我见',clientID:'3372cbf11cbf4bb89463',clientSecret:'7c072961186586ae0788099efff3c36d04d1c2ec',repo:'hugo_blog',owner:'chengyi818',admin:['chengyi818'],body:decodeURI(location.href)});gitalk.render('gitalk-container')</script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
+<a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
+<a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

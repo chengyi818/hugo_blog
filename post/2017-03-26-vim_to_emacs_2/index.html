@@ -1,31 +1,48 @@
-<!doctype html><html lang=zh-cn>
+<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
-<title>vim从入门到放弃_篇二 - 为学日益,为道日损</title>
-<meta name=renderer content="webkit">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta http-equiv=cache-control content="no-transform">
-<meta http-equiv=cache-control content="no-siteapp">
-<meta name=theme-color content="#f8f5ec">
-<meta name=msapplication-navbutton-color content="#f8f5ec">
-<meta name=apple-mobile-web-app-capable content="yes">
-<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
-<meta name=author content="成祎"><meta name=description content="阅读条件:
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>vim从入门到放弃_篇二 - 为学日益,为道日损</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="成祎" /><meta name="description" content="阅读条件:
  编辑器爱好者,了解vim基本使用
   篇一: 初识vim 篇二: vim的配置与使用 篇三: vim的不足和新的选择 篇四: spacemacs入门
-"><meta name=keywords content="Hugo,theme,even">
-<meta name=generator content="Hugo 0.88.0 with theme even">
-<link rel=canonical href=http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=manifest href=/manifest.json>
-<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
-<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
-<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
-<meta property="og:title" content="vim从入门到放弃_篇二">
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.87.0 with theme even" />
+
+
+<link rel="canonical" href="http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="vim从入门到放弃_篇二" />
 <meta property="og:description" content="阅读条件:
 
 编辑器爱好者,了解vim基本使用
@@ -34,13 +51,14 @@
 篇一: 初识vim
 篇二: vim的配置与使用
 篇三: vim的不足和新的选择
-篇四: spacemacs入门">
-<meta property="og:type" content="article">
-<meta property="og:url" content="http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/"><meta property="article:section" content="post">
-<meta property="article:published_time" content="2017-03-26T19:16:56+08:00">
-<meta property="article:modified_time" content="2017-03-26T19:16:56+08:00">
-<meta itemprop=name content="vim从入门到放弃_篇二">
-<meta itemprop=description content="阅读条件:
+篇四: spacemacs入门" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.yitinglove.cn/post/2017-03-26-vim_to_emacs_2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2017-03-26T19:16:56+08:00" />
+<meta property="article:modified_time" content="2017-03-26T19:16:56+08:00" />
+
+<meta itemprop="name" content="vim从入门到放弃_篇二">
+<meta itemprop="description" content="阅读条件:
 
 编辑器爱好者,了解vim基本使用
 
@@ -48,12 +66,12 @@
 篇一: 初识vim
 篇二: vim的配置与使用
 篇三: vim的不足和新的选择
-篇四: spacemacs入门"><meta itemprop=datePublished content="2017-03-26T19:16:56+08:00">
-<meta itemprop=dateModified content="2017-03-26T19:16:56+08:00">
-<meta itemprop=wordCount content="1118">
-<meta itemprop=keywords content="tool,vim,emacs,"><meta name=twitter:card content="summary">
-<meta name=twitter:title content="vim从入门到放弃_篇二">
-<meta name=twitter:description content="阅读条件:
+篇四: spacemacs入门"><meta itemprop="datePublished" content="2017-03-26T19:16:56+08:00" />
+<meta itemprop="dateModified" content="2017-03-26T19:16:56+08:00" />
+<meta itemprop="wordCount" content="1118">
+<meta itemprop="keywords" content="tool,vim,emacs," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="vim从入门到放弃_篇二"/>
+<meta name="twitter:description" content="阅读条件:
 
 编辑器爱好者,了解vim基本使用
 
@@ -61,110 +79,135 @@
 篇一: 初识vim
 篇二: vim的配置与使用
 篇三: vim的不足和新的选择
-篇四: spacemacs入门"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+篇四: spacemacs入门"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
 <body>
-<div id=mobile-navbar class=mobile-navbar>
-<div class=mobile-header-logo>
-<a href=/ class=logo>为学日益,为道日损</a>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">为学日益,为道日损</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
-<div class=mobile-navbar-icon>
-<span></span>
-<span></span>
-<span></span>
-</div>
-</div>
-<nav id=mobile-menu class="mobile-menu slideout-menu">
-<ul class=mobile-menu-list>
-<a href=/>
-<li class=mobile-menu-item>Home</li>
-</a><a href=/post/>
-<li class=mobile-menu-item>Archives</li>
-</a><a href=/tags/>
-<li class=mobile-menu-item>Tags</li>
-</a><a href=/categories/>
-<li class=mobile-menu-item>Categories</li>
-</a>
-</ul>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
 </nav>
-<div class=container id=mobile-panel>
-<header id=header class=header>
-<div class=logo-wrapper>
-<a href=/ class=logo>为学日益,为道日损</a>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">为学日益,为道日损</a>
 </div>
-<nav class=site-navbar>
-<ul id=menu class=menu>
-<li class=menu-item>
-<a class=menu-item-link href=/>Home</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/post/>Archives</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/tags/>Tags</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/categories/>Categories</a>
-</li>
-</ul>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
 </nav>
-</header>
-<main id=main class=main>
-<div class=content-wrapper>
-<div id=content class=content>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title>vim从入门到放弃_篇二</h1>
-<div class=post-meta>
-<span class=post-time> 2017-03-26 </span>
-<span class=more-meta> 约 1118 字 </span>
-<span class=more-meta> 预计阅读 3 分钟 </span>
-<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
-</div>
-</header>
-<div class=post-toc id=post-toc>
-<h2 class=post-toc-title>文章目录</h2>
-<div class="post-toc-content always-active">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#前言>前言</a></li>
-<li><a href=#观点>观点</a>
-<ul>
-<li><a href=#能站在巨人的肩膀上就不要站在平地>能站在巨人的肩膀上,就不要站在平地</a></li>
-</ul>
-</li>
-<li><a href=#spf13httpsgithubcomspf13spf13-vim><a href=https://github.com/spf13/spf13-vim>spf13</a></a>
-<ul>
-<li><a href=#安装>安装</a></li>
-<li><a href=#文档>文档</a></li>
-<li><a href=#结构>结构</a></li>
-<li><a href=#定制>定制</a></li>
-<li><a href=#插件>插件</a></li>
-<li><a href=#参考>参考</a></li>
-</ul>
-</li>
-<li><a href=#尾记>尾记</a></li>
-</ul>
-</li>
-</ul>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">vim从入门到放弃_篇二</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-03-26 </span>
+        
+          <span class="more-meta"> 约 1118 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#观点">观点</a>
+          <ul>
+            <li><a href="#能站在巨人的肩膀上就不要站在平地">能站在巨人的肩膀上,就不要站在平地</a></li>
+          </ul>
+        </li>
+        <li><a href="#spf13httpsgithubcomspf13spf13-vim"><a href="https://github.com/spf13/spf13-vim">spf13</a></a>
+          <ul>
+            <li><a href="#安装">安装</a></li>
+            <li><a href="#文档">文档</a></li>
+            <li><a href="#结构">结构</a></li>
+            <li><a href="#定制">定制</a></li>
+            <li><a href="#插件">插件</a></li>
+            <li><a href="#参考">参考</a></li>
+          </ul>
+        </li>
+        <li><a href="#尾记">尾记</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
+  </div>
 </div>
-</div>
-<div class=post-content>
-<p>阅读条件:</p>
+    <div class="post-content">
+      <p>阅读条件:</p>
 <blockquote>
 <p>编辑器爱好者,了解vim基本使用</p>
 </blockquote>
 <hr>
-<p>篇一: <a href=http://yitinglove.cn/blog/2017/03/19/vim_to_emacs_1/>初识vim</a>
-篇二: <a href=http://yitinglove.cn/blog/2017/03/26/vim_to_emacs_2/>vim的配置与使用</a>
-篇三: <a href=http://yitinglove.cn/blog/2017/04/04/vim_to_emacs_3/>vim的不足和新的选择</a>
-篇四: <a href=http://yitinglove.cn/blog/2017/04/23/vim_to_emacs_4/>spacemacs入门</a></p>
-<h2 id=前言>前言</h2>
+<p>篇一: <a href="http://yitinglove.cn/blog/2017/03/19/vim_to_emacs_1/">初识vim</a>
+篇二: <a href="http://yitinglove.cn/blog/2017/03/26/vim_to_emacs_2/">vim的配置与使用</a>
+篇三: <a href="http://yitinglove.cn/blog/2017/04/04/vim_to_emacs_3/">vim的不足和新的选择</a>
+篇四: <a href="http://yitinglove.cn/blog/2017/04/23/vim_to_emacs_4/">spacemacs入门</a></p>
+<h2 id="前言">前言</h2>
 <p>第一篇我们主要介绍了Vim的高效和优点.简而言之,就是Vim非常牛逼,值得学习.那么本篇我就我个人学习的经验来介绍下,如何配置和使用vim.</p>
 <p>虽然我已经使用并学习vim两年时间了,但是vim还是会偶尔给我惊喜.能力有限,这里只是简单地介绍.</p>
-<h2 id=观点>观点</h2>
-<h3 id=能站在巨人的肩膀上就不要站在平地>能站在巨人的肩膀上,就不要站在平地</h3>
+<h2 id="观点">观点</h2>
+<h3 id="能站在巨人的肩膀上就不要站在平地">能站在巨人的肩膀上,就不要站在平地</h3>
 <p>经常有新人寻求别人的配置,这个时候总会有一些人站出来说:</p>
 <blockquote>
 <p>vim的牛逼之处就在于它的高配置性,还是自己定制的最好等等</p>
@@ -172,121 +215,155 @@
 <p>我的观点很明确既然已经有了那么好的配置,为什么还要自己折腾.</p>
 <p>首先读懂别人的配置,然后汲取其中的优点,再去修改和定制.这样的效率远远高于自己在那里慢慢折腾.不要一上来就去修改,先使用一段时间.既然别人那样配置,又被人所广泛接受一定是有一定道理的.</p>
 <p>额外的好处在于,如果大家都使用类似的配置,那么大家的快捷键也是类似的.这样就算别人帮你看代码也会方便一些.</p>
-<h2 id=spf13httpsgithubcomspf13spf13-vim><a href=https://github.com/spf13/spf13-vim>spf13</a></h2>
+<h2 id="spf13httpsgithubcomspf13spf13-vim"><a href="https://github.com/spf13/spf13-vim">spf13</a></h2>
 <p>spf13是我能想到的目前最优秀的配置.久经考验,值得拥有.</p>
-<h3 id=安装>安装</h3>
+<h3 id="安装">安装</h3>
 <p>安装非常简单,主要就是一行命令</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>    curl https://j.mp/spf13-vim3 -L &gt; spf13-vim.sh &amp;&amp; sh spf13-vim.sh
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    curl https://j.mp/spf13-vim3 -L &gt; spf13-vim.sh &amp;&amp; sh spf13-vim.sh
 </code></pre></td></tr></table>
 </div>
 </div><p>如果有其他安装问题,在Github也是很容易找到答案的.毕竟已经发布了多年,基本上你能遇到的问题,别人都已经遇到过了.</p>
-<h3 id=文档>文档</h3>
-<p>在它的 <a href=http://vim.spf13.com/>官网</a>有详细的介绍和文档.不要害怕英文,慢慢读一读.一边阅读一边使用,一定是可以理解的.</p>
-<h3 id=结构>结构</h3>
+<h3 id="文档">文档</h3>
+<p>在它的 <a href="http://vim.spf13.com/">官网</a>有详细的介绍和文档.不要害怕英文,慢慢读一读.一边阅读一边使用,一定是可以理解的.</p>
+<h3 id="结构">结构</h3>
 <p>本质上,vim的配置文件只有一个,就是<code>.vimrc</code>.spf13为了隔离变化,将之拆分成了三个文件,分别是:</p>
-<h4 id=1-vimrcbefore>1. <code>.vimrc.before</code></h4>
+<h4 id="1-vimrcbefore">1. <code>.vimrc.before</code></h4>
 <p>用于控制载入<code>.vimrc</code>前的一些设置</p>
-<h4 id=2-vimrcbundles>2. <code>.vimrc.bundles</code></h4>
+<h4 id="2-vimrcbundles">2. <code>.vimrc.bundles</code></h4>
 <p>用于控制配置的插件</p>
-<h4 id=3-vimrc>3. <code>.vimrc</code></h4>
+<h4 id="3-vimrc">3. <code>.vimrc</code></h4>
 <p>vim的主配置文件
 以上的这三个文件是官方提供的,强烈不建议更改.</p>
-<h3 id=定制>定制</h3>
+<h3 id="定制">定制</h3>
 <p>那么,如果我们需要定制自己的配置怎么办呢?spf13早就帮你考虑好了.
 如果仅仅是个人自己使用,只需要新建3个文件: <code>.vimrc.before.local</code>,<code>.vimrc.bundles.local</code>, <code>.vimrc.local</code>.
 在这三个文件中,添加对应的内容,就可以修改了.
 如果还希望再次发布给别人使用.将上面的<code>local</code>修改为<code>fork</code>即可.
 关于这里的替换关系,只要稍微阅读下<code>.vimrc</code>和<code>.vimrc.before</code>就可以明白了.</p>
-<h3 id=插件>插件</h3>
+<h3 id="插件">插件</h3>
 <p>spf13本身配置了若干插件,使用了一种类似于插件包的配置手法.通过阅读<code>.vimrc.before</code>可以了解如何配置.
-也可以参考我的 <a href=https://github.com/chengyi818/dotfiles/blob/master/home/.vimrc.before.fork>配置</a></p>
-<h3 id=参考>参考</h3>
-<p>我的主要编码环境是c/c++/Python.如果有需要的也可以参考我的 <a href=https://github.com/chengyi818/dotfiles/tree/master/home>配置</a></p>
-<h2 id=尾记>尾记</h2>
+也可以参考我的 <a href="https://github.com/chengyi818/dotfiles/blob/master/home/.vimrc.before.fork">配置</a></p>
+<h3 id="参考">参考</h3>
+<p>我的主要编码环境是c/c++/Python.如果有需要的也可以参考我的 <a href="https://github.com/chengyi818/dotfiles/tree/master/home">配置</a></p>
+<h2 id="尾记">尾记</h2>
 <p>使用vim的乐趣,在于不断尝试,不断探索.它总能给你一些新鲜的感受.无聊的时候,去读读官方的配置,总能发现新的快捷键.</p>
 <p>使用新的快捷键总能发现新的乐趣,原来还可以支持这样的操作.多练习,多使用.把vim当成第一编辑器,总能学到更多的内容.晚安🌔</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">成祎</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2017-03-26
+        
+    </span>
+  </p>
+  
+  
 </div>
-<div class=post-copyright>
-<p class=copyright-item>
-<span class=item-title>文章作者</span>
-<span class=item-content>成祎</span>
-</p>
-<p class=copyright-item>
-<span class=item-title>上次更新</span>
-<span class=item-content>
-2017-03-26
-</span>
-</p>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/tool/">tool</a>
+          <a href="/tags/vim/">vim</a>
+          <a href="/tags/emacs/">emacs</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2017-04-04-vim_to_emacs_3/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">vim从入门到放弃_篇三</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2017-03-19-vim_to_emacs_1/">
+            <span class="next-text nav-default">vim从入门到放弃_篇一</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'blog-yitinglove-cn';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="chengyi818@foxmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/chengyi818" class="iconfont icon-github" title="github"></a>
+  <a href="http://blog.yitinglove.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
-<footer class=post-footer>
-<div class=post-tags>
-<a href=/tags/tool/>tool</a>
-<a href=/tags/vim/>vim</a>
-<a href=/tags/emacs/>emacs</a>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>成祎</span>
+  </span>
 </div>
-<nav class=post-nav>
-<a class=prev href=/post/2017-04-04-vim_to_emacs_3/>
-<i class="iconfont icon-left"></i>
-<span class="prev-text nav-default">vim从入门到放弃_篇三</span>
-<span class="prev-text nav-mobile">上一篇</span>
-</a>
-<a class=next href=/post/2017-03-19-vim_to_emacs_1/>
-<span class="next-text nav-default">vim从入门到放弃_篇一</span>
-<span class="next-text nav-mobile">下一篇</span>
-<i class="iconfont icon-right"></i>
-</a>
-</nav>
-</footer>
-</article>
-</div>
-<div id=disqus_thread></div>
-<script type=text/javascript>(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='blog-yitinglove-cn',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=gitalk-container></div>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
-<script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
-<script type=text/javascript>var gitalk=new Gitalk({id:'2017-03-26 19:16:56 \u002b0800 \u002b0800',title:'vim从入门到放弃_篇二',clientID:'3372cbf11cbf4bb89463',clientSecret:'7c072961186586ae0788099efff3c36d04d1c2ec',repo:'hugo_blog',owner:'chengyi818',admin:['chengyi818'],body:decodeURI(location.href)});gitalk.render('gitalk-container')</script>
-<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript>
-</div>
-</main>
-<footer id=footer class=footer>
-<div class=social-links>
-<a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
-<a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
-<a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
-</div>
-<div class=copyright>
-<span class=power-by>
-由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
-</span>
-<span class=division>|</span>
-<span class=theme-info>
-主题 -
-<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
-</span>
-<div class=busuanzi-footer>
-<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
-<span class=division>|</span>
-<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
-</div>
-<span class=copyright-year>
-&copy;
-2017 -
-2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
-</span>
-</div>
-</footer>
-<div class=back-to-top id=back-to-top>
-<i class="iconfont icon-up"></i>
-</div>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
-<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
-<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
 </body>
 </html>

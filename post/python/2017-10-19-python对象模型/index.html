@@ -1,0 +1,415 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Python对象模型 - 为学日益,为道日损</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="成祎"><meta name=description content="阅读条件:
+ C语言基础, Python爱好者
+ "><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.88.0 with theme even">
+<link rel=canonical href=http://blog.yitinglove.cn/post/python/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Python对象模型">
+<meta property="og:description" content="阅读条件:
+
+C语言基础, Python爱好者
+
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://blog.yitinglove.cn/post/python/2017-10-19-python%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2017-10-19T19:16:56+08:00">
+<meta property="article:modified_time" content="2017-10-19T19:16:56+08:00">
+<meta itemprop=name content="Python对象模型">
+<meta itemprop=description content="阅读条件:
+
+C语言基础, Python爱好者
+
+"><meta itemprop=datePublished content="2017-10-19T19:16:56+08:00">
+<meta itemprop=dateModified content="2017-10-19T19:16:56+08:00">
+<meta itemprop=wordCount content="1679">
+<meta itemprop=keywords content="Python,Source Code,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Python对象模型">
+<meta name=twitter:description content="阅读条件:
+
+C语言基础, Python爱好者
+
+"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Python对象模型</h1>
+<div class=post-meta>
+<span class=post-time> 2017-10-19 </span>
+<span class=more-meta> 约 1679 字 </span>
+<span class=more-meta> 预计阅读 4 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#序>序</a></li>
+<li><a href=#前言>前言</a></li>
+<li><a href=#源码目录与结构>源码目录与结构</a></li>
+<li><a href=#python对象>Python对象</a>
+<ul>
+<li><a href=#初识>初识</a></li>
+<li><a href=#对象类型>对象类型</a></li>
+<li><a href=#对象数据>对象数据</a></li>
+</ul>
+</li>
+<li><a href=#其他>其他</a>
+<ul>
+<li><a href=#缓冲池>缓冲池</a></li>
+<li><a href=#模拟small-python>模拟Small Python</a></li>
+</ul>
+</li>
+<li><a href=#总结>总结</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<p>阅读条件:</p>
+<blockquote>
+<p>C语言基础, Python爱好者</p>
+</blockquote>
+<hr>
+<h1 id=序>序</h1>
+<p>本系列是阅读<em>Python源码剖析</em>的读书笔记.</p>
+<blockquote>
+<p>所有Python的语言魔法都有一个朴素的解释.</p>
+</blockquote>
+<p>近一年以来,一直在使用Python完成项目,时常惊叹于Python语法的简洁优雅.<a href=https://www.python.org/dev/peps/pep-0020/>PEP 20 The Zen of Python</a>描述了Python的指导原则.</p>
+<p>我也读过类似<em>Effective Python:59个方法</em>和<em>Solid Python:91个建议</em>这样的书籍,并且尝试在实际项目使用学习到的Tips.但是总有些隔靴搔痒的意思.</p>
+<p>对于一些语言特性,比如元类,装饰器,生成器,弱类型等,总是有一种雾里看花的感觉.惊叹于这些语言特性的魔力,但是要看穿魔法的迷雾还是需要深入到Python的源码实现中去.</p>
+<p>我们都知道原始Python语言本身是用C语言实现的.本系列就是阅读<em>Python源码剖析</em>后的读书笔记.</p>
+<p>我的读书笔记主要基于自己已有的知识,蜻蜓点水般的记录了自己的总结和收获.更多精彩的内容还是要到书中去捡拾.</p>
+<h1 id=前言>前言</h1>
+<p>Python实现主要分为3个主要部分:</p>
+<ol>
+<li>模块和库</li>
+<li>Python虚拟机</li>
+<li>运行时环境: Python对象模型, 内存分配, 运行状态</li>
+</ol>
+<p>我们同样遵循书中的提纲,本篇主要介绍Python对象模型.</p>
+<p>即使接触Python不久的同学可能也知道,Python中一切都是对象.整数是整数对象,字符串是字符串对象,函数是函数对象甚至类的定义本身也是一个对象.</p>
+<p>那么在源码层面,这种一切都是对象的机制是怎么做到的呢?这也是本文的核心问题:</p>
+<blockquote>
+<p>如何用C语言实现不同对象的对象模型?甚至对外暴露统一的接口</p>
+</blockquote>
+<h1 id=源码目录与结构>源码目录与结构</h1>
+<p>书中源码是<a href=https://www.python.org/download/releases/2.5/>Python 2.5.0</a>,涉及到的主要代码在<code>Include</code>和<code>Objects</code>目录中.前者是头文件声明,后者根据不同的对象在不同的文件中实现了对应的方法.</p>
+<h1 id=python对象>Python对象</h1>
+<h2 id=初识>初识</h2>
+<p>在Python源码中,我们经常看到的一个结构体就是<code>PyObject</code>,似乎每个Python中的对象都可以用这个结构体来描述.下面我们就来看下这个结构体的定义:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>[object.h]
+
+typedef struct _object {
+        PyObject_HEAD
+} PyObject;
+
+#define PyObject_HEAD \
+    int ob_refcnt;    \
+    struct _typeobject *ob_type;
+</code></pre></td></tr></table>
+</div>
+</div><p>源码还是解释的比较清楚的,<code>PyObject</code>仅仅包含了一个叫做<code>PyObject_HEAD</code>的东西.顾名思义,这大概是表示一个Python对象的头部.</p>
+<p>我们将上面的代码合并,看看头部中到底有哪些东西.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>typedef struct _object {
+	int ob_refcnt;
+	struct _typeobject *ob_type;
+} PyObject;
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到,首先是引用计数,不用想这一定是和内存回收有关系的,我们先跳过.其次,是一个指向类型结构体的指针.</p>
+<h2 id=对象类型>对象类型</h2>
+<p>接着我们来看看<code>struct _typeobject</code>是怎么一回事.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>[object.h]
+typedef struct _typeobject {
+	PyObject_VAR_HEAD
+	const char *tp_name; /* For printing, in format &#34;&lt;module&gt;.&lt;name&gt;&#34; */
+	Py_ssize_t tp_basicsize, tp_itemsize; /* For allocation */
+
+	/* Methods to implement standard operations */
+
+	destructor tp_dealloc;
+	printfunc tp_print;
+	getattrfunc tp_getattr;
+	setattrfunc tp_setattr;
+	cmpfunc tp_compare;
+	reprfunc tp_repr;
+
+	/* Method suites for standard classes */
+
+	PyNumberMethods *tp_as_number;
+	PySequenceMethods *tp_as_sequence;
+	PyMappingMethods *tp_as_mapping;
+
+	/* More standard operations (here for binary compatibility) */
+
+	hashfunc tp_hash;
+	ternaryfunc tp_call;
+    ...
+    ...
+} PyTypeObject;
+</code></pre></td></tr></table>
+</div>
+</div><p>这段代码还是比较长的,我们大致看看.也能猜出其中不少的含义.
+其中通过<code>tp_name</code>描述了类型的名称,通过<code>tp_basicsize</code>和<code>tp_itemsize</code>描述了对象的大小.
+后面还有一系列的对象方法.</p>
+<h2 id=对象数据>对象数据</h2>
+<p>我们在前面已经看到对象的类型,方法都已经有了.那么对象本身的数据呢?我们通过最简单的一个对象类型来看一看.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>[intobject.h]
+typedef stuct {
+    PyObject_HEAD
+    long ob_ival;
+} PyIntObject;
+</code></pre></td></tr></table>
+</div>
+</div><p>深入一层,我们来看<code>PyInt_Type</code>的定义:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>[intobject.c]
+PyTypeObject PyInt_Type = {
+	PyObject_HEAD_INIT(&amp;PyType_Type)
+	0,
+	&#34;int&#34;,
+	sizeof(PyIntObject),
+	0,
+	(destructor)int_dealloc,		/* tp_dealloc */
+	(printfunc)int_print,			/* tp_print */
+    ...
+    ...
+};
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到对于Int类型的对象而言,数据就跟在<code>PyObject_HEAD</code>的后面.而在类型信息中,则规定它的各种对应操作.</p>
+<h1 id=其他>其他</h1>
+<h2 id=缓冲池>缓冲池</h2>
+<p>在常见的内建对象类型中,包括整数,字符串,列表,字典中,都使用了类似的缓存机制.
+本质上,就是希望尽可能少的使用到系统调用,同时尽可能高效使用内存.</p>
+<h2 id=模拟small-python>模拟Small Python</h2>
+<p>作者提供了一段非常简洁的C++代码,模拟了简单的Python行为.我没有找到原始代码,但是在<a href=https://gist.github.com/lastmayday/e9a6d4803d7be5f83d65>github</a>上我找到一份.</p>
+<p>我将部分warning修复后,也放到了<a href=https://github.com/chengyi818/kata/blob/master/Language/python/virtual_machine/SmallPython.cc>GitHub</a>上,这是本文<strong>最有价值</strong>的部分.</p>
+<h1 id=总结>总结</h1>
+<p>本文描述了Python的对象模型的基础.Python对象模型是通过C来实现的,那么如何使用C语言实现面向对象的语言.在我们的示例代码中给出了范例.</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>成祎</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2017-10-19
+</span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/python/>Python</a>
+<a href=/tags/source-code/>Source Code</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/python/2017-12-09-python%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%86%E6%9E%B6-%E4%B8%8A/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Python虚拟机框架_上</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/post/books/2017-09-27-%E5%B9%B2%E6%B3%95-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>
+<span class="next-text nav-default">干法_读书笔记</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='blog-yitinglove-cn',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=gitalk-container></div>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
+<script type=text/javascript>var gitalk=new Gitalk({id:'2017-10-19 19:16:56 \u002b0800 \u002b0800',title:'Python对象模型',clientID:'3372cbf11cbf4bb89463',clientSecret:'7c072961186586ae0788099efff3c36d04d1c2ec',repo:'hugo_blog',owner:'chengyi818',admin:['chengyi818'],body:decodeURI(location.href)});gitalk.render('gitalk-container')</script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
+<a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
+<a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>把Effective Python读薄之一 - 为学日益,为道日损</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="成祎"><meta name=description content="这两天看到一篇博客,名为&amp;lt;把编程珠玑读薄&amp;gt;,是为名.
+本文是我总结的Effective Python的第一章
+阅读条件:
+ 掌握Python基本语法
+"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.88.0 with theme even">
+<link rel=canonical href=http://blog.yitinglove.cn/post/python/2016-12-18-effective-python_1/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="把Effective Python读薄之一">
+<meta property="og:description" content="这两天看到一篇博客,名为<把编程珠玑读薄>,是为名.
+本文是我总结的Effective Python的第一章
+阅读条件:
+
+掌握Python基本语法
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://blog.yitinglove.cn/post/python/2016-12-18-effective-python_1/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2016-12-18T19:16:56+08:00">
+<meta property="article:modified_time" content="2016-12-18T19:16:56+08:00">
+<meta itemprop=name content="把Effective Python读薄之一">
+<meta itemprop=description content="这两天看到一篇博客,名为<把编程珠玑读薄>,是为名.
+本文是我总结的Effective Python的第一章
+阅读条件:
+
+掌握Python基本语法
+"><meta itemprop=datePublished content="2016-12-18T19:16:56+08:00">
+<meta itemprop=dateModified content="2016-12-18T19:16:56+08:00">
+<meta itemprop=wordCount content="1315">
+<meta itemprop=keywords content="python,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="把Effective Python读薄之一">
+<meta name=twitter:description content="这两天看到一篇博客,名为<把编程珠玑读薄>,是为名.
+本文是我总结的Effective Python的第一章
+阅读条件:
+
+掌握Python基本语法
+"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>把Effective Python读薄之一</h1>
+<div class=post-meta>
+<span class=post-time> 2016-12-18 </span>
+<span class=more-meta> 约 1315 字 </span>
+<span class=more-meta> 预计阅读 3 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#用pythonic的方式思考>用Pythonic的方式思考</a>
+<ul>
+<li><a href=#1python版本>1.Python版本</a></li>
+<li><a href=#2代码风格>2.代码风格</a></li>
+<li><a href=#3字符串编码>3.字符串编码</a></li>
+<li><a href=#4辅助函数>4.辅助函数</a></li>
+<li><a href=#5切片操作>5.切片操作</a></li>
+<li><a href=#6切片操作注意>6.切片操作注意</a></li>
+<li><a href=#7列表生成式>7.列表生成式</a></li>
+<li><a href=#8列表生成式注意>8.列表生成式注意</a></li>
+<li><a href=#9列表生成式无力处理大数据量>9.列表生成式无力处理大数据量</a></li>
+<li><a href=#10使用enumerate取代range>10.使用enumerate取代range</a></li>
+<li><a href=#11zip同时遍历两个迭代器>11.zip同时遍历两个迭代器</a></li>
+<li><a href=#12不要使用forwhile--else的组合>12.不要使用for/while + else的组合</a></li>
+<li><a href=#13tryexceptelsefinally>13.try/except/else/finally</a></li>
+</ul>
+</li>
+<li><a href=#小结>小结</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<p>这两天看到一篇博客,名为&lt;把编程珠玑读薄>,是为名.</p>
+<p>本文是我总结的Effective Python的第一章</p>
+<p>阅读条件:</p>
+<blockquote>
+<p>掌握Python基本语法</p>
+</blockquote>
+<h2 id=用pythonic的方式思考>用Pythonic的方式思考</h2>
+<p>Python程序员崇尚美观易读的代码,准则我想大概有两个:</p>
+<ol>
+<li><code>import this</code></li>
+</ol>
+<blockquote>
+<p>Python之禅中,每一句都应当时时牢记,并向之接近</p>
+</blockquote>
+<ol start=2>
+<li>我们都是成年人</li>
+</ol>
+<blockquote>
+<p>Python要求程序员为自己的行为负责,并不赞同在编程时过多地限制行为</p>
+</blockquote>
+<h3 id=1python版本>1.Python版本</h3>
+<p>在16年年末看来,Python3毫无疑问是未来的方向和趋势.Python2和Python3的不兼容给Python程序员带来的巨大的麻烦,但程序员不就是要拥抱变化么.</p>
+<p>所以尽快地切换到Python3是明智之选</p>
+<h3 id=2代码风格>2.代码风格</h3>
+<p>代码风格的重要性毋庸置疑,Python主要遵守PEP8.</p>
+<p>我目前在编辑器中使用Pylint作为检查工具,只要将Pylint提示的问题都做到心中有数,代码风格应该问题不大.</p>
+<h3 id=3字符串编码>3.字符串编码</h3>
+<p>Python的编码问题也是老生常谈了,相关文章也很多了,不再赘述.</p>
+<p>在Linux环境下,将默认编码统一为<strong>UTF-8</strong>,是一个良好的习惯.</p>
+<h3 id=4辅助函数>4.辅助函数</h3>
+<p>Python语法支持很多奇异的特性,比如列表生成式等等.过多地滥用这些特性,会把语句写的非常晦涩难懂.</p>
+<p>前面我们就提到的Python的原则,代码的易读和美观在Python中是非常重要的.</p>
+<p>所以书中推荐使用辅助函数来替代一些晦涩难懂的语句.</p>
+<h3 id=5切片操作>5.切片操作</h3>
+<p>序列,尤其是列表(list)的切割在Python中非常常用,使用方法灵活且安全.</p>
+<p>推荐使用</p>
+<h3 id=6切片操作注意>6.切片操作注意</h3>
+<p>在单次切片操作中,不要同时指定start,end,stride.</p>
+<p>这会影响易读性,如果确实需要使用,不如分成两步</p>
+<h3 id=7列表生成式>7.列表生成式</h3>
+<p>列表生成式(list comprehension)是Python中非常常见的用法</p>
+<p>推荐使用</p>
+<h3 id=8列表生成式注意>8.列表生成式注意</h3>
+<p>和切片操作的注意类似,虽然列表生成式支持嵌套,但是不要忘了在Python中代码的易读和美观非常重要.</p>
+<p>通常如果列表生成式嵌套不要超过两层</p>
+<h3 id=9列表生成式无力处理大数据量>9.列表生成式无力处理大数据量</h3>
+<p>列表生成式会将数据一次性全部载入内存中,对于大数据量而言,这是系统无法承受的.</p>
+<p>所以在遇到大数据量,推荐使用生成器.</p>
+<h3 id=10使用enumerate取代range>10.使用enumerate取代range</h3>
+<p>使用索引访问序列,是C/C++程序员的常规做法.</p>
+<p>在Python中,我们更加推荐使用enumerate,更加直观.</p>
+<h3 id=11zip同时遍历两个迭代器>11.zip同时遍历两个迭代器</h3>
+<p>Python内置的zip函数可以同时遍历多个迭代器,相较于使用下标遍历更为直观.</p>
+<p>换言之,Python为程序员提供了很多内置的函数,通常更加高效和直观.</p>
+<p>应当更多地使用内置函数来完成工作.</p>
+<h3 id=12不要使用forwhile--else的组合>12.不要使用for/while + else的组合</h3>
+<p><code>for/while/else</code>几乎是所有语言共同的关键字,Python也不例外.</p>
+<p>但是Python允许for/while分别和else组合,这在其他语言并不常见.</p>
+<p>语法特性比较诡异,如果是掌握多门语言的程序员对此要慎重选择.</p>
+<h3 id=13tryexceptelsefinally>13.try/except/else/finally</h3>
+<p>在捕获异常时,同时使用这4种关键字可以达成很强的效果.</p>
+<p>应该合理充分利用.</p>
+<h2 id=小结>小结</h2>
+<p>本章主要讲了Python一些简单的惯用法:</p>
+<ol>
+<li>
+<p>美观易读非常重要.</p>
+</li>
+<li>
+<p>充分利用Python的语法特性.如果和第一条发生冲突,优先第一条</p>
+</li>
+</ol>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>成祎</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2016-12-18
+</span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/python/>python</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/python/2017-02-18-effective-python_2/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">把Effective Python读薄之二</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/post/python/2016-11-26-python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/>
+<span class="next-text nav-default">Python模块和包</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='blog-yitinglove-cn',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=gitalk-container></div>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
+<script type=text/javascript>var gitalk=new Gitalk({id:'2016-12-18 19:16:56 \u002b0800 \u002b0800',title:'把Effective Python读薄之一',clientID:'3372cbf11cbf4bb89463',clientSecret:'7c072961186586ae0788099efff3c36d04d1c2ec',repo:'hugo_blog',owner:'chengyi818',admin:['chengyi818'],body:decodeURI(location.href)});gitalk.render('gitalk-container')</script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
+<a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
+<a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>
