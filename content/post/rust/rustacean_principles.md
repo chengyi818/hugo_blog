@@ -1,10 +1,10 @@
 ---
-title: "rust设计理念和社区运作理念**
+title: "rust设计理念和社区运作理念"
 date: 2021-09-12T19:49:35+08:00
 draft: true
 lastmod: 2021-09-12T19:49:35+08:00
-tags: ["rust**]
-categories: ["rust****
+tags: ["rust"]
+categories: ["rust"]
 
 ---
 
