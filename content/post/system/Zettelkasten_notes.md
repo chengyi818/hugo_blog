@@ -6,7 +6,7 @@ tags: ["Zettelkasten", "学习方法"]
 categories: ["system"]
 ---
 
-![zettelkasten](https://github.com/chengyi818/hugo_blog/blob/master/data/images/zettelkasten_01.jpg)
+![zettelkasten](https://raw.githubusercontent.com/chengyi818/hugo_blog/master/data/images/zettelkasten_01.jpg)
 
 # 缘起
 
