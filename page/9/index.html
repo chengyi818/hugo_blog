@@ -12,7 +12,7 @@
 <meta name=apple-mobile-web-app-capable content="yes">
 <meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
 <meta name=author content="成祎"><meta name=description content="闻之我也野，视之我也饶，行之我也明"><meta name=keywords content="Hugo,theme,even">
-<meta name=generator content="Hugo 0.89.3 with theme even">
+<meta name=generator content="Hugo 0.90.1 with theme even">
 <link rel=canonical href=http://blog.yitinglove.cn/>
 <link href=http://blog.yitinglove.cn/index.xml rel=alternate type=application/rss+xml title=为学日益,为道日损>
 <link href=http://blog.yitinglove.cn/index.xml rel=feed type=application/rss+xml title=为学日益,为道日损>
@@ -81,6 +81,26 @@
 <div class=content-wrapper>
 <div id=content class=content>
 <section id=posts class=posts>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title><a class=post-link href=/post/openwrt/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/>openwrt主Makefile解析</a></h1>
+<div class=post-meta>
+<span class=post-time> 2015-12-26 </span>
+<span class=more-meta> 约 2125 字 </span>
+<span class=more-meta> 预计阅读 5 分钟 </span>
+</div>
+</header>
+<div class=post-content>
+<div class=post-summary>
+<p>本周成胖子每周一博到了第四周</p>
+<h2 id=前言>前言</h2>
+<p>前一篇,我们大概描述了整个镜像文件的生成过程.本周我们来解析主Makefile,看看主要编译过程是怎么产生的.</p>
+</div>
+<div class=read-more>
+<a href=/post/openwrt/2015-12-26-openwrt%E4%B8%BBmakefile%E8%A7%A3%E6%9E%90/ class=read-more-link>阅读更多</a>
+</div>
+</div>
+</article>
 <article class=post>
 <header class=post-header>
 <h1 class=post-title><a class=post-link href=/post/openwrt/2015-12-20-%E6%88%91%E7%9A%84makefile%E5%AD%A6%E4%B9%A0%E5%86%B2%E5%8A%A8and%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0/>openwrt编译过程概述</a></h1>
@@ -177,33 +197,15 @@
 </div>
 </div>
 </article>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title><a class=post-link href=/post/linux_shell/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/>xargs用法详解</a></h1>
-<div class=post-meta>
-<span class=post-time> 2015-08-20 </span>
-<div class=post-category>
-<a href=/categories/linux-cmd/> linux cmd </a>
-</div>
-<span class=more-meta> 约 2178 字 </span>
-<span class=more-meta> 预计阅读 5 分钟 </span>
-</div>
-</header>
-<div class=post-content>
-<div class=post-summary>
-<h2 id=前言>前言</h2>
-<p>　最近我从svn上checkout出来了一个文件夹,然后加入了git的跟踪目录.用过svn的同学可能知道,这个文件夹里面每一层级都有个.svn隐藏文件夹,需要删除他们.本来我准备笨拙地一个一个手动删除的,一位同事在我面前敲了大概是<code>$find . -type d -name "*.svn" | xargs rm -rf</code>这样的命令,顿时觉得很高端大气上档次.刚好新学了Markdown,就顺便整理下xargs的用法,练练手.<a href=http://czmmiao.iteye.com/blog/1949225>参考网址</a>,当然更主要的参考来自于伟大的<code>$man xargs</code>.</p>
-</div>
-<div class=read-more>
-<a href=/post/linux_shell/2015-08-20-xargs%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/ class=read-more-link>阅读更多</a>
-</div>
-</div>
-</article>
 </section>
 <nav class=pagination>
 <a class=prev href=/page/8/>
 <i class="iconfont icon-left"></i>
 <span class=prev-text>上一页</span>
+</a>
+<a class=next href=/page/10/>
+<span class=next-text>下一页</span>
+<i class="iconfont icon-right"></i>
 </a>
 </nav>
 </div>
