@@ -8,6 +8,8 @@ categories: ["Tips"]
 
 ---
 
+# 多记录
+
 作为全职开发者,有一项被我们低估的技能: 知识管理. 无论是通过时间,经验,阅读还是个人解决工作中的问题,也可能是解决一些编译问题或者配置脚本等.一定要把自己学习的过程记录下来,这个过程中我们的理解会更加深刻.
 
 及时的记录有如下好处:
@@ -20,3 +22,8 @@ categories: ["Tips"]
 为了降低自己的负担,完全可以使用简记的方式.不要对这种随手记的信息要求过高,使用一些关键字或者tag便于以后搜索.
 
 目前我在家里和手机上使用wiznote比较多;公司受限于网络,使用vnote比较多.
+
+---
+
+# 参考
+[Keep a log](https://bruno-oliveira.github.io/techblog/Keep-a-log/?utm_source=hackernewsletter&utm_medium=email&utm_term=fav)
