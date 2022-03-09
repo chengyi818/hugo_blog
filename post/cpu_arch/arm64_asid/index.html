@@ -1,0 +1,140 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Arm64_asid - 为学日益,为道日损</title><meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="成祎"><meta name=description content="原来这就是arm的asid"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.93.3 with theme even">
+<link rel=canonical href=http://blog.yitinglove.cn/post/cpu_arch/arm64_asid/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Arm64_asid">
+<meta property="og:description" content="原来这就是arm的asid">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://blog.yitinglove.cn/post/cpu_arch/arm64_asid/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2022-03-09T20:28:28+08:00">
+<meta property="article:modified_time" content="2022-03-09T20:28:28+08:00">
+<meta itemprop=name content="Arm64_asid">
+<meta itemprop=description content="原来这就是arm的asid"><meta itemprop=datePublished content="2022-03-09T20:28:28+08:00">
+<meta itemprop=dateModified content="2022-03-09T20:28:28+08:00">
+<meta itemprop=wordCount content="608">
+<meta itemprop=keywords content="Arm64,MMU,Cache,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Arm64_asid">
+<meta name=twitter:description content="原来这就是arm的asid"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head><body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div><div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div></div><nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li></a><a href=/post/>
+<li class=mobile-menu-item>Archives</li></a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li></a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li></a>
+</ul></nav><div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>为学日益,为道日损</a>
+</div><nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li></ul></nav></header><main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Arm64_asid</h1><div class=post-meta>
+<span class=post-time> 2022-03-09 </span>
+<div class=post-category>
+<a href=/categories/os/> Os </a>
+</div><span class=more-meta> 约 608 字 </span>
+<span class=more-meta> 预计阅读 2 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div></header><div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#asid在解决什么问题>ASID在解决什么问题</a></li><li><a href=#其他细节>其他细节</a></li><li><a href=#ref>Ref</a></li></ul></nav></div></div><div class=post-content>
+<p>最近在工作中定位了一个比较困难的问题,涉及到了Arm64的asid相关的概念,这里来简单总结下它的来龙去脉.</p><h1 id=asid在解决什么问题>ASID在解决什么问题</h1><p>作为现代的CPU基本都有MMU(Memory Management Unit)用于虚拟地址和物理地址的转换,这里我们不再赘述. 而这个转换的过程由于需要遍历多级页表,其速度是比较慢的. 那么这里为了加速转换的过程,硬件提供了一个缓存即,TLB. 当需要虚拟地址(VA)向物理地址(PA)转换时,则先去TLB(translation lookaside buffer)查询,如果命中了则直接返回物理地址,否则去遍历页表,同时将VA和PA的对应关系保存到TLB中.</p><p>但是我们知道用户态的程序拥有各自独立的虚拟地址空间,其对应的物理地址并不相同. 如果仅仅使用虚拟地址,那么相同的VA必然对应相同的PA. 因此ARM64,就设计了ASID(Address Space ID).</p><p>如下图所示,比较好的说明了这个问题. TLB中缓存是区分全局或者局部的, 对于内核空间地址,所有进程都一样.因此不需要ASID参与映射. 对于用户空间地址,则需要ASID参与.
+<img src=https://cdn.jsdelivr.net/gh/chengyi818/images@master//img/f77c9be0d1c9476189e07edfbd098cc1.png alt=ASID></p><h1 id=其他细节>其他细节</h1><ol>
+<li>如通过<code>TCR_EL1.AS</code>寄存器配置ASID的宽度, <code>TCR_EL.A1</code>配置ASID是从TTBR0或者TTRB1读取.</li><li>在linux kernel中,如果ASID配置了宽度为8bit,则总可用的ASID只有256个.进程那么多是怎么分配的呢?</li></ol><hr>
+<h1 id=ref>Ref</h1><ol>
+<li><a href=https://blog.csdn.net/weixin_42314225/article/details/120210638>ARM64中的ASID地址空间标识符</a></li><li><a href=https://zhuanlan.zhihu.com/p/55265099>ASID</a></li><li><a href=https://blog.csdn.net/tiantao2012/article/details/82756686>Linux kernel ASID</a></li><li><a href=http://www.wowotech.net/process_management/context-switch-tlb.html>进程切换分析_2: TLB处理</a></li></ol></div><div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>成祎</span>
+</p><p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2022-03-09
+</span>
+</p></div><footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/arm64/>Arm64</a>
+<a href=/tags/mmu/>MMU</a>
+<a href=/tags/cache/>Cache</a>
+</div><nav class=post-nav>
+<a class=next href=/post/tips/keep_a_log/>
+<span class="next-text nav-default">记录的习惯</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav></footer></article></div><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
+<script type=text/javascript>var gitalk=new Gitalk({id:"2022-03-09 20:28:28 \u002b0800 \u002b0800",title:"Arm64_asid",clientID:"3372cbf11cbf4bb89463",clientSecret:"7c072961186586ae0788099efff3c36d04d1c2ec",repo:"hugo_blog",owner:"chengyi818",admin:["chengyi818"],body:decodeURI(location.href)});gitalk.render("gitalk-container")</script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript></div></main><footer id=footer class=footer>
+<div class=social-links>
+<a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
+<a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
+<a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div><div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div><span class=copyright-year>
+&copy;
+2017 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+</span>
+</div></footer><div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js></script>
+</body></html>

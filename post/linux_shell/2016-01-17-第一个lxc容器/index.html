@@ -2,8 +2,7 @@
 <head>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
-<title>第一个lxc容器 - 为学日益,为道日损</title>
-<meta name=renderer content="webkit">
+<title>第一个lxc容器 - 为学日益,为道日损</title><meta name=renderer content="webkit">
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta http-equiv=cache-control content="no-transform">
 <meta http-equiv=cache-control content="no-siteapp">
@@ -15,7 +14,7 @@
  ##前言
  我的工作是做路由器开发的.为了实现一次开发在不同平台的快速部署,我们尝试在路由器运行LXC容器.通过它来实现我们的虚拟化目标,我们通过打开内核开关,交叉编译lxc工具以及制作基于busybox的简单文件系统,已经达到了基本目标.同时我们在容器内移植了openwrt的opkg功能,使得容器内部可以通过opkg的方式快速安装ipk,从而在传统路由器上快速实现了openwrt的特色功能.
 "><meta name=keywords content="Hugo,theme,even">
-<meta name=generator content="Hugo 0.90.1 with theme even">
+<meta name=generator content="Hugo 0.93.3 with theme even">
 <link rel=canonical href=http://blog.yitinglove.cn/post/linux_shell/2016-01-17-%E7%AC%AC%E4%B8%80%E4%B8%AAlxc%E5%AE%B9%E5%99%A8/>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
@@ -48,37 +47,26 @@
 ##前言
   我的工作是做路由器开发的.为了实现一次开发在不同平台的快速部署,我们尝试在路由器运行LXC容器.通过它来实现我们的虚拟化目标,我们通过打开内核开关,交叉编译lxc工具以及制作基于busybox的简单文件系统,已经达到了基本目标.同时我们在容器内移植了openwrt的opkg功能,使得容器内部可以通过opkg的方式快速安装ipk,从而在传统路由器上快速实现了openwrt的特色功能."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
-</head>
-<body>
+</head><body>
 <div id=mobile-navbar class=mobile-navbar>
 <div class=mobile-header-logo>
 <a href=/ class=logo>为学日益,为道日损</a>
-</div>
-<div class=mobile-navbar-icon>
+</div><div class=mobile-navbar-icon>
 <span></span>
 <span></span>
 <span></span>
-</div>
-</div>
-<nav id=mobile-menu class="mobile-menu slideout-menu">
+</div></div><nav id=mobile-menu class="mobile-menu slideout-menu">
 <ul class=mobile-menu-list>
 <a href=/>
-<li class=mobile-menu-item>Home</li>
-</a><a href=/post/>
-<li class=mobile-menu-item>Archives</li>
-</a><a href=/tags/>
-<li class=mobile-menu-item>Tags</li>
-</a><a href=/categories/>
-<li class=mobile-menu-item>Categories</li>
-</a>
-</ul>
-</nav>
-<div class=container id=mobile-panel>
+<li class=mobile-menu-item>Home</li></a><a href=/post/>
+<li class=mobile-menu-item>Archives</li></a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li></a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li></a>
+</ul></nav><div class=container id=mobile-panel>
 <header id=header class=header>
 <div class=logo-wrapper>
 <a href=/ class=logo>为学日益,为道日损</a>
-</div>
-<nav class=site-navbar>
+</div><nav class=site-navbar>
 <ul id=menu class=menu>
 <li class=menu-item>
 <a class=menu-item-link href=/>Home</a>
@@ -88,56 +76,30 @@
 <a class=menu-item-link href=/tags/>Tags</a>
 </li><li class=menu-item>
 <a class=menu-item-link href=/categories/>Categories</a>
-</li>
-</ul>
-</nav>
-</header>
-<main id=main class=main>
+</li></ul></nav></header><main id=main class=main>
 <div class=content-wrapper>
 <div id=content class=content>
 <article class=post>
 <header class=post-header>
-<h1 class=post-title>第一个lxc容器</h1>
-<div class=post-meta>
+<h1 class=post-title>第一个lxc容器</h1><div class=post-meta>
 <span class=post-time> 2016-01-17 </span>
 <span class=more-meta> 约 1051 字 </span>
 <span class=more-meta> 预计阅读 3 分钟 </span>
 <span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
-</div>
-</header>
-<div class=post-toc id=post-toc>
-<h2 class=post-toc-title>文章目录</h2>
-<div class="post-toc-content always-active">
-<nav id=TableOfContents></nav>
-</div>
-</div>
-<div class=post-content>
-<p>本周是成胖子每周一博的第七周:)</p>
-<hr>
-<p>##前言</p>
-<p>  我的工作是做路由器开发的.为了实现一次开发在不同平台的快速部署,我们尝试在路由器运行LXC容器.通过它来实现我们的虚拟化目标,我们通过打开内核开关,交叉编译lxc工具以及制作基于busybox的简单文件系统,已经达到了基本目标.同时我们在容器内移植了openwrt的opkg功能,使得容器内部可以通过opkg的方式快速安装ipk,从而在传统路由器上快速实现了openwrt的特色功能.</p>
-<p>  虽然基本功能可以使用了,但是我的LXC基础还是很薄弱.周末花点时间看看.本文主要基于LXC的核心开发者之一stephan Graber的<a href=https://www.stgraber.org/2013/12/20/lxc-1-0-blog-post-series/>博客</a>.</p>
-<hr>
-<p>##第一个Ubuntu容器</p>
-<p>###什么是LXC?
-LXC是linux内核提供给用户空间的接口.通过强大的API和简单的工具,用户可以轻松创建和管理容器.博客的作者stephan Graber是LXC的主要维护者之一.</p>
-<ul>
-<li>LXC的源码托管在github上.<a href=http://github.com/lxc>地址</a></li>
-<li>LXC的项目主页.<a href=http://linuxcontainers.org>地址</a></li>
-</ul>
-<p>###安装LXC</p>
-<p>LXC 1.0是LXC的第一个长期稳定版本.Ubuntu的用户可以直接通过命令行安装LXC,其他用户可以下载LXC源码然后手动编译.
-命令行安装如下:</p>
-<div class=highlight><div class=chroma>
+</div></header><div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active">
+<nav id=TableOfContents></nav></div></div><div class=post-content>
+<p>本周是成胖子每周一博的第七周:)</p><hr>
+<p>##前言</p><p>  我的工作是做路由器开发的.为了实现一次开发在不同平台的快速部署,我们尝试在路由器运行LXC容器.通过它来实现我们的虚拟化目标,我们通过打开内核开关,交叉编译lxc工具以及制作基于busybox的简单文件系统,已经达到了基本目标.同时我们在容器内移植了openwrt的opkg功能,使得容器内部可以通过opkg的方式快速安装ipk,从而在传统路由器上快速实现了openwrt的特色功能.</p><p>  虽然基本功能可以使用了,但是我的LXC基础还是很薄弱.周末花点时间看看.本文主要基于LXC的核心开发者之一stephan Graber的<a href=https://www.stgraber.org/2013/12/20/lxc-1-0-blog-post-series/>博客</a>.</p><hr>
+<p>##第一个Ubuntu容器</p><p>###什么是LXC?
+LXC是linux内核提供给用户空间的接口.通过强大的API和简单的工具,用户可以轻松创建和管理容器.博客的作者stephan Graber是LXC的主要维护者之一.</p><ul>
+<li>LXC的源码托管在github上.<a href=http://github.com/lxc>地址</a></li><li>LXC的项目主页.<a href=http://linuxcontainers.org>地址</a></li></ul><p>###安装LXC</p><p>LXC 1.0是LXC的第一个长期稳定版本.Ubuntu的用户可以直接通过命令行安装LXC,其他用户可以下载LXC源码然后手动编译.
+命令行安装如下:</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>sudo apt-get install lxc lxctl lxc-templates
-</code></pre></td></tr></table>
-</div>
-</div><p>手动安装如下</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt-get install lxc lxctl lxc-templates
+</span></span></code></pre></td></tr></table></div></div><p>手动安装如下</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -146,20 +108,15 @@ LXC是linux内核提供给用户空间的接口.通过强大的API和简单的�
 </span><span class=lnt>5
 </span><span class=lnt>6
 </span><span class=lnt>7
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>git clone git://github.com/lxc/lxc
-cd lxc
-sh autogen.sh
-# You will probably want to run the configure script with --help and then set the paths
-./configure
-make
-sudo make install
-</code></pre></td></tr></table>
-</div>
-</div><p>###运行LXC</p>
-<p>运行LXC的过程很简单,只需要简单几个命令,如下:</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>git clone git://github.com/lxc/lxc
+</span></span><span class=line><span class=cl>cd lxc
+</span></span><span class=line><span class=cl>sh autogen.sh
+</span></span><span class=line><span class=cl># You will probably want to run the configure script with --help and then set the paths
+</span></span><span class=line><span class=cl>./configure
+</span></span><span class=line><span class=cl>make
+</span></span><span class=line><span class=cl>sudo make install
+</span></span></code></pre></td></tr></table></div></div><p>###运行LXC</p><p>运行LXC的过程很简单,只需要简单几个命令,如下:</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -189,61 +146,50 @@ sudo make install
 </span><span class=lnt>26
 </span><span class=lnt>27
 </span><span class=lnt>28
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback># 建立使用&#34;ubuntu&#34;模板建立一个名为&#34;p1&#34;的容器.Ubuntu版本和体系结构与主机相同.
-# 可以使用&#34;--help&#34;查询所有选项
-sudo lxc-create -t ubuntu -n p1
-
-# 在后台启动一个已经创建的容器
-sudo lxc-start -n p1 -d
-
-# 使用以下方式进入容器
-## 进入一个容器的控制台(使用ctrl-a + q 来脱离容器的控制台)
-sudo lxc-console -n p1
-
-## Spawn bash directly in the container (bypassing the console login), requires a &gt;= 3.8 kernel
-## 直接进入容器中的bash
-sudo lxc-attach -n p1
-
-## SSH 登陆容器
-sudo lxc-info -n p1
-ssh ubuntu@&lt;ip from lxc-info&gt;
-
-# 使用以下方式关闭容器
-## 在容器内部关闭容器
-sudo poweroff
-
-## 在容器外部彻底关闭容器
-sudo lxc-stop -n p1
-
-## 在容器外部杀死容器进程
-sudo lxc-stop -n p1 -k
-</code></pre></td></tr></table>
-</div>
-</div><p> 相信以上的命令,大家基本都能直接看懂.试两把也就熟悉了.Ubuntu12.04之后的版本是直接支持所有LXC的所有特性的.</p>
-<p> 当容器建立之后,容器内的网络就已经配置完成了.这个时候HostOs将会建立一个二层桥设备<code>lxcbr0</code>,同时建立一个DHCP服务器为容器内的系统提供服务.</p>
-<hr>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 建立使用&#34;ubuntu&#34;模板建立一个名为&#34;p1&#34;的容器.Ubuntu版本和体系结构与主机相同.
+</span></span><span class=line><span class=cl># 可以使用&#34;--help&#34;查询所有选项
+</span></span><span class=line><span class=cl>sudo lxc-create -t ubuntu -n p1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 在后台启动一个已经创建的容器
+</span></span><span class=line><span class=cl>sudo lxc-start -n p1 -d
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 使用以下方式进入容器
+</span></span><span class=line><span class=cl>## 进入一个容器的控制台(使用ctrl-a + q 来脱离容器的控制台)
+</span></span><span class=line><span class=cl>sudo lxc-console -n p1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>## Spawn bash directly in the container (bypassing the console login), requires a &gt;= 3.8 kernel
+</span></span><span class=line><span class=cl>## 直接进入容器中的bash
+</span></span><span class=line><span class=cl>sudo lxc-attach -n p1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>## SSH 登陆容器
+</span></span><span class=line><span class=cl>sudo lxc-info -n p1
+</span></span><span class=line><span class=cl>ssh ubuntu@&lt;ip from lxc-info&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 使用以下方式关闭容器
+</span></span><span class=line><span class=cl>## 在容器内部关闭容器
+</span></span><span class=line><span class=cl>sudo poweroff
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>## 在容器外部彻底关闭容器
+</span></span><span class=line><span class=cl>sudo lxc-stop -n p1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>## 在容器外部杀死容器进程
+</span></span><span class=line><span class=cl>sudo lxc-stop -n p1 -k
+</span></span></code></pre></td></tr></table></div></div><p> 相信以上的命令,大家基本都能直接看懂.试两把也就熟悉了.Ubuntu12.04之后的版本是直接支持所有LXC的所有特性的.</p><p> 当容器建立之后,容器内的网络就已经配置完成了.这个时候HostOs将会建立一个二层桥设备<code>lxcbr0</code>,同时建立一个DHCP服务器为容器内的系统提供服务.</p><hr>
 <p>##尾记
- 本周时间比较匆忙,我和我媳妇搭建了我们自己的博客小站,欢迎大家访问.<a href=http://chengyi818.github.io/>传送门</a></p>
-</div>
-<div class=post-copyright>
+ 本周时间比较匆忙,我和我媳妇搭建了我们自己的博客小站,欢迎大家访问.<a href=http://chengyi818.github.io/>传送门</a></p></div><div class=post-copyright>
 <p class=copyright-item>
 <span class=item-title>文章作者</span>
 <span class=item-content>成祎</span>
-</p>
-<p class=copyright-item>
+</p><p class=copyright-item>
 <span class=item-title>上次更新</span>
 <span class=item-content>
 2016-01-17
 </span>
-</p>
-</div>
-<footer class=post-footer>
+</p></div><footer class=post-footer>
 <div class=post-tags>
 <a href=/tags/lxc/>lxc</a>
-</div>
-<nav class=post-nav>
+</div><nav class=post-nav>
 <a class=prev href=/post/tools/2016-01-24-%E5%B7%A5%E5%85%B7%E8%AF%B4_%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/>
 <i class="iconfont icon-left"></i>
 <span class="prev-text nav-default">思维导图xmind</span>
@@ -254,24 +200,15 @@ sudo lxc-stop -n p1 -k
 <span class="next-text nav-mobile">下一篇</span>
 <i class="iconfont icon-right"></i>
 </a>
-</nav>
-</footer>
-</article>
-</div>
-<div id=gitalk-container></div>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
+</nav></footer></article></div><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
 <script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
-<script type=text/javascript>var gitalk=new Gitalk({id:'2016-01-17 19:16:56 \u002b0800 \u002b0800',title:'第一个lxc容器',clientID:'3372cbf11cbf4bb89463',clientSecret:'7c072961186586ae0788099efff3c36d04d1c2ec',repo:'hugo_blog',owner:'chengyi818',admin:['chengyi818'],body:decodeURI(location.href)});gitalk.render('gitalk-container')</script>
-<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript>
-</div>
-</main>
-<footer id=footer class=footer>
+<script type=text/javascript>var gitalk=new Gitalk({id:"2016-01-17 19:16:56 \u002b0800 \u002b0800",title:"第一个lxc容器",clientID:"3372cbf11cbf4bb89463",clientSecret:"7c072961186586ae0788099efff3c36d04d1c2ec",repo:"hugo_blog",owner:"chengyi818",admin:["chengyi818"],body:decodeURI(location.href)});gitalk.render("gitalk-container")</script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript></div></main><footer id=footer class=footer>
 <div class=social-links>
 <a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
 <a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
 <a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
-</div>
-<div class=copyright>
+</div><div class=copyright>
 <span class=power-by>
 由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
 </span>
@@ -284,21 +221,15 @@ sudo lxc-stop -n p1 -k
 <span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
 <span class=division>|</span>
 <span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
-</div>
-<span class=copyright-year>
+</div><span class=copyright-year>
 &copy;
 2017 -
-2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
 </span>
-</div>
-</footer>
-<div class=back-to-top id=back-to-top>
+</div></footer><div class=back-to-top id=back-to-top>
 <i class="iconfont icon-up"></i>
-</div>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+</div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
-</body>
-</html>
+<script type=text/javascript src=/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js></script>
+</body></html>

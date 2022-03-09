@@ -2,8 +2,7 @@
 <head>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
-<title>openwrt简单ipk生成及Makefile解释 - 为学日益,为道日损</title>
-<meta name=renderer content="webkit">
+<title>openwrt简单ipk生成及Makefile解释 - 为学日益,为道日损</title><meta name=renderer content="webkit">
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta http-equiv=cache-control content="no-transform">
 <meta http-equiv=cache-control content="no-siteapp">
@@ -15,7 +14,7 @@
  1,网上文章良莠不齐,有些自己都没实际动手操作,随便复制粘贴,实际操作不可行. 2,基本只讲了操作,我当时最关心的Makefile文件的解释没有.
  所以我自己总结了一篇.
 "><meta name=keywords content="Hugo,theme,even">
-<meta name=generator content="Hugo 0.90.1 with theme even">
+<meta name=generator content="Hugo 0.93.3 with theme even">
 <link rel=canonical href=http://blog.yitinglove.cn/post/openwrt/2015-08-31-helloworld-ipk/>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
@@ -57,37 +56,26 @@
 
 所以我自己总结了一篇."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
-</head>
-<body>
+</head><body>
 <div id=mobile-navbar class=mobile-navbar>
 <div class=mobile-header-logo>
 <a href=/ class=logo>为学日益,为道日损</a>
-</div>
-<div class=mobile-navbar-icon>
+</div><div class=mobile-navbar-icon>
 <span></span>
 <span></span>
 <span></span>
-</div>
-</div>
-<nav id=mobile-menu class="mobile-menu slideout-menu">
+</div></div><nav id=mobile-menu class="mobile-menu slideout-menu">
 <ul class=mobile-menu-list>
 <a href=/>
-<li class=mobile-menu-item>Home</li>
-</a><a href=/post/>
-<li class=mobile-menu-item>Archives</li>
-</a><a href=/tags/>
-<li class=mobile-menu-item>Tags</li>
-</a><a href=/categories/>
-<li class=mobile-menu-item>Categories</li>
-</a>
-</ul>
-</nav>
-<div class=container id=mobile-panel>
+<li class=mobile-menu-item>Home</li></a><a href=/post/>
+<li class=mobile-menu-item>Archives</li></a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li></a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li></a>
+</ul></nav><div class=container id=mobile-panel>
 <header id=header class=header>
 <div class=logo-wrapper>
 <a href=/ class=logo>为学日益,为道日损</a>
-</div>
-<nav class=site-navbar>
+</div><nav class=site-navbar>
 <ul id=menu class=menu>
 <li class=menu-item>
 <a class=menu-item-link href=/>Home</a>
@@ -97,82 +85,43 @@
 <a class=menu-item-link href=/tags/>Tags</a>
 </li><li class=menu-item>
 <a class=menu-item-link href=/categories/>Categories</a>
-</li>
-</ul>
-</nav>
-</header>
-<main id=main class=main>
+</li></ul></nav></header><main id=main class=main>
 <div class=content-wrapper>
 <div id=content class=content>
 <article class=post>
 <header class=post-header>
-<h1 class=post-title>openwrt简单ipk生成及Makefile解释</h1>
-<div class=post-meta>
+<h1 class=post-title>openwrt简单ipk生成及Makefile解释</h1><div class=post-meta>
 <span class=post-time> 2015-08-31 </span>
 <span class=more-meta> 约 2442 字 </span>
 <span class=more-meta> 预计阅读 5 分钟 </span>
 <span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
-</div>
-</header>
-<div class=post-toc id=post-toc>
-<h2 class=post-toc-title>文章目录</h2>
-<div class="post-toc-content always-active">
+</div></header><div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active">
 <nav id=TableOfContents>
 <ul>
 <li>
 <ul>
 <li><a href=#前言>前言</a>
 <ul>
-<li><a href=#说明>说明</a></li>
-</ul>
-</li>
-<li><a href=#正文>正文</a>
+<li><a href=#说明>说明</a></li></ul></li><li><a href=#正文>正文</a>
 <ul>
-<li><a href=#1创建helloworld项目>1.创建helloworld项目</a></li>
-<li><a href=#2创建helloworld包>2.创建helloworld包</a></li>
-<li><a href=#3makefile注释>3.Makefile注释</a></li>
-<li><a href=#4编译软件>4.编译软件</a></li>
-</ul>
-</li>
-<li><a href=#尾记>尾记</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-<div class=post-content>
-<h2 id=前言>前言</h2>
-<p>类似的文章其实网上比较多了,我写这个的目的:</p>
-<blockquote>
+<li><a href=#1创建helloworld项目>1.创建helloworld项目</a></li><li><a href=#2创建helloworld包>2.创建helloworld包</a></li><li><a href=#3makefile注释>3.Makefile注释</a></li><li><a href=#4编译软件>4.编译软件</a></li></ul></li><li><a href=#尾记>尾记</a></li></ul></li></ul></nav></div></div><div class=post-content>
+<h2 id=前言>前言</h2><p>类似的文章其实网上比较多了,我写这个的目的:</p><blockquote>
 <p>1,网上文章良莠不齐,有些自己都没实际动手操作,随便复制粘贴,实际操作不可行.
-2,基本只讲了操作,我当时最关心的Makefile文件的解释没有.</p>
-</blockquote>
-<p>所以我自己总结了一篇.</p>
-<hr>
-<h3 id=说明>说明</h3>
-<p>开发板为MT7620a,openwrt版本为:barrier_breaker_14.07.编译主机为ubuntu 14.04 32位.
+2,基本只讲了操作,我当时最关心的Makefile文件的解释没有.</p></blockquote><p>所以我自己总结了一篇.</p><hr>
+<h3 id=说明>说明</h3><p>开发板为MT7620a,openwrt版本为:barrier_breaker_14.07.编译主机为ubuntu 14.04 32位.
 <code>git clone git://git.openwrt.org/14.07/openwrt.git</code>
-关于怎么搭建编译环境以及编译请参考<a href=http://blog.chinaunix.net/uid-22547469-id-4364254.html>网上</a></p>
-<hr>
-<h2 id=正文>正文</h2>
-<p>下面我们开始,我们遵循传统以helloworld开始.</p>
-<h3 id=1创建helloworld项目>1.创建helloworld项目</h3>
-<p>首先我们新建helloworld.c文件和对应的Makefile文件</p>
-<div class=highlight><div class=chroma>
+关于怎么搭建编译环境以及编译请参考<a href=http://blog.chinaunix.net/uid-22547469-id-4364254.html>网上</a></p><hr>
+<h2 id=正文>正文</h2><p>下面我们开始,我们遵循传统以helloworld开始.</p><h3 id=1创建helloworld项目>1.创建helloworld项目</h3><p>首先我们新建helloworld.c文件和对应的Makefile文件</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$mkdir -p ~/temp/hellworld/src
-$cd ~/temp/helloworld/src
-$touch helloworld.c Makefile
-</code></pre></td></tr></table>
-</div>
-</div><p>如下为helloworld.c的内容:</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$mkdir -p ~/temp/hellworld/src
+</span></span><span class=line><span class=cl>$cd ~/temp/helloworld/src
+</span></span><span class=line><span class=cl>$touch helloworld.c Makefile
+</span></span></code></pre></td></tr></table></div></div><p>如下为helloworld.c的内容:</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -180,18 +129,14 @@ $touch helloworld.c Makefile
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>#include &lt;stdio.h&gt;
-int main()
-{
-    printf(&#34;This is my helloworld!\n&#34;);
-    return 0;
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>如下为Makefile文件的内容:</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#include &lt;stdio.h&gt;
+</span></span><span class=line><span class=cl>int main()
+</span></span><span class=line><span class=cl>{
+</span></span><span class=line><span class=cl>    printf(&#34;This is my helloworld!\n&#34;);
+</span></span><span class=line><span class=cl>    return 0;
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><p>如下为Makefile文件的内容:</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -201,43 +146,27 @@ int main()
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>helloworld : helloworld.o
-	$(CC) $(LDFLAGS) helloworld.o -o helloworld
-
-helloworld.o : helloworld.c
-	$(CC) $(CFLAGS) -c helloworld.c
-
-clean :
-	rm *.o helloworld
-</code></pre></td></tr></table>
-</div>
-</div><p>$(CC)</p>
-<blockquote>
-<p>这个值由其他Makefile文件规定,表示我们使用编译器.</p>
-</blockquote>
-<p>$(LDFLAGS)$(CFLAGS)</p>
-<blockquote>
-<p>这个表示编译器的一些选项,这里是可选的,去掉也没有问题.</p>
-</blockquote>
-<p>下面可以输入<code>$make</code>看看有没有问题,注意Makefile文件的书写格式.
-最后,输入<code>$make clean</code>来清理掉生成的二进制文件.因为上一步<code>make</code>所使用的编译器并不是我们的交叉编译链,生成的二进制文件并不能在开发板中运行.上一步只是验证我们的src中的内容正确与否.</p>
-<hr>
-<h3 id=2创建helloworld包>2.创建helloworld包</h3>
-<p>下一步我们要创建一个新的Makefile文件,在这个文件中我们要描述的是helloworld包的信息,比如:如何配置,如何编译,如何打包,安装位置等.</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>helloworld : helloworld.o
+</span></span><span class=line><span class=cl>	$(CC) $(LDFLAGS) helloworld.o -o helloworld
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>helloworld.o : helloworld.c
+</span></span><span class=line><span class=cl>	$(CC) $(CFLAGS) -c helloworld.c
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>clean :
+</span></span><span class=line><span class=cl>	rm *.o helloworld
+</span></span></code></pre></td></tr></table></div></div><p>$(CC)</p><blockquote>
+<p>这个值由其他Makefile文件规定,表示我们使用编译器.</p></blockquote><p>$(LDFLAGS)$(CFLAGS)</p><blockquote>
+<p>这个表示编译器的一些选项,这里是可选的,去掉也没有问题.</p></blockquote><p>下面可以输入<code>$make</code>看看有没有问题,注意Makefile文件的书写格式.
+最后,输入<code>$make clean</code>来清理掉生成的二进制文件.因为上一步<code>make</code>所使用的编译器并不是我们的交叉编译链,生成的二进制文件并不能在开发板中运行.上一步只是验证我们的src中的内容正确与否.</p><hr>
+<h3 id=2创建helloworld包>2.创建helloworld包</h3><p>下一步我们要创建一个新的Makefile文件,在这个文件中我们要描述的是helloworld包的信息,比如:如何配置,如何编译,如何打包,安装位置等.</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$cd ~/temp/helloworld
-$touch Makefile
-</code></pre></td></tr></table>
-</div>
-</div><p>如下为Makefile内容:</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$cd ~/temp/helloworld
+</span></span><span class=line><span class=cl>$touch Makefile
+</span></span></code></pre></td></tr></table></div></div><p>如下为Makefile内容:</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -270,222 +199,114 @@ $touch Makefile
 </span><span class=lnt>29
 </span><span class=lnt>30
 </span><span class=lnt>31
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=nx>include</span> <span class=err>$</span><span class=p>(</span><span class=nx>TOPDIR</span><span class=p>)</span><span class=o>/</span><span class=nx>rules</span><span class=p>.</span><span class=nx>mk</span>
-
-<span class=nx>PKG_NAME</span><span class=o>:=</span><span class=nx>helloworld</span>
-<span class=nx>PKG_RELEASE</span><span class=o>:=</span><span class=mi>1</span>
-<span class=nx>PKG_BUILD_DIR</span><span class=o>:=</span><span class=err>$</span><span class=p>(</span><span class=nx>BUILD_DIR</span><span class=p>)</span><span class=o>/</span><span class=err>$</span><span class=p>(</span><span class=nx>PKG_NAME</span><span class=p>)</span>
-
-<span class=nx>include</span> <span class=err>$</span><span class=p>(</span><span class=nx>INCLUDE_DIR</span><span class=p>)</span><span class=o>/</span><span class=kn>package</span><span class=p>.</span><span class=nx>mk</span>
-
-<span class=nx>define</span> <span class=nx>Package</span><span class=o>/</span><span class=nx>helloworld</span>
-	<span class=nx>SECTION</span><span class=o>:=</span><span class=nx>utils</span>
-	<span class=nx>CATEGORY</span><span class=o>:=</span><span class=nx>Utilities</span>
-	<span class=nx>TITLE</span><span class=o>:=</span><span class=nx>Helloworld</span> <span class=o>--</span> <span class=nx>prints</span> <span class=nx>a</span> <span class=nx>snarky</span> <span class=nx>message</span>
-<span class=nx>endef</span>
-
-<span class=nx>define</span> <span class=nx>Package</span><span class=o>/</span><span class=nx>helloworld</span><span class=o>/</span><span class=nx>description</span>
-	<span class=nx>It</span><span class=err>&#39;</span><span class=nx>s</span> <span class=nx>my</span> <span class=nx>first</span> <span class=kn>package</span> <span class=nx>demo</span><span class=p>.</span>
-<span class=nx>endef</span>
-
-<span class=nx>define</span> <span class=nx>Build</span><span class=o>/</span><span class=nx>Prepare</span>
-	<span class=nx>echo</span> <span class=s>&#34;Here is Package/Prepare&#34;</span>
-	<span class=nx>mkdir</span> <span class=o>-</span><span class=nx>p</span> <span class=err>$</span><span class=p>(</span><span class=nx>PKG_BUILD_DIR</span><span class=p>)</span>
-    <span class=err>$</span><span class=p>(</span><span class=nx>CP</span><span class=p>)</span> <span class=p>.</span><span class=o>/</span><span class=nx>src</span><span class=o>/*</span> <span class=err>$</span><span class=p>(</span><span class=nx>PKG_BUILD_DIR</span><span class=p>)</span><span class=o>/</span>
-<span class=nx>endef</span>
-
-<span class=nx>define</span> <span class=nx>Package</span><span class=o>/</span><span class=nx>helloworld</span><span class=o>/</span><span class=nx>install</span>
-	<span class=nx>echo</span> <span class=s>&#34;Here is Package/install&#34;</span>
-	<span class=err>$</span><span class=p>(</span><span class=nx>INSTALL_DIR</span><span class=p>)</span> <span class=err>$</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>/</span><span class=nx>bin</span>
-	<span class=err>$</span><span class=p>(</span><span class=nx>INSTALL_BIN</span><span class=p>)</span> <span class=err>$</span><span class=p>(</span><span class=nx>PKG_BUILD_DIR</span><span class=p>)</span><span class=o>/</span><span class=nx>helloworld</span> <span class=err>$</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>/</span><span class=nx>bin</span><span class=o>/</span>
-<span class=nx>endef</span>
-
-<span class=err>$</span><span class=p>(</span><span class=nx>eval</span> <span class=err>$</span><span class=p>(</span><span class=nx>call</span> <span class=nx>BuildPackage</span><span class=p>,</span><span class=nx>helloworld</span><span class=p>))</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>如下是最后的文件树形图:</p>
-<p><img src=http://i3.tietuku.com/8e9f244567388099.jpg alt=树形图></p>
-<hr>
-<h3 id=3makefile注释>3.Makefile注释</h3>
-<p>第1行<code>include $(TOPDIR)/rules.mk</code></p>
-<blockquote>
-<p>一般在Makefile的开头,包含了包的基本信息,</p>
-</blockquote>
-<blockquote>
-<p>比如Makefile中的<code>$(BUILD_DIR)</code>,<code>$(INCLUDE_DIR)</code>,<code>$(CP)</code>,<code>$(INSTALL_DIR)</code>,<code>$(INSTALL_BIN)</code>都是这里定义的.具体内容可以到源码主目录下,查看<code>rules.mk</code>文件.</p>
-</blockquote>
-<p>3~5行,软件包的信息均以“PKG_”开头，其意思和作用如下</p>
-<blockquote>
-<p>PKG_NAME：软件包名称，将在menuconfig和ipkg可以看到。</p>
-</blockquote>
-<blockquote>
-<p>PKG_VERSION：软件版本号。</p>
-</blockquote>
-<blockquote>
-<p>PKG_RELEASE：Makefile的版本号</p>
-</blockquote>
-<blockquote>
-<p>PKG_SOURCE：源代码的文件名。</p>
-</blockquote>
-<blockquote>
-<p>PKG_SOURCE_URL：源代码的下载网站位置。</p>
-</blockquote>
-<blockquote>
-<p>PKG_MD5SUM：源代码文件的效验码。用于核对软件包是否下载正确。</p>
-</blockquote>
-<blockquote>
-<p>PKG_CAT：源代码文件的解压方法。包括zcat, bzcat, unzip等。</p>
-</blockquote>
-<blockquote>
-<p>PKG_BUILD_DIR：软件包编译目录。它的父目录为$(BUILD_DIR)。</p>
-</blockquote>
-<p>第7行<code>include $(INCLUDE_DIR)/package.mk</code></p>
-<blockquote>
-<p>一般在软件包的基本信息完成后再引入，他定义了用户态软件包的规则。</p>
-</blockquote>
-<blockquote>
-<p>编译包分为用户态和内核模块，用户态软件包使用Package，内核模块使用KernelPackage.</p>
-</blockquote>
-<blockquote>
-<p><code>$(INCLUDE_DIR)/Kernel.mk</code>文件对于软件包为内核时不可缺少，</p>
-</blockquote>
-<blockquote>
-<p><code>$(INCLUDE_DIR)/package.mk</code>应用在用户态。</p>
-</blockquote>
-<blockquote>
-<p>接下来讲述用户态软件包。用户程序的编译包以<code>Package/</code>开头，然后接着软件名，在Package定义中的软件名可以与软件包名不一样，而且可以多个定义。</p>
-</blockquote>
-<p>9~13行</p>
-<blockquote>
-<p>定义包的名称为<code>helloworld</code></p>
-</blockquote>
-<blockquote>
-<p>SECTION : 包的类型为<code>utils</code></p>
-</blockquote>
-<blockquote>
-<p>CATEGORY : 目录为Utilitis,即文件在<code>menuconfig</code>中的位置;有时还会有<code>SUBMENU</code>项,即子目录.</p>
-</blockquote>
-<blockquote>
-<p>TITLE : 用于软件包的简短描述,将显示在<code>menuconfig</code>中.</p>
-</blockquote>
-<blockquote>
-<p>URL ： 软件包的下载位置。</p>
-</blockquote>
-<blockquote>
-<p>MAINTAINER ： 维护者选项。</p>
-</blockquote>
-<blockquote>
-<p><strong>DEPENDS</strong> ： 与其他软件的依赖。即如编译或安装需要其他软件时需要说明。如果存在多个依赖，则每个依赖需用空格分开。依赖前使用+号表示默认显示，即对象沒有选中时也会显示，使用@则默认为不显示，即当依赖对象选中后才显示。</p>
-</blockquote>
-<p>15~17行</p>
-<blockquote>
-<p>软件包的详细描述,将显示在<code>make menuconfig</code>中</p>
-</blockquote>
-<p>19~23行</p>
-<blockquote>
-<p>编译准备方法，对于网上下载的软件包不需要再描述。对于非网上下载或自行开发的软件包必须说明编译准备方法。</p>
-</blockquote>
-<blockquote>
-<p>本文所用的准备方法就是首先创建软件包目录，然后将源码拷贝到刚刚创建的目录中。按OpenWrt的习惯，一般把自己设计的程序全部放在src目录下。</p>
-</blockquote>
-<p>25~29行</p>
-<blockquote>
-<p>软件包的安装方法，包括一系列拷贝编译好的文件到指定位置。调用时会带一个参数，就是嵌入系统的镜像文件系统目录，因此$(1)表示嵌入系统的镜像目录。</p>
-</blockquote>
-<blockquote>
-<p><code>INSTALL_DIR:=install -d -m0755</code> : 创建所属用戶可读写、执行，其他用戶可读可执行的目录</p>
-</blockquote>
-<blockquote>
-<p><code>INSTALL_BIN:=install -m0755</code> : 编译好的文件到镜像文件目录</p>
-</blockquote>
-<p>31行 <code>$(eval $(call BuildPackage,helloworld))</code></p>
-<blockquote>
-<p>完成前面定义后，必须使用eval函数实现各种定义。其格式为：</p>
-</blockquote>
-<blockquote>
-<p>对于一般软件包：<code>$(eval $(call Package,$(PKG_NAME)))</code></p>
-</blockquote>
-<blockquote>
-<p>或对于内核模块：<code>$(eval $(call KernelPackage,$(PKG_NAME)))</code></p>
-</blockquote>
-<blockquote>
-<p>如果一个软件包有多个程序，例如：一个应用程序有自己的内核模块，上面使用的<code>PKG_NAME</code>需要灵活变通。<code>eval</code>函数可能设计多个。也可以当成多个软件包处理。</p>
-</blockquote>
-<p>这里简单地解释了Makefile文件,更具体地请<a href=http://wiki.openwrt.org/doc/devel/packages>参考</a></p>
-<hr>
-<h3 id=4编译软件>4.编译软件</h3>
-<p>至此我们的软件已经基本完成,下面进行编译
-首先将文件文件夹拷贝到<strong>openwrt目录中的package文件中</strong>,这里我的源码目录为<code>~/openwrt</code>,你需要把openwrt目录替换为你的openwrt源码目录.</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=nx>include</span> <span class=err>$</span><span class=p>(</span><span class=nx>TOPDIR</span><span class=p>)</span><span class=o>/</span><span class=nx>rules</span><span class=p>.</span><span class=nx>mk</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>PKG_NAME</span><span class=o>:=</span><span class=nx>helloworld</span>
+</span></span><span class=line><span class=cl><span class=nx>PKG_RELEASE</span><span class=o>:=</span><span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=nx>PKG_BUILD_DIR</span><span class=o>:=</span><span class=err>$</span><span class=p>(</span><span class=nx>BUILD_DIR</span><span class=p>)</span><span class=o>/</span><span class=err>$</span><span class=p>(</span><span class=nx>PKG_NAME</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>include</span> <span class=err>$</span><span class=p>(</span><span class=nx>INCLUDE_DIR</span><span class=p>)</span><span class=o>/</span><span class=kn>package</span><span class=p>.</span><span class=nx>mk</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>define</span> <span class=nx>Package</span><span class=o>/</span><span class=nx>helloworld</span>
+</span></span><span class=line><span class=cl>	<span class=nx>SECTION</span><span class=o>:=</span><span class=nx>utils</span>
+</span></span><span class=line><span class=cl>	<span class=nx>CATEGORY</span><span class=o>:=</span><span class=nx>Utilities</span>
+</span></span><span class=line><span class=cl>	<span class=nx>TITLE</span><span class=o>:=</span><span class=nx>Helloworld</span> <span class=o>--</span> <span class=nx>prints</span> <span class=nx>a</span> <span class=nx>snarky</span> <span class=nx>message</span>
+</span></span><span class=line><span class=cl><span class=nx>endef</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>define</span> <span class=nx>Package</span><span class=o>/</span><span class=nx>helloworld</span><span class=o>/</span><span class=nx>description</span>
+</span></span><span class=line><span class=cl>	<span class=nx>It</span><span class=err>&#39;</span><span class=nx>s</span> <span class=nx>my</span> <span class=nx>first</span> <span class=kn>package</span> <span class=nx>demo</span><span class=p>.</span>
+</span></span><span class=line><span class=cl><span class=nx>endef</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>define</span> <span class=nx>Build</span><span class=o>/</span><span class=nx>Prepare</span>
+</span></span><span class=line><span class=cl>	<span class=nx>echo</span> <span class=s>&#34;Here is Package/Prepare&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=nx>mkdir</span> <span class=o>-</span><span class=nx>p</span> <span class=err>$</span><span class=p>(</span><span class=nx>PKG_BUILD_DIR</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=err>$</span><span class=p>(</span><span class=nx>CP</span><span class=p>)</span> <span class=p>.</span><span class=o>/</span><span class=nx>src</span><span class=o>/*</span> <span class=err>$</span><span class=p>(</span><span class=nx>PKG_BUILD_DIR</span><span class=p>)</span><span class=o>/</span>
+</span></span><span class=line><span class=cl><span class=nx>endef</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>define</span> <span class=nx>Package</span><span class=o>/</span><span class=nx>helloworld</span><span class=o>/</span><span class=nx>install</span>
+</span></span><span class=line><span class=cl>	<span class=nx>echo</span> <span class=s>&#34;Here is Package/install&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=err>$</span><span class=p>(</span><span class=nx>INSTALL_DIR</span><span class=p>)</span> <span class=err>$</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>/</span><span class=nx>bin</span>
+</span></span><span class=line><span class=cl>	<span class=err>$</span><span class=p>(</span><span class=nx>INSTALL_BIN</span><span class=p>)</span> <span class=err>$</span><span class=p>(</span><span class=nx>PKG_BUILD_DIR</span><span class=p>)</span><span class=o>/</span><span class=nx>helloworld</span> <span class=err>$</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>/</span><span class=nx>bin</span><span class=o>/</span>
+</span></span><span class=line><span class=cl><span class=nx>endef</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span><span class=p>(</span><span class=nx>eval</span> <span class=err>$</span><span class=p>(</span><span class=nx>call</span> <span class=nx>BuildPackage</span><span class=p>,</span><span class=nx>helloworld</span><span class=p>))</span>
+</span></span></code></pre></td></tr></table></div></div><p>如下是最后的文件树形图:</p><p><img src=http://i3.tietuku.com/8e9f244567388099.jpg alt=树形图></p><hr>
+<h3 id=3makefile注释>3.Makefile注释</h3><p>第1行<code>include $(TOPDIR)/rules.mk</code></p><blockquote>
+<p>一般在Makefile的开头,包含了包的基本信息,</p></blockquote><blockquote>
+<p>比如Makefile中的<code>$(BUILD_DIR)</code>,<code>$(INCLUDE_DIR)</code>,<code>$(CP)</code>,<code>$(INSTALL_DIR)</code>,<code>$(INSTALL_BIN)</code>都是这里定义的.具体内容可以到源码主目录下,查看<code>rules.mk</code>文件.</p></blockquote><p>3~5行,软件包的信息均以“PKG_”开头，其意思和作用如下</p><blockquote>
+<p>PKG_NAME：软件包名称，将在menuconfig和ipkg可以看到。</p></blockquote><blockquote>
+<p>PKG_VERSION：软件版本号。</p></blockquote><blockquote>
+<p>PKG_RELEASE：Makefile的版本号</p></blockquote><blockquote>
+<p>PKG_SOURCE：源代码的文件名。</p></blockquote><blockquote>
+<p>PKG_SOURCE_URL：源代码的下载网站位置。</p></blockquote><blockquote>
+<p>PKG_MD5SUM：源代码文件的效验码。用于核对软件包是否下载正确。</p></blockquote><blockquote>
+<p>PKG_CAT：源代码文件的解压方法。包括zcat, bzcat, unzip等。</p></blockquote><blockquote>
+<p>PKG_BUILD_DIR：软件包编译目录。它的父目录为$(BUILD_DIR)。</p></blockquote><p>第7行<code>include $(INCLUDE_DIR)/package.mk</code></p><blockquote>
+<p>一般在软件包的基本信息完成后再引入，他定义了用户态软件包的规则。</p></blockquote><blockquote>
+<p>编译包分为用户态和内核模块，用户态软件包使用Package，内核模块使用KernelPackage.</p></blockquote><blockquote>
+<p><code>$(INCLUDE_DIR)/Kernel.mk</code>文件对于软件包为内核时不可缺少，</p></blockquote><blockquote>
+<p><code>$(INCLUDE_DIR)/package.mk</code>应用在用户态。</p></blockquote><blockquote>
+<p>接下来讲述用户态软件包。用户程序的编译包以<code>Package/</code>开头，然后接着软件名，在Package定义中的软件名可以与软件包名不一样，而且可以多个定义。</p></blockquote><p>9~13行</p><blockquote>
+<p>定义包的名称为<code>helloworld</code></p></blockquote><blockquote>
+<p>SECTION : 包的类型为<code>utils</code></p></blockquote><blockquote>
+<p>CATEGORY : 目录为Utilitis,即文件在<code>menuconfig</code>中的位置;有时还会有<code>SUBMENU</code>项,即子目录.</p></blockquote><blockquote>
+<p>TITLE : 用于软件包的简短描述,将显示在<code>menuconfig</code>中.</p></blockquote><blockquote>
+<p>URL ： 软件包的下载位置。</p></blockquote><blockquote>
+<p>MAINTAINER ： 维护者选项。</p></blockquote><blockquote>
+<p><strong>DEPENDS</strong> ： 与其他软件的依赖。即如编译或安装需要其他软件时需要说明。如果存在多个依赖，则每个依赖需用空格分开。依赖前使用+号表示默认显示，即对象沒有选中时也会显示，使用@则默认为不显示，即当依赖对象选中后才显示。</p></blockquote><p>15~17行</p><blockquote>
+<p>软件包的详细描述,将显示在<code>make menuconfig</code>中</p></blockquote><p>19~23行</p><blockquote>
+<p>编译准备方法，对于网上下载的软件包不需要再描述。对于非网上下载或自行开发的软件包必须说明编译准备方法。</p></blockquote><blockquote>
+<p>本文所用的准备方法就是首先创建软件包目录，然后将源码拷贝到刚刚创建的目录中。按OpenWrt的习惯，一般把自己设计的程序全部放在src目录下。</p></blockquote><p>25~29行</p><blockquote>
+<p>软件包的安装方法，包括一系列拷贝编译好的文件到指定位置。调用时会带一个参数，就是嵌入系统的镜像文件系统目录，因此$(1)表示嵌入系统的镜像目录。</p></blockquote><blockquote>
+<p><code>INSTALL_DIR:=install -d -m0755</code> : 创建所属用戶可读写、执行，其他用戶可读可执行的目录</p></blockquote><blockquote>
+<p><code>INSTALL_BIN:=install -m0755</code> : 编译好的文件到镜像文件目录</p></blockquote><p>31行 <code>$(eval $(call BuildPackage,helloworld))</code></p><blockquote>
+<p>完成前面定义后，必须使用eval函数实现各种定义。其格式为：</p></blockquote><blockquote>
+<p>对于一般软件包：<code>$(eval $(call Package,$(PKG_NAME)))</code></p></blockquote><blockquote>
+<p>或对于内核模块：<code>$(eval $(call KernelPackage,$(PKG_NAME)))</code></p></blockquote><blockquote>
+<p>如果一个软件包有多个程序，例如：一个应用程序有自己的内核模块，上面使用的<code>PKG_NAME</code>需要灵活变通。<code>eval</code>函数可能设计多个。也可以当成多个软件包处理。</p></blockquote><p>这里简单地解释了Makefile文件,更具体地请<a href=http://wiki.openwrt.org/doc/devel/packages>参考</a></p><hr>
+<h3 id=4编译软件>4.编译软件</h3><p>至此我们的软件已经基本完成,下面进行编译
+首先将文件文件夹拷贝到<strong>openwrt目录中的package文件中</strong>,这里我的源码目录为<code>~/openwrt</code>,你需要把openwrt目录替换为你的openwrt源码目录.</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$mv ~/temp/helloworld ~/openwrt/package
-</code></pre></td></tr></table>
-</div>
-</div><p>然后回到项目主目录运行make menuconfig</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$mv ~/temp/helloworld ~/openwrt/package
+</span></span></code></pre></td></tr></table></div></div><p>然后回到项目主目录运行make menuconfig</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$cd ~/openwrt
-$make menuconfig
-</code></pre></td></tr></table>
-</div>
-</div><p>按"/&ldquo;后,输入helloworld,搜索对应的路径</p>
-<p><img src=http://i3.tietuku.com/3376b2fa48621a57.png alt=搜索>
-<img src=http://i3.tietuku.com/9947195c15c0d77f.png alt=搜索结果></p>
-<p>接着到Utilities目录下,找到helloworld并按空格打开;
-<img src=http://i3.tietuku.com/b389aec1d8d367ee.png alt=打开编译开关></p>
-<p>保存后退出;</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$cd ~/openwrt
+</span></span><span class=line><span class=cl>$make menuconfig
+</span></span></code></pre></td></tr></table></div></div><p>按"/&ldquo;后,输入helloworld,搜索对应的路径</p><p><img src=http://i3.tietuku.com/3376b2fa48621a57.png alt=搜索>
+<img src=http://i3.tietuku.com/9947195c15c0d77f.png alt=搜索结果></p><p>接着到Utilities目录下,找到helloworld并按空格打开;
+<img src=http://i3.tietuku.com/b389aec1d8d367ee.png alt=打开编译开关></p><p>保存后退出;</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$cd ~/openwrt
-$make package/helloworld/compile V=s
-</code></pre></td></tr></table>
-</div>
-</div><p>编译完成后,ipk应该已经生成</p>
-<div class=highlight><div class=chroma>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$cd ~/openwrt
+</span></span><span class=line><span class=cl>$make package/helloworld/compile V=s
+</span></span></code></pre></td></tr></table></div></div><p>编译完成后,ipk应该已经生成</p><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$find bin/ -name &#34;helloworld*.ipk&#34;
-</code></pre></td></tr></table>
-</div>
-</div><p>至此我们已经生成简单的ipk,恭喜:)
-最后可以通过<a href=http://pan.baidu.com/s/1bnHfXyJ>winscp</a>,将ipk<a href="http://www.openwrt.org.cn/bbs/forum.php?mod=viewthread&tid=3238">安装</a>到开发板中.</p>
-<p><img src=http://i3.tietuku.com/1ac2f9939aa02cb9.jpg alt=结局></p>
-<hr>
-<h2 id=尾记>尾记</h2>
-<p>我比较薄弱的是Makefile方面的知识,刚好加强下这个方面的学习,欢迎交流~</p>
-</div>
-<div class=post-copyright>
+</span></code></pre></td><td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$find bin/ -name &#34;helloworld*.ipk&#34;
+</span></span></code></pre></td></tr></table></div></div><p>至此我们已经生成简单的ipk,恭喜:)
+最后可以通过<a href=http://pan.baidu.com/s/1bnHfXyJ>winscp</a>,将ipk<a href="http://www.openwrt.org.cn/bbs/forum.php?mod=viewthread&tid=3238">安装</a>到开发板中.</p><p><img src=http://i3.tietuku.com/1ac2f9939aa02cb9.jpg alt=结局></p><hr>
+<h2 id=尾记>尾记</h2><p>我比较薄弱的是Makefile方面的知识,刚好加强下这个方面的学习,欢迎交流~</p></div><div class=post-copyright>
 <p class=copyright-item>
 <span class=item-title>文章作者</span>
 <span class=item-content>成祎</span>
-</p>
-<p class=copyright-item>
+</p><p class=copyright-item>
 <span class=item-title>上次更新</span>
 <span class=item-content>
 2015-08-31
 </span>
-</p>
-</div>
-<footer class=post-footer>
+</p></div><footer class=post-footer>
 <div class=post-tags>
 <a href=/tags/openwrt/>openwrt</a>
-</div>
-<nav class=post-nav>
+</div><nav class=post-nav>
 <a class=prev href=/post/openwrt/2015-09-02-openwrt_luci%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/>
 <i class="iconfont icon-left"></i>
 <span class="prev-text nav-default">Openwrt LuCI模块练习详细步骤</span>
@@ -496,24 +317,15 @@ $make package/helloworld/compile V=s
 <span class="next-text nav-mobile">下一篇</span>
 <i class="iconfont icon-right"></i>
 </a>
-</nav>
-</footer>
-</article>
-</div>
-<div id=gitalk-container></div>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
+</nav></footer></article></div><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
 <script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
-<script type=text/javascript>var gitalk=new Gitalk({id:'2015-08-31 19:16:56 \u002b0800 \u002b0800',title:'openwrt简单ipk生成及Makefile解释',clientID:'3372cbf11cbf4bb89463',clientSecret:'7c072961186586ae0788099efff3c36d04d1c2ec',repo:'hugo_blog',owner:'chengyi818',admin:['chengyi818'],body:decodeURI(location.href)});gitalk.render('gitalk-container')</script>
-<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript>
-</div>
-</main>
-<footer id=footer class=footer>
+<script type=text/javascript>var gitalk=new Gitalk({id:"2015-08-31 19:16:56 \u002b0800 \u002b0800",title:"openwrt简单ipk生成及Makefile解释",clientID:"3372cbf11cbf4bb89463",clientSecret:"7c072961186586ae0788099efff3c36d04d1c2ec",repo:"hugo_blog",owner:"chengyi818",admin:["chengyi818"],body:decodeURI(location.href)});gitalk.render("gitalk-container")</script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript></div></main><footer id=footer class=footer>
 <div class=social-links>
 <a href=chengyi818@foxmail.com class="iconfont icon-email" title=email></a>
 <a href=https://github.com/chengyi818 class="iconfont icon-github" title=github></a>
 <a href=http://blog.yitinglove.cn/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
-</div>
-<div class=copyright>
+</div><div class=copyright>
 <span class=power-by>
 由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
 </span>
@@ -526,21 +338,15 @@ $make package/helloworld/compile V=s
 <span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
 <span class=division>|</span>
 <span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
-</div>
-<span class=copyright-year>
+</div><span class=copyright-year>
 &copy;
 2017 -
-2021<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>成祎</span>
 </span>
-</div>
-</footer>
-<div class=back-to-top id=back-to-top>
+</div></footer><div class=back-to-top id=back-to-top>
 <i class="iconfont icon-up"></i>
-</div>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+</div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
-</body>
-</html>
+<script type=text/javascript src=/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js></script>
+</body></html>
